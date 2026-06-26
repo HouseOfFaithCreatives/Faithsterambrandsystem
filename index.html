@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FaithStream Brand System — Overview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/tokens.css">
+<style>
+  .cover-hero {
+    padding: var(--sp-16) 0 var(--sp-10);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: var(--sp-10);
+  }
+  .cover-meta {
+    display: flex; gap: var(--sp-6); margin-top: var(--sp-6);
+    font-size: 13px; color: var(--dim2);
+  }
+  .cover-meta span strong { color: var(--dim); font-weight: 600; }
+
+  .toc-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sp-4);
+    margin: var(--sp-6) 0 var(--sp-12);
+  }
+  .toc-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+    padding: var(--sp-6); transition: border-color 0.18s, transform 0.18s; cursor: pointer;
+  }
+  .toc-card:hover { border-color: rgba(155,47,135,0.4); transform: translateY(-2px); }
+  .toc-num { font-family: var(--font-display); font-size: 13px; font-weight: 800; color: var(--magenta); margin-bottom: var(--sp-3); }
+  .toc-title { font-family: var(--font-display); font-size: 19px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+  .toc-desc { font-size: 13.5px; line-height: 1.6; color: var(--dim); }
+
+  .principle-row {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-5);
+    margin: var(--sp-6) 0 var(--sp-10);
+  }
+  .principle {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+    padding: var(--sp-6);
+  }
+  .principle-icon {
+    width: 40px; height: 40px; border-radius: 10px; background: rgba(155,47,135,0.15);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--magenta); font-family: var(--font-display); font-weight: 800; font-size: 16px;
+    margin-bottom: var(--sp-4);
+  }
+  .principle h4 { font-size: 15px; color: var(--cream); margin-bottom: 8px; font-weight: 700; }
+  .principle p { font-size: 13.5px; color: var(--dim); line-height: 1.6; }
+
+  @media (max-width: 760px) {
+    .toc-grid, .principle-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body data-page="index">
+
+<div class="bs-shell">
+  <script src="assets/sidebar.js"></script>
+
+  <main class="bs-main">
+    <div class="bs-page">
+
+      <div class="cover-hero">
+        <div class="bs-kicker">FaithStream / House of Faith — Complete Brand System</div>
+        <h1 class="bs-h1">A build-up, not a rebrand.</h1>
+        <p class="bs-lede">This is the full reference for how the FaithStream brand looks, sounds, and behaves — across marketing, the web platform, and the mobile app. Every section is grounded in what's already shipped: the existing logo, the existing purple palette, the existing Inter/Syne type pairing already running in production. This document fills in the rules, range, and detail around what's there — it does not replace it.</p>
+        <div class="cover-meta">
+          <span>Version <strong>1.0</strong></span>
+          <span>Status <strong>Draft for review</strong></span>
+          <span>Prepared by <strong>Nifemi Adeniran — Kallos Creative</strong></span>
+        </div>
+      </div>
+
+      <h2 class="bs-h2" style="margin-top:0;padding-top:0;border-top:none;">How this system is organized</h2>
+      <p class="bs-p">Six sections, each a separate page so it stays usable as a working reference rather than a document you read once. Click into any section from the sidebar at any time.</p>
+
+      <div class="toc-grid">
+        <div class="toc-card" onclick="location.href='foundations.html'">
+          <div class="toc-num">01 — STRATEGY</div>
+          <div class="toc-title">Foundations</div>
+          <div class="toc-desc">Mission, brand pillars, tone of voice, audience definition, and the map from what we stand for to what it should look like.</div>
+        </div>
+        <div class="toc-card" onclick="location.href='identity.html'">
+          <div class="toc-num">02 — VISUAL IDENTITY</div>
+          <div class="toc-title">Logo, Color & Type</div>
+          <div class="toc-desc">Logo system and misuse rules, the full purple color range reconciled with the live product tokens, and the Inter/Syne typography system.</div>
+        </div>
+        <div class="toc-card" onclick="location.href='patterns.html'">
+          <div class="toc-num">03 — VISUAL IDENTITY</div>
+          <div class="toc-title">Motifs & Imagery</div>
+          <div class="toc-desc">Graphic motifs, photography and key-art direction, genre/category color coding, and motion language.</div>
+        </div>
+        <div class="toc-card" onclick="location.href='components.html'">
+          <div class="toc-num">04 — PRODUCT</div>
+          <div class="toc-title">Components</div>
+          <div class="toc-desc">Every UI piece in the live FaithStream app — buttons, cards, badges, modals, nav — shown live and annotated against the design tokens.</div>
+        </div>
+        <div class="toc-card" onclick="location.href='web-ui.html'">
+          <div class="toc-num">05 — PRODUCT</div>
+          <div class="toc-title">Web & UI System</div>
+          <div class="toc-desc">Layout grid, breakpoints, spacing scale, accessibility/contrast standard, and how the brand holds across web and mobile app.</div>
+        </div>
+        <div class="toc-card" onclick="location.href='governance.html'">
+          <div class="toc-num">06 — OPERATING</div>
+          <div class="toc-title">Governance</div>
+          <div class="toc-desc">How this system stays alive: file conventions, naming, approval paths, and what to do when a new situation isn't covered here.</div>
+        </div>
+      </div>
+
+      <h2 class="bs-h2">Three operating principles</h2>
+      <p class="bs-p">Everything in this system traces back to three rules. When a new design decision isn't explicitly covered anywhere else in this document, check it against these first.</p>
+
+      <div class="principle-row">
+        <div class="principle">
+          <div class="principle-icon">1</div>
+          <h4>Purple carries the brand</h4>
+          <p>The purple family is the single thing that makes FaithStream recognizable at a glance. Every accent, tint, and shade in this system stays inside that family — nothing borrowed from outside it competes for that job.</p>
+        </div>
+        <div class="principle">
+          <div class="principle-icon">2</div>
+          <h4>Confident, not loud</h4>
+          <p>FaithStream competes with Netflix-caliber platforms, but the tone is warm and dignified, not aggressive. Typography, color, and copy should read as premium and considered — never as shouting for attention.</p>
+        </div>
+        <div class="principle">
+          <div class="principle-icon">3</div>
+          <h4>One system, every surface</h4>
+          <p>A thumbnail, a social post, an app screen, and a donation page should all feel like the same product made by the same team — because they're built from the same small set of tokens, not improvised per project.</p>
+        </div>
+      </div>
+
+      <div class="bs-callout">
+        <div class="bs-callout-label">Where this comes from</div>
+        <div class="bs-callout-text">This system is grounded directly in the live FaithStream product code — the same CSS variables, component patterns, and interaction states already shipped are referenced and reconciled throughout, rather than invented from scratch. Where something in the current build is inconsistent (a stray color, an unplanned font), it's flagged explicitly rather than silently fixed, so the decision is visible and deliberate.</div>
+      </div>
+
+      <div class="bs-pagenav" style="justify-content:flex-end;">
+        <a href="foundations.html" class="bs-pagenav-link next">
+          <span class="bs-pagenav-dir">Next →</span>
+          <span class="bs-pagenav-title">01 — Foundations</span>
+        </a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+</body>
+</html>

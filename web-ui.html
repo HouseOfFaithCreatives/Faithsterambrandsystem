@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web &amp; UI System — FaithStream Brand System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/tokens.css">
+<style>
+  .breakpoint-bar { display: flex; height: 48px; border-radius: var(--radius-md); overflow: hidden; margin: var(--sp-5) 0 var(--sp-3); }
+  .bp-seg { display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #fff; }
+  .bp-mobile { background: var(--plum); flex: 1; }
+  .bp-tablet { background: var(--magenta2); flex: 1.4; }
+  .bp-laptop { background: var(--magenta); flex: 1.8; }
+  .bp-desktop { background: var(--lavender); flex: 2.2; }
+
+  .spacing-demo { display: flex; align-items: flex-end; gap: var(--sp-3); margin: var(--sp-5) 0 var(--sp-8); flex-wrap: wrap; }
+  .spacing-bar { background: var(--magenta); border-radius: 3px; width: 24px; }
+  .spacing-item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .spacing-label { font-size: 10px; color: var(--dim2); font-family: monospace; }
+
+  .contrast-demo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); margin: var(--sp-5) 0 var(--sp-8); }
+  .contrast-tile { border-radius: var(--radius-md); padding: var(--sp-5); display: flex; flex-direction: column; gap: 6px; height: 90px; justify-content: center; }
+  .contrast-tile .ratio { font-size: 11px; opacity: 0.8; }
+  .contrast-pass { border: 2px solid #4ade80; }
+  .contrast-fail { border: 2px solid #E5484D; }
+
+  .state-row { display: flex; gap: var(--sp-4); margin: var(--sp-5) 0 var(--sp-8); flex-wrap: wrap; }
+  .state-btn { padding: 10px 20px; border-radius: 8px; font-size: 13px; font-weight: 700; background: var(--magenta); color: #fff; }
+  .state-btn.hover-s { background: #B23FA0; transform: scale(1.03); }
+  .state-btn.active-s { background: #7E2470; }
+  .state-btn.disabled-s { background: var(--surface2); color: var(--dim2); cursor: not-allowed; }
+  .state-label { font-size: 11px; color: var(--dim2); text-align: center; margin-top: 6px; }
+  .state-item { display: flex; flex-direction: column; align-items: center; }
+</style>
+</head>
+<body data-page="web-ui">
+
+<div class="bs-shell">
+  <script src="assets/sidebar.js"></script>
+
+  <main class="bs-main">
+    <div class="bs-page">
+
+      <div class="bs-kicker">05 — Product</div>
+      <h1 class="bs-h1">Web &amp; UI System</h1>
+      <p class="bs-lede">This pillar didn't exist before as a defined section of the brand — it governs how FaithStream behaves as a working product across web and mobile app, not just how it looks in marketing material.</p>
+
+      <span class="bs-tag new">New — pulled out as its own pillar</span>
+
+      <h2 class="bs-h2" style="margin-top:0;padding-top:0;border-top:none;">Spacing scale</h2>
+      <p class="bs-p">A small, predictable set of values every component pulls from, instead of each new screen inventing its own gaps and padding.</p>
+      <div class="spacing-demo">
+        <div class="spacing-item"><div class="spacing-bar" style="height:4px;"></div><span class="spacing-label">4</span></div>
+        <div class="spacing-item"><div class="spacing-bar" style="height:8px;"></div><span class="spacing-label">8</span></div>
+        <div class="spacing-item"><div class="spacing-bar" style="height:12px;"></div><span class="spacing-label">12</span></div>
+        <div class="spacing-item"><div class="spacing-bar" style="height:16px;"></div><span class="spacing-label">16</span></div>
+        <div class="spacing-item"><div class="spacing-bar" style="height:20px;"></div><span class="spacing-label">20</span></div>
+        <div class="spacing-item"><div class="spacing-bar" style="height:24px;"></div><span class="spacing-label">24</span></div>
+        <div class="spacing-item"><div class="spacing-bar" style="height:32px;"></div><span class="spacing-label">32</span></div>
+        <div class="spacing-item"><div class="spacing-bar" style="height:40px;"></div><span class="spacing-label">40</span></div>
+        <div class="spacing-item"><div class="spacing-bar" style="height:48px;"></div><span class="spacing-label">48</span></div>
+        <div class="spacing-item"><div class="spacing-bar" style="height:64px;"></div><span class="spacing-label">64</span></div>
+        <div class="spacing-item"><div class="spacing-bar" style="height:80px;"></div><span class="spacing-label">80</span></div>
+      </div>
+      <p class="bs-p" style="font-size:13px;">Extracted from the actual gap/padding values already used throughout the live FaithStream CSS (e.g. <code>gap: 14px</code> on card rows, <code>padding: 24px</code> on the top nav) — rounded into a clean 4px-based scale.</p>
+
+      <h2 class="bs-h2">Breakpoints</h2>
+      <p class="bs-p">The five-tier responsive system already implemented in the live product, documented here as the canonical reference.</p>
+      <div class="breakpoint-bar">
+        <div class="bp-seg bp-mobile">≤480px</div>
+        <div class="bp-seg bp-tablet">≤768px</div>
+        <div class="bp-seg bp-laptop">≤900px</div>
+        <div class="bp-seg bp-desktop">≤1100px+</div>
+      </div>
+      <table class="bs-table">
+        <tr><th>Breakpoint</th><th>What changes</th></tr>
+        <tr><td><strong>≤ 390px</strong> (iPhone SE)</td><td>Logo text hides, "More info" button hides, 2-column grids tighten to 8px gaps</td></tr>
+        <tr><td><strong>≤ 480px</strong></td><td>Hero meta badges hide, Give button hides, Continue Watching drops to 2 columns</td></tr>
+        <tr><td><strong>≤ 640px</strong></td><td>Mobile tab bar appears, top nav links hide, hover preview popup disabled (touch has no hover)</td></tr>
+        <tr><td><strong>≤ 768px</strong></td><td>Hero height reduces to 50vh, grids drop to 3 columns</td></tr>
+        <tr><td><strong>≤ 900px</strong></td><td>Browse panel (right sidebar) hides entirely — its content needs a mobile-specific home, see open question below</td></tr>
+        <tr><td><strong>≤ 1100px</strong></td><td>Browse panel narrows from 256px to 210px</td></tr>
+      </table>
+
+      <div class="bs-callout warn">
+        <div class="bs-callout-label">Open question</div>
+        <div class="bs-callout-text">The browse panel (genre list + "Now Playing" mini-player) simply disappears below 900px with no replacement — meaning tablet and mobile users lose that functionality entirely rather than getting a mobile-adapted version. Worth a dedicated design pass: likely candidates are a "Browse" tab in the mobile bottom bar, or a collapsible drawer.</div>
+      </div>
+
+      <h2 class="bs-h2">Component states</h2>
+      <p class="bs-p">Every interactive element needs a defined look for each state — not just default and hover, decided ad hoc per component.</p>
+      <div class="state-row">
+        <div class="state-item"><button class="state-btn">Default</button><div class="state-label">resting</div></div>
+        <div class="state-item"><button class="state-btn hover-s">Default</button><div class="state-label">hover — lighten + scale 1.03</div></div>
+        <div class="state-item"><button class="state-btn active-s">Default</button><div class="state-label">active/pressed — darken</div></div>
+        <div class="state-item"><button class="state-btn disabled-s">Default</button><div class="state-label">disabled</div></div>
+      </div>
+
+      <h2 class="bs-h2">Accessibility &amp; contrast standard</h2>
+      <p class="bs-p">No accessibility standard exists anywhere in the current brand materials. Adopting the same WCAG 2.1 AA discipline used by mature systems (UNC's guide enforces this explicitly site-wide) — and checking it against real combinations already in the live product.</p>
+
+      <div class="bs-callout">
+        <div class="bs-callout-label">Standard</div>
+        <div class="bs-callout-text">Minimum contrast ratio of <strong>4.5:1</strong> for normal text, <strong>3:1</strong> for large/bold text (18px+ or 14px+ bold). For the logo mark specifically, a lower bar of <strong>2.25:1</strong> is acceptable, following Netflix's own published standard for logo-over-image placements — since a logo needs to register, not be read letter by letter.</div>
+      </div>
+
+      <div class="contrast-demo-grid">
+        <div class="contrast-tile contrast-pass" style="background:#0A0A0F;"><span style="color:#F0EEF8;font-weight:700;">Cream on bg</span><span class="ratio" style="color:#4ade80;">17.8:1 — pass</span></div>
+        <div class="contrast-tile contrast-pass" style="background:#0A0A0F;"><span style="color:#9C8FC4;font-weight:700;">Lavender-light on bg</span><span class="ratio" style="color:#4ade80;">6.1:1 — pass</span></div>
+        <div class="contrast-tile contrast-fail" style="background:#491440;"><span style="color:#702263;font-weight:700;">Magenta2 on plum</span><span class="ratio" style="color:#E5484D;">1.4:1 — fail</span></div>
+      </div>
+      <p class="bs-p" style="font-size:13px;">That third combination — a mid-purple on a darker purple — is a realistic mistake to make in a purple-only system precisely because everything is in-family and "looks" related. This is the practical risk of going all-purple: contrast has to be checked deliberately rather than assumed from hue alone.</p>
+
+      <h2 class="bs-h2">Layout grid</h2>
+      <p class="bs-p">The live product's two-zone desktop layout — primary scroll area plus a fixed-width browse panel — should be the reference for any new top-level screen, rather than each new page area inventing its own structure.</p>
+      <table class="bs-table">
+        <tr><th>Zone</th><th>Width</th><th>Behavior</th></tr>
+        <tr><td>Nav drawer</td><td>260px</td><td>Overlay, slides in from left, closes on backdrop click or Escape</td></tr>
+        <tr><td>Main scroll area</td><td>flex: 1 (fluid)</td><td>Hero + content rails, independent scroll container</td></tr>
+        <tr><td>Browse panel</td><td>256px (210px below 1100px)</td><td>Fixed-width right sidebar, hides below 900px</td></tr>
+        <tr><td>Card rows</td><td>Horizontal scroll, hidden scrollbar except Top 10</td><td><code>scrollbar-width: none</code> on most rails — only Top 10 gets a visible scroll affordance, since it's the one rail users are expected to dig through fully</td></tr>
+      </table>
+
+      <div class="bs-pagenav">
+        <a href="components.html" class="bs-pagenav-link">
+          <span class="bs-pagenav-dir">← Back</span>
+          <span class="bs-pagenav-title">04 — Components</span>
+        </a>
+        <a href="governance.html" class="bs-pagenav-link next">
+          <span class="bs-pagenav-dir">Next →</span>
+          <span class="bs-pagenav-title">06 — Governance</span>
+        </a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+</body>
+</html>

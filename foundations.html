@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foundations — FaithStream Brand System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/tokens.css">
+<style>
+  .pillar-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sp-4); margin: var(--sp-5) 0 var(--sp-8); }
+  .pillar-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--sp-6); }
+  .pillar-icon { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-weight: 800; font-size: 13px; color: #fff; margin-bottom: var(--sp-4); }
+  .pillar-icon.p1 { background: var(--plum); }
+  .pillar-icon.p2 { background: var(--magenta2); }
+  .pillar-icon.p3 { background: var(--lavender); }
+  .pillar-icon.p4 { background: var(--magenta); }
+  .pillar-card h4 { font-size: 16px; color: #fff; font-weight: 700; margin-bottom: 8px; }
+  .pillar-card .pillar-meaning { font-size: 13.5px; color: var(--dim); line-height: 1.6; margin-bottom: 10px; }
+  .pillar-visual { font-size: 12.5px; color: var(--lavender-light); line-height: 1.5; padding-top: 10px; border-top: 1px solid var(--border); }
+  .pillar-visual strong { color: var(--cream); }
+
+  .tone-spectrum {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+    padding: var(--sp-8); margin: var(--sp-5) 0 var(--sp-8);
+  }
+  .tone-bar { position: relative; height: 8px; background: linear-gradient(90deg, var(--plum), var(--lavender)); border-radius: 4px; margin: var(--sp-6) 0; }
+  .tone-marker {
+    position: absolute; top: -8px; width: 2px; height: 24px; background: var(--cream);
+  }
+  .tone-marker-label {
+    position: absolute; top: 20px; transform: translateX(-50%);
+    font-size: 11px; font-weight: 700; color: var(--cream); white-space: nowrap;
+  }
+  .tone-ends { display: flex; justify-content: space-between; font-size: 12px; color: var(--dim2); margin-top: var(--sp-2); }
+
+  .word-grid { display: flex; flex-wrap: wrap; gap: var(--sp-3); margin: var(--sp-4) 0 var(--sp-8); }
+  .word-chip {
+    padding: 10px 18px; border-radius: 24px; background: var(--surface2);
+    border: 1px solid var(--border); font-size: 14px; font-weight: 600; color: var(--cream);
+  }
+
+  .audience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-5); margin: var(--sp-5) 0 var(--sp-8); }
+  .audience-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--sp-6); }
+  .audience-card h4 { font-size: 15px; color: #fff; margin-bottom: var(--sp-3); font-weight: 700; }
+  .audience-stat { font-family: var(--font-display); font-size: 30px; font-weight: 800; color: var(--magenta); line-height: 1; margin-bottom: 6px; }
+  .audience-card p { font-size: 13px; color: var(--dim); line-height: 1.6; }
+
+  @media (max-width: 760px) {
+    .pillar-grid, .audience-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body data-page="foundations">
+
+<div class="bs-shell">
+  <script src="assets/sidebar.js"></script>
+
+  <main class="bs-main">
+    <div class="bs-page">
+
+      <div class="bs-kicker">01 — Strategy</div>
+      <h1 class="bs-h1">Foundations</h1>
+      <p class="bs-lede">Before any visual decision gets made, it should be checkable against something written down. This page turns FaithStream and House of Faith's own stated mission and values into a working reference — what we stand for, how we sound, and who we're actually building for.</p>
+
+      <span class="bs-tag new">New — not previously documented</span>
+
+      <h2 class="bs-h2" style="margin-top:0;padding-top:0;border-top:none;">Brand essence</h2>
+      <p class="bs-p">One line, distilled from House of Faith's own public positioning:</p>
+      <div class="bs-callout">
+        <div class="bs-callout-label">Brand essence</div>
+        <div class="bs-callout-text">Premium, culturally authentic faith storytelling — built in Africa, for Africa and the global diaspora.</div>
+      </div>
+
+      <h2 class="bs-h2">Four pillars</h2>
+      <p class="bs-p">Pulled directly from House of Faith's own stated values. Every visual decision in this system — color, type weight, photography, motion — should trace back to one of these four.</p>
+
+      <div class="pillar-grid">
+        <div class="pillar-card">
+          <div class="pillar-icon p1">FF</div>
+          <h4>Faith-First Mission</h4>
+          <div class="pillar-meaning">Every story we share is rooted in Christian values and spiritual truth. The brand exists to serve that mission, not just to entertain.</div>
+          <div class="pillar-visual"><strong>Visually:</strong> calm, confident tone. No gimmicks, no aggressive UI patterns.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon p2">PC</div>
+          <h4>Premium Content</h4>
+          <div class="pillar-meaning">High-quality films, series, podcasts, and devotionals — made for Africa and the world, at production values that compete with Netflix-tier platforms.</div>
+          <div class="pillar-visual"><strong>Visually:</strong> clean typography, generous spacing, high-quality imagery — never cramped or default-looking.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon p3">GC</div>
+          <h4>Global Community</h4>
+          <div class="pillar-meaning">Connecting believers across Africa and the diaspora through powerful storytelling — rooted locally, legible globally.</div>
+          <div class="pillar-visual"><strong>Visually:</strong> photography and color choices that read clearly across regions and bandwidth conditions.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon p4">SA</div>
+          <h4>Safe &amp; Secure Access</h4>
+          <div class="pillar-meaning">A spiritually uplifting media experience the whole family can sit through together, free of dark patterns or anxiety-driving design.</div>
+          <div class="pillar-visual"><strong>Visually:</strong> clear, uncluttered UI. Every interactive state should feel trustworthy, not coercive.</div>
+        </div>
+      </div>
+
+      <h2 class="bs-h2">Tone of voice</h2>
+      <p class="bs-p">Two voices currently exist side by side in FaithStream's own materials — the press positioning leans formal and reverent ("preserve and elevate faith-centered narratives"), while the live product copy leans warm and contemporary ("Faith-Filled Stories. Anytime, Anywhere."). This system picks a lane.</p>
+
+      <div class="tone-spectrum">
+        <div class="bs-callout-label" style="margin-bottom:4px;">Where FaithStream sits</div>
+        <div class="tone-bar">
+          <div class="tone-marker" style="left: 62%;"></div>
+          <div class="tone-marker-label" style="left: 62%;">FaithStream</div>
+        </div>
+        <div class="tone-ends">
+          <span>Reverent / Heritage</span>
+          <span>Energetic / Netflix-modern</span>
+        </div>
+      </div>
+      <p class="bs-p">Closer to the product's own tagline than to the press-release register: <strong>warm and contemporary, grounded by substance</strong>. Reverent without being formal. Confident without being slick.</p>
+
+      <h3 class="bs-h3">Tone words</h3>
+      <p class="bs-p">A short set of words to check any piece of copy or design against — does this still sound like FaithStream?</p>
+      <div class="word-grid">
+        <div class="word-chip">Genuine</div>
+        <div class="word-chip">Welcoming</div>
+        <div class="word-chip">Dignified</div>
+        <div class="word-chip">Hopeful</div>
+      </div>
+
+      <h2 class="bs-h2">Audience</h2>
+      <p class="bs-p">FaithStream serves two distinct but connected audiences. Both matter equally — the system has to hold up for someone on a flagship phone in London and someone on a budget Android in Lagos, in the same release.</p>
+
+      <div class="audience-grid">
+        <div class="audience-card">
+          <div class="audience-stat">600M+</div>
+          <h4>Continental Africa</h4>
+          <p>Lagos, Nairobi, Johannesburg and beyond. Mobile-first, often on constrained bandwidth — every visual choice needs to hold up at small sizes and low data speeds, not just on a polished desktop mockup.</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-stat">13M+</div>
+          <h4>Global diaspora</h4>
+          <p>UK, US, Canada, Caribbean. Higher bandwidth, different day-to-day cultural touchpoints, but the same faith identity and the same expectation of premium production values.</p>
+        </div>
+      </div>
+
+      <div class="bs-callout warn">
+        <div class="bs-callout-label">Open question for review</div>
+        <div class="bs-callout-text">Language and localization strategy isn't yet defined here — how show titles, genre tags, and UI labels handle multi-language markets (Yoruba/English, Swahili/English, etc. — already visible in the current content catalogue) is a real product decision worth its own section once content localization scope is confirmed.</div>
+      </div>
+
+      <div class="bs-pagenav">
+        <a href="index.html" class="bs-pagenav-link">
+          <span class="bs-pagenav-dir">← Back</span>
+          <span class="bs-pagenav-title">00 — Overview</span>
+        </a>
+        <a href="identity.html" class="bs-pagenav-link next">
+          <span class="bs-pagenav-dir">Next →</span>
+          <span class="bs-pagenav-title">02 — Logo, Color &amp; Type</span>
+        </a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+</body>
+</html>

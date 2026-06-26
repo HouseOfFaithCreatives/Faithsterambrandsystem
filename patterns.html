@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Motifs &amp; Imagery — FaithStream Brand System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/tokens.css">
+<style>
+  .motif-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); margin: var(--sp-5) 0 var(--sp-8); }
+  .motif-tile { aspect-ratio: 1; border-radius: var(--radius-lg); overflow: hidden; position: relative; }
+  .motif-label { position: absolute; bottom: 10px; left: 12px; font-size: 12px; font-weight: 700; color: #fff; }
+
+  .motif-rays { background: var(--plum-black); position: relative; overflow: hidden; }
+  .motif-rays::before {
+    content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+    background: repeating-conic-gradient(from 0deg, rgba(155,47,135,0.18) 0deg 8deg, transparent 8deg 16deg);
+    animation: spin 60s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .motif-weave { background: var(--plum); position: relative; overflow: hidden; }
+  .motif-weave::before {
+    content: ''; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(45deg, rgba(255,255,255,0.06) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.06) 75%),
+      linear-gradient(-45deg, rgba(255,255,255,0.06) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.06) 75%);
+    background-size: 24px 24px;
+  }
+
+  .motif-dots { background: var(--surface2); position: relative; overflow: hidden; }
+  .motif-dots::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(155,47,135,0.4) 1.5px, transparent 1.5px);
+    background-size: 16px 16px;
+  }
+
+  .genre-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--sp-3); margin: var(--sp-5) 0 var(--sp-8); }
+  .genre-tile {
+    border-radius: var(--radius-md); padding: var(--sp-4); display: flex; flex-direction: column; gap: var(--sp-3);
+    height: 90px; justify-content: flex-end; position: relative; overflow: hidden;
+  }
+  .genre-name { font-size: 13px; font-weight: 700; color: #fff; }
+  .genre-count { font-size: 10.5px; color: rgba(255,255,255,0.6); }
+
+  .photo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sp-4); margin: var(--sp-5) 0 var(--sp-3); }
+  .photo-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--sp-5); }
+  .photo-card h4 { font-size: 14px; color: var(--cream); margin-bottom: 8px; }
+  .photo-card p { font-size: 13px; color: var(--dim); line-height: 1.6; }
+  .photo-swatch-row { display: flex; gap: 6px; margin-top: var(--sp-3); }
+  .photo-swatch { width: 28px; height: 28px; border-radius: 6px; }
+
+  .motion-table td code { font-size: 12px; }
+</style>
+</head>
+<body data-page="patterns">
+
+<div class="bs-shell">
+  <script src="assets/sidebar.js"></script>
+
+  <main class="bs-main">
+    <div class="bs-page">
+
+      <div class="bs-kicker">03 — Visual Identity</div>
+      <h1 class="bs-h1">Motifs &amp; Imagery</h1>
+      <p class="bs-lede">A graphic language layer the current brand has none of — reusable motifs separate from the logo, a defined photography direction, and a genre/category color system, since none of these exist anywhere in the current guide or the live product.</p>
+
+      <span class="bs-tag new">New — no existing precedent</span>
+
+      <h2 class="bs-h2" style="margin-top:0;padding-top:0;border-top:none;">Graphic motifs</h2>
+      <p class="bs-p">Drawing on the brand essence rather than generic streaming-platform gradients — light and radiance (tied to faith imagery), woven pattern (tied to African textile traditions), and a subtle dot/halftone texture for backgrounds that need quiet visual interest without competing with content thumbnails.</p>
+
+      <div class="motif-grid">
+        <div class="motif-tile motif-rays"><div class="motif-label">Radiance</div></div>
+        <div class="motif-tile motif-weave"><div class="motif-label">Woven</div></div>
+        <div class="motif-tile motif-dots"><div class="motif-label">Halftone</div></div>
+      </div>
+
+      <table class="bs-table">
+        <tr><th>Motif</th><th>Meaning</th><th>Usage rule</th></tr>
+        <tr><td><strong>Radiance</strong></td><td>Light breaking outward — tied directly to faith and hope themes already present in FaithStream's own copy ("Faith-Filled Stories")</td><td>Subtle background texture only, never full-opacity. Good for empty states, loading screens, donation pages.</td></tr>
+        <tr><td><strong>Woven</strong></td><td>References African textile and architectural pattern traditions — gives the brand a visual root distinct from any generic streaming competitor</td><td>Section dividers, card backgrounds at low opacity. Never behind body text.</td></tr>
+        <tr><td><strong>Halftone</strong></td><td>Quiet, modern texture for surfaces that need depth without pulling focus</td><td>Browse panel backgrounds, footer, empty states.</td></tr>
+      </table>
+
+      <div class="bs-callout">
+        <div class="bs-callout-label">Usage discipline</div>
+        <div class="bs-callout-text">All three motifs follow the same rule as Netflix and UNC's pattern systems: subtle, used as texture or background layer — never as the dominant visual element, never directly behind body copy, never used to construct a custom logo.</div>
+      </div>
+
+      <h2 class="bs-h2">Genre &amp; category color coding</h2>
+      <p class="bs-p">The live browse panel already color-codes genres with gradients (<code>.bg-thumb.g1</code> through <code>.g5</code>) — but the five gradients currently span unrelated hue families (purple, blue, green, brown) with no documented system behind them. This formalizes that into one purple-only range, consistent with the color system on the Identity page.</p>
+
+      <div class="genre-grid">
+        <div class="genre-tile" style="background:linear-gradient(135deg,#491440,#6C59A6);"><div class="genre-name">Faith</div><div class="genre-count">128 titles</div></div>
+        <div class="genre-tile" style="background:linear-gradient(135deg,#702263,#9C8FC4);"><div class="genre-name">Drama</div><div class="genre-count">96 titles</div></div>
+        <div class="genre-tile" style="background:linear-gradient(135deg,#3D2870,#6C59A6);"><div class="genre-name">Documentary</div><div class="genre-count">43 titles</div></div>
+        <div class="genre-tile" style="background:linear-gradient(135deg,#6E3D63,#9B2F87);"><div class="genre-name">Family</div><div class="genre-count">67 titles</div></div>
+        <div class="genre-tile" style="background:linear-gradient(135deg,#1A0E22,#491440);"><div class="genre-name">Worship</div><div class="genre-count">52 titles</div></div>
+      </div>
+      <p class="bs-p" style="font-size:13px;">Each genre gets a unique two-point gradient, but every stop comes from the purple range defined in the color system — no genre "escapes" into an unrelated hue the way the current blue/green/brown set does.</p>
+
+      <h2 class="bs-h2">Photography &amp; key art direction</h2>
+      <p class="bs-p">Marked "TBC" in the original one-page brand guide, and critical given thumbnails are the single most active, most inconsistent area of current production work.</p>
+
+      <div class="photo-grid">
+        <div class="photo-card">
+          <h4>Tone</h4>
+          <p>Cinematic, warm, high-contrast — matching the "story-driven" language already present in FaithStream's positioning. Avoid flat, evenly-lit stock-photo lighting.</p>
+        </div>
+        <div class="photo-card">
+          <h4>Subject matter</h4>
+          <p>Community, worship, family, and purpose — themes already named in the existing guide, now backed by composition rules rather than left abstract.</p>
+        </div>
+        <div class="photo-card">
+          <h4>Color grading</h4>
+          <p>Imagery should grade toward the purple family in shadows and midtones where possible — a subtle, consistent treatment, not a heavy filter.</p>
+          <div class="photo-swatch-row">
+            <div class="photo-swatch" style="background:#491440;"></div>
+            <div class="photo-swatch" style="background:#702263;"></div>
+            <div class="photo-swatch" style="background:#6C59A6;"></div>
+          </div>
+        </div>
+        <div class="photo-card">
+          <h4>Representation</h4>
+          <p>Reflect the diversity of the continental and diaspora audience — no single region or look should stand in for the whole brand across the content catalogue.</p>
+        </div>
+      </div>
+
+      <h2 class="bs-h2">Motion &amp; transition language</h2>
+      <p class="bs-p">The live product already has a considered motion system — these are the actual timing/easing values in use, documented here so new components match instead of guessing.</p>
+      <table class="bs-table motion-table">
+        <tr><th>Interaction</th><th>Timing</th><th>Easing</th><th>Where it's used</th></tr>
+        <tr><td>Card hover lift</td><td><code>0.28s</code></td><td><code>cubic-bezier(.4,0,.2,1)</code></td><td>card-land, card-port, card-cont</td></tr>
+        <tr><td>Hero slide transition</td><td><code>0.65s</code></td><td><code>cubic-bezier(.4,0,.2,1)</code></td><td>hero-track</td></tr>
+        <tr><td>Nav drawer slide-in</td><td><code>0.32s</code></td><td><code>cubic-bezier(.4,0,.2,1)</code></td><td>nav-drawer</td></tr>
+        <tr><td>Modal entrance</td><td><code>0.3s</code></td><td><code>cubic-bezier(.22,1,.36,1)</code></td><td>modal-box (slight overshoot — more "premium" feel)</td></tr>
+        <tr><td>Hover preview popup</td><td><code>380ms delay</code> + <code>0.22s</code></td><td><code>ease</code></td><td>preview-popup (delay prevents accidental triggers while scanning)</td></tr>
+      </table>
+      <div class="bs-callout">
+        <div class="bs-callout-label">Rule</div>
+        <div class="bs-callout-text"><code>cubic-bezier(.4,0,.2,1)</code> (Material-style "standard" easing) is the default for anything functional — hovers, drawers, slides. Reserve <code>cubic-bezier(.22,1,.36,1)</code> (slight overshoot) for moments that should feel a little more special, like the full info modal opening — don't use it everywhere or it stops feeling special.</div>
+      </div>
+
+      <div class="bs-pagenav">
+        <a href="identity.html" class="bs-pagenav-link">
+          <span class="bs-pagenav-dir">← Back</span>
+          <span class="bs-pagenav-title">02 — Logo, Color &amp; Type</span>
+        </a>
+        <a href="components.html" class="bs-pagenav-link next">
+          <span class="bs-pagenav-dir">Next →</span>
+          <span class="bs-pagenav-title">04 — Components</span>
+        </a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+</body>
+</html>

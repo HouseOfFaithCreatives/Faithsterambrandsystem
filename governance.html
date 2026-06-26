@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Governance — FaithStream Brand System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/tokens.css">
+<style>
+  .flow-step {
+    display: flex; gap: var(--sp-4); align-items: flex-start;
+    padding: var(--sp-5) 0; border-bottom: 1px solid var(--border);
+  }
+  .flow-step:last-child { border-bottom: none; }
+  .flow-num {
+    width: 32px; height: 32px; border-radius: 50%; background: rgba(155,47,135,0.15);
+    color: var(--magenta); font-family: var(--font-display); font-weight: 800; font-size: 13px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .flow-body h4 { font-size: 15px; color: #fff; margin-bottom: 4px; }
+  .flow-body p { font-size: 13.5px; color: var(--dim); line-height: 1.6; }
+
+  .naming-example {
+    background: #0D0D14; border: 1px solid var(--border); border-radius: var(--radius-md);
+    padding: var(--sp-4) var(--sp-5); font-family: monospace; font-size: 13px; color: var(--lavender-light);
+    margin: var(--sp-3) 0 var(--sp-6);
+  }
+  .naming-example .seg { color: var(--dim2); }
+  .naming-example .hl { color: var(--magenta); }
+
+  .open-list { display: flex; flex-direction: column; gap: var(--sp-3); margin: var(--sp-4) 0 var(--sp-8); }
+  .open-item {
+    display: flex; align-items: center; justify-content: space-between; gap: var(--sp-4);
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md);
+    padding: var(--sp-4) var(--sp-5);
+  }
+  .open-item-text { font-size: 14px; color: var(--cream); flex: 1; }
+  .open-item-where { font-size: 11px; color: var(--dim2); white-space: nowrap; }
+</style>
+</head>
+<body data-page="governance">
+
+<div class="bs-shell">
+  <script src="assets/sidebar.js"></script>
+
+  <main class="bs-main">
+    <div class="bs-page">
+
+      <div class="bs-kicker">06 — Operating</div>
+      <h1 class="bs-h1">Governance</h1>
+      <p class="bs-lede">A brand system only earns its keep if it actually gets used day to day, not filed away after a kickoff call. This page covers how the system stays alive, how files stay organized, and what happens when a new situation isn't covered anywhere else in this document.</p>
+
+      <span class="bs-tag new">New — not previously defined</span>
+
+      <h2 class="bs-h2" style="margin-top:0;padding-top:0;border-top:none;">This is a living document</h2>
+      <p class="bs-p">This site, not a static PDF, is the source of truth going forward — meaning updates happen by editing these pages directly rather than producing a "v2" document that quietly diverges from what's actually in use. Anyone touching a thumbnail, social post, or app screen should be able to open this and check their work against it.</p>
+
+      <h2 class="bs-h2">File &amp; naming conventions</h2>
+      <p class="bs-p">As the content catalogue grows, assets need a naming pattern that stays sortable and searchable without anyone having to remember a special case.</p>
+      <div class="naming-example">
+        <span class="hl">faithstream</span><span class="seg">_</span><span class="hl">thumbnail</span><span class="seg">_</span><span class="hl">abejoye</span><span class="seg">_</span><span class="hl">1920x1080</span><span class="seg">_</span><span class="hl">v2</span><span class="seg">.png</span>
+      </div>
+      <p class="bs-p" style="font-size:13px;">Pattern: <code>brand_assettype_title-or-context_dimensions_version.ext</code> — lowercase, hyphens within segments, underscores between them. Applies to thumbnails, key art, social graphics, and exported UI assets alike.</p>
+
+      <h2 class="bs-h2">Approval path for new applications</h2>
+      <p class="bs-p">When a new situation comes up that this document doesn't explicitly cover — a partnership co-brand, a new content vertical, a markedly different UI pattern — this is the path rather than making the call solo under deadline pressure.</p>
+
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div class="flow-body">
+          <h4>Check this document first</h4>
+          <p>Most genuinely new-feeling situations are actually covered by an existing rule once you look — check Foundations for the underlying principle before assuming nothing applies.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div class="flow-body">
+          <h4>If it's genuinely uncovered, propose within the system</h4>
+          <p>Draft the new application using the existing tokens (color, type, spacing) before introducing anything new. Most "new" needs turn out to be a new combination of existing pieces, not a reason to add a new color or font.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div class="flow-body">
+          <h4>Flag genuinely new additions for review</h4>
+          <p>If a new token (a color, a type weight, a component pattern) seems truly necessary, flag it the same way the open questions in this document are flagged — visibly, with the reasoning attached — rather than slipping it in silently.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">4</div>
+        <div class="flow-body">
+          <h4>Update this document</h4>
+          <p>Once a new pattern is approved, it gets added here so the next person doesn't have to rediscover or re-argue it.</p>
+        </div>
+      </div>
+
+      <h2 class="bs-h2">Sub-brand framework (future)</h2>
+      <p class="bs-p">House of Faith's other initiatives — the publishing arm, live events, regional production hubs — may eventually need their own distinct identity within the master brand, similar to how a university's individual schools operate under one parent brand. Not needed now, but worth establishing the principle early: any sub-brand keeps the core purple as its anchor and borrows the master type system, but may develop its own accent tint and motif within that frame, the same way the genre color-coding system on the Motifs page works.</p>
+
+      <h2 class="bs-h2">Open questions — tracked in one place</h2>
+      <p class="bs-p">Every open decision flagged across this document, gathered here so nothing gets lost between pages.</p>
+      <div class="open-list">
+        <div class="open-item">
+          <div class="open-item-text">Retire the green "Match %" indicator, or keep it as the one deliberate exception to the purple-only rule?</div>
+          <div class="open-item-where">Logo, Color &amp; Type</div>
+        </div>
+        <div class="open-item">
+          <div class="open-item-text">Retire the stray Cinzel serif on one hero tagline, or formalize a third typeface for flourish moments?</div>
+          <div class="open-item-where">Logo, Color &amp; Type</div>
+        </div>
+        <div class="open-item">
+          <div class="open-item-text">What replaces the Browse panel for tablet/mobile users below the 900px breakpoint, where it currently just disappears?</div>
+          <div class="open-item-where">Web &amp; UI System</div>
+        </div>
+        <div class="open-item">
+          <div class="open-item-text">Language/localization handling for show titles and UI labels across English, Yoruba, Swahili and other markets — not yet scoped.</div>
+          <div class="open-item-where">Foundations</div>
+        </div>
+      </div>
+
+      <div class="bs-callout keep">
+        <div class="bs-callout-label">Why this matters now</div>
+        <div class="bs-callout-text">Right now, work on thumbnails and platform look-and-feel happens without this foundation in place — every new asset ends up making its own typography and color decisions because there's nothing to check against. With this system in place, every future decision, from a poster to an app screen, gets faster and more consistent because there's a clear standard to check against instead of starting from scratch each time. Nothing here changes the logo or the core purple identity already shipped — it builds the missing structure around them.</div>
+      </div>
+
+      <div class="bs-pagenav">
+        <a href="web-ui.html" class="bs-pagenav-link">
+          <span class="bs-pagenav-dir">← Back</span>
+          <span class="bs-pagenav-title">05 — Web &amp; UI System</span>
+        </a>
+        <a href="index.html" class="bs-pagenav-link next">
+          <span class="bs-pagenav-dir">↑ Back to start</span>
+          <span class="bs-pagenav-title">00 — Overview</span>
+        </a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+</body>
+</html>

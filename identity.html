@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Logo, Color &amp; Type — FaithStream Brand System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800;900&family=Cinzel:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/tokens.css">
+<style>
+  /* ── LOGO PLACEHOLDER MARKS ── */
+  .logo-demo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); margin: var(--sp-5) 0 var(--sp-6); }
+  .logo-tile { border-radius: var(--radius-lg); padding: var(--sp-8) var(--sp-5); display: flex; align-items: center; justify-content: center; height: 110px; }
+  .logo-tile.dark { background: var(--plum-black); border: 1px solid var(--border); }
+  .logo-tile.surface { background: var(--surface); border: 1px solid var(--border); }
+  .logo-tile.light { background: var(--cream); }
+  .logo-mark-full { display: flex; align-items: center; gap: 10px; }
+  .logo-mark-icon {
+    width: 36px; height: 36px; border-radius: 9px; background: var(--plum);
+    display: flex; align-items: center; justify-content: center; font-size: 17px; color: #fff; flex-shrink: 0;
+  }
+  .logo-mark-icon.light-bg { background: var(--magenta); }
+  .logo-wordmark { font-family: var(--font-display); font-weight: 800; font-size: 17px; letter-spacing: 0.04em; color: #fff; }
+  .logo-wordmark.on-light { color: var(--plum); }
+  .logo-tile-label { position: absolute; bottom: 10px; left: 0; right: 0; text-align: center; font-size: 11px; color: var(--dim2); }
+  .logo-tile { position: relative; }
+
+  .clearspace-demo {
+    background: var(--plum-black); border: 1px solid var(--border); border-radius: var(--radius-lg);
+    padding: var(--sp-10); display: flex; align-items: center; justify-content: center; margin: var(--sp-5) 0 var(--sp-8);
+  }
+  .clearspace-box {
+    border: 1px dashed rgba(155,47,135,0.5); padding: 28px; display: flex; align-items: center; gap: 10px; position: relative;
+  }
+  .clearspace-box::before, .clearspace-box::after {
+    content: 'x'; position: absolute; font-size: 10px; color: var(--magenta); font-family: monospace;
+  }
+  .clearspace-box::before { top: 4px; left: -16px; }
+  .clearspace-box::after { bottom: 4px; right: -16px; }
+
+  .misuse-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-3); margin: var(--sp-5) 0 var(--sp-8); }
+  .misuse-tile {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md);
+    height: 90px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;
+  }
+  .misuse-tile::after { content: '✕'; position: absolute; top: 6px; right: 8px; color: #E5484D; font-weight: 800; font-size: 13px; }
+  .misuse-label { font-size: 11px; color: var(--dim2); text-align: center; margin-top: 6px; }
+  .misuse-item { display: flex; flex-direction: column; }
+
+  /* ── COLOR ── */
+  .color-role-table .swatch-cell { display: flex; align-items: center; gap: 10px; }
+  .swatch-dot { width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0; border: 1px solid rgba(255,255,255,0.1); }
+
+  .gradient-strip {
+    height: 64px; border-radius: var(--radius-md); margin: var(--sp-5) 0 var(--sp-3);
+    background: linear-gradient(90deg, #0A0A0F, #491440, #702263, #9B2F87, #6C59A6, #9C8FC4, #DCD6EC);
+  }
+  .gradient-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--dim2); margin-bottom: var(--sp-8); }
+
+  /* ── TYPE ── */
+  .type-specimen-row {
+    display: flex; justify-content: space-between; align-items: baseline; gap: var(--sp-6);
+    padding: var(--sp-6) 0; border-bottom: 1px solid var(--border); flex-wrap: wrap;
+  }
+  .type-specimen-row:last-child { border-bottom: none; }
+  .type-sample { font-size: 13px; color: var(--dim2); text-align: right; max-width: 280px; }
+  .type-sample strong { color: var(--dim); display: block; font-size: 13px; margin-bottom: 4px; }
+
+  .type-scale-row { display: flex; align-items: baseline; gap: var(--sp-6); padding: var(--sp-4) 0; border-bottom: 1px solid var(--border); }
+  .type-scale-name { width: 110px; font-size: 12px; color: var(--dim2); flex-shrink: 0; }
+  .type-scale-px { width: 60px; font-size: 12px; color: var(--dim2); font-family: monospace; flex-shrink: 0; }
+</style>
+</head>
+<body data-page="identity">
+
+<div class="bs-shell">
+  <script src="assets/sidebar.js"></script>
+
+  <main class="bs-main">
+    <div class="bs-page">
+
+      <div class="bs-kicker">02 — Visual Identity</div>
+      <h1 class="bs-h1">Logo, Color &amp; Type</h1>
+      <p class="bs-lede">The foundation layer every other surface is built from. The logo marks and primary purple shown here are placeholders standing in for the real brand assets — swap the actual logo files in once supplied, the structure and rules around them stay the same.</p>
+
+      <!-- ═══════════════ LOGO ═══════════════ -->
+      <h2 class="bs-h2" style="margin-top:0;padding-top:0;border-top:none;">Logo System</h2>
+      <span class="bs-tag fixed">Placeholder — swap real logo files in</span>
+      <p class="bs-p">Until the supplied logo PNGs are in place, this placeholder mark stands in to demonstrate clear space, minimum size, and misuse rules. The structure below applies identically once the real files are swapped in.</p>
+
+      <h3 class="bs-h3">Color variants</h3>
+      <div class="logo-demo-grid">
+        <div class="logo-tile dark">
+          <div class="logo-mark-full">
+            <div class="logo-mark-icon">✦</div>
+            <span class="logo-wordmark">FAITHSTREAM</span>
+          </div>
+        </div>
+        <div class="logo-tile surface">
+          <div class="logo-mark-full">
+            <div class="logo-mark-icon">✦</div>
+            <span class="logo-wordmark">FAITHSTREAM</span>
+          </div>
+        </div>
+        <div class="logo-tile light">
+          <div class="logo-mark-full">
+            <div class="logo-mark-icon light-bg">✦</div>
+            <span class="logo-wordmark on-light">FAITHSTREAM</span>
+          </div>
+        </div>
+      </div>
+      <p class="bs-p" style="font-size:13px;">Dark background, surface background, light background — the three contexts the logo already appears in across the live product (top nav, nav drawer, browse panel).</p>
+
+      <h3 class="bs-h3">Clear space</h3>
+      <p class="bs-p">Defined as a unit relative to the mark itself — labeled <code style="color:var(--lavender-light)">x</code> below — so it scales correctly whether the logo appears at app-icon size or on a banner. Minimum clear space on all sides is <strong>0.5x</strong>.</p>
+      <div class="clearspace-demo">
+        <div class="clearspace-box">
+          <div class="logo-mark-icon">✦</div>
+          <span class="logo-wordmark">FAITHSTREAM</span>
+        </div>
+      </div>
+
+      <h3 class="bs-h3">Things to avoid</h3>
+      <p class="bs-p">A documented misuse gallery — not just rules in prose — removes guesswork for anyone touching a thumbnail, banner, or partner co-brand. This is the single highest-impact addition to the current logo guide.</p>
+      <div class="misuse-grid">
+        <div class="misuse-item">
+          <div class="misuse-tile"><div class="logo-mark-icon" style="transform:scaleX(-1);">✦</div></div>
+          <div class="misuse-label">Don't flip or mirror the mark</div>
+        </div>
+        <div class="misuse-item">
+          <div class="misuse-tile"><div class="logo-mark-icon" style="transform:rotate(20deg);">✦</div></div>
+          <div class="misuse-label">Don't tilt or rotate</div>
+        </div>
+        <div class="misuse-item">
+          <div class="misuse-tile"><div class="logo-mark-icon" style="background:#E5484D;">✦</div></div>
+          <div class="misuse-label">Don't recolor outside the palette</div>
+        </div>
+        <div class="misuse-item">
+          <div class="misuse-tile"><div class="logo-mark-icon" style="filter:blur(1.5px);transform:scale(1.4);">✦</div></div>
+          <div class="misuse-label">Don't stretch or distort</div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ COLOR ═══════════════ -->
+      <h2 class="bs-h2">Color System</h2>
+      <span class="bs-tag kept">Reconciled with live product CSS variables</span>
+      <p class="bs-p">The values below are not new colors invented for this document — they're the exact tokens already running in the FaithStream product (<code>--plum</code>, <code>--magenta</code>, <code>--magenta2</code>, <code>--lavender</code>), with the gap this system fills: a defined range of tints and shades so there's a full palette to design with, not just four points.</p>
+
+      <div class="gradient-strip"></div>
+      <div class="gradient-labels"><span>Darkest — backgrounds</span><span>Lightest — light-mode surfaces</span></div>
+
+      <h3 class="bs-h3">Core tokens (already shipped — unchanged)</h3>
+      <table class="bs-table color-role-table">
+        <tr><th>Token</th><th>Swatch</th><th>Hex</th><th>Used for in current code</th></tr>
+        <tr><td><code>--bg</code> / <code>--plum-black</code></td><td class="swatch-cell"><span class="swatch-dot" style="background:#0A0A0F;"></span></td><td><code>#0A0A0F</code></td><td>App background, page base</td></tr>
+        <tr><td><code>--surface</code></td><td class="swatch-cell"><span class="swatch-dot" style="background:#111118;"></span></td><td><code>#111118</code></td><td>Nav drawer, panels</td></tr>
+        <tr><td><code>--surface2</code></td><td class="swatch-cell"><span class="swatch-dot" style="background:#18181F;"></span></td><td><code>#18181F</code></td><td>Card backgrounds</td></tr>
+        <tr><td><code>--plum</code></td><td class="swatch-cell"><span class="swatch-dot" style="background:#491440;"></span></td><td><code>#491440</code></td><td>Logo icon bg, "Give" button, primary brand color</td></tr>
+        <tr><td><code>--magenta</code></td><td class="swatch-cell"><span class="swatch-dot" style="background:#9B2F87;"></span></td><td><code>#9B2F87</code></td><td>Active states, play buttons, progress bars, rating badges</td></tr>
+        <tr><td><code>--magenta2</code></td><td class="swatch-cell"><span class="swatch-dot" style="background:#702263;"></span></td><td><code>#702263</code></td><td>Avatar gradient start</td></tr>
+        <tr><td><code>--lavender</code></td><td class="swatch-cell"><span class="swatch-dot" style="background:#6C59A6;"></span></td><td><code>#6C59A6</code></td><td>Avatar gradient end</td></tr>
+        <tr><td><code>--cream</code></td><td class="swatch-cell"><span class="swatch-dot" style="background:#F0EEF8;"></span></td><td><code>#F0EEF8</code></td><td>Primary text on dark</td></tr>
+      </table>
+
+      <h3 class="bs-h3">New tints &amp; shades — fills the accent gap</h3>
+      <p class="bs-p">This was the specific, repeated gap flagged across this whole project: no defined accent system, no usage rule, nothing to stop an accent color drifting outside the brand. Every addition below is a tint or shade <em>of</em> the existing four core tokens — nothing borrowed from outside the family.</p>
+      <table class="bs-table color-role-table">
+        <tr><th>Token</th><th>Swatch</th><th>Hex</th><th>Role</th></tr>
+        <tr><td><code>--lavender-light</code></td><td class="swatch-cell"><span class="swatch-dot" style="background:#9C8FC4;"></span></td><td><code>#9C8FC4</code></td><td>Secondary accent — links, genre tags, lighter UI text</td></tr>
+        <tr><td><code>--lavender-pale</code></td><td class="swatch-cell"><span class="swatch-dot" style="background:#DCD6EC;"></span></td><td><code>#DCD6EC</code></td><td>Subtle fills, borders on light surfaces</td></tr>
+        <tr><td><code>--plum-tint</code></td><td class="swatch-cell"><span class="swatch-dot" style="background:#6E3D63;"></span></td><td><code>#6E3D63</code></td><td>Mid-tone for gradients, hover states on plum</td></tr>
+        <tr><td><code>--magenta-dim</code></td><td class="swatch-cell"><span class="swatch-dot" style="background:rgba(155,47,135,0.45);"></span></td><td><code>rgba(155,47,135,.45)</code></td><td>Glows, shadows, scrollbar thumbs (already used in product code)</td></tr>
+      </table>
+
+      <h3 class="bs-h3">Usage rule</h3>
+      <div class="bs-callout">
+        <div class="bs-callout-label">Rule</div>
+        <div class="bs-callout-text">Purple carries every accent role in this system. No gold, no teal, no hue outside this family — confirmed direction for FaithStream after testing both an expanded multi-hue palette and an all-purple range head to head. If a new use case (a chart, a status indicator) seems to need a color outside this range, that's a flag to bring to review, not a default to reach for.</div>
+      </div>
+
+      <h3 class="bs-h3">Functional color — open question</h3>
+      <p class="bs-p">One real exception already exists in the live code: <code>#4ade80</code> (green) is used for the "Match %" indicator on hover previews and modals — a Netflix-convention color that arrived without a deliberate brand decision behind it.</p>
+      <table class="bs-table">
+        <tr><th>Option</th><th>What it means</th></tr>
+        <tr><td><strong>A — Retire it</strong></td><td>Replace with a purple-family equivalent (e.g. <code>--lavender-light</code> for match %, a warm-shifted magenta for errors). Fully purple-only system, no exceptions.</td></tr>
+        <tr><td><strong>B — Keep as the one exception</strong></td><td>Green stays specifically for "Match %" since it's a near-universal streaming-platform convention users already read instantly; everything else (errors, alerts) still resolves to purple-family colors.</td></tr>
+      </table>
+      <div class="bs-callout warn">
+        <div class="bs-callout-label">Decision needed</div>
+        <div class="bs-callout-text">Not resolved in this draft — flagging for review rather than silently picking one. Worth deciding once, then documenting the answer here so it doesn't get re-litigated per feature.</div>
+      </div>
+
+      <!-- ═══════════════ TYPE ═══════════════ -->
+      <h2 class="bs-h2">Typography System</h2>
+      <span class="bs-tag kept">Inter + Syne already shipped — formalizing the system around them</span>
+      <p class="bs-p">The live product already uses <strong>Syne</strong> for display moments and <strong>Inter</strong> for everything else — confirming the direction tested earlier in this project. This section formalizes the rule set and flags one inconsistency to resolve.</p>
+
+      <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg); padding: var(--sp-8); margin: var(--sp-5) 0 var(--sp-8);">
+        <div class="type-specimen-row">
+          <div style="font-family:'Syne',sans-serif; font-weight:800; font-size:40px; color:#fff;">Syne</div>
+          <div class="type-sample"><strong>Display — logo, hero titles, modal titles, Top 10 numerals</strong>Geometric, confident, quietly architectural. Used at 700–900 weight. Already running in <code>.topnav-logo</code>, <code>.modal-title</code>, <code>.card-port-num</code>.</div>
+        </div>
+        <div class="type-specimen-row">
+          <div style="font-family:'Inter',sans-serif; font-weight:800; font-size:34px; color:#fff;">Inter Extrabold</div>
+          <div class="type-sample"><strong>Hero titles, primary CTAs</strong>Used in <code>.hero-title</code> at weight 800 — the workhorse for anything that needs to feel urgent and legible at small sizes.</div>
+        </div>
+        <div class="type-specimen-row">
+          <div style="font-family:'Inter',sans-serif; font-weight:600; font-size:26px; color:#fff;">Inter Semibold / Medium</div>
+          <div class="type-sample"><strong>Card titles, nav, section headers</strong>The default UI weight throughout — card-land-title, section-title, drawer items.</div>
+        </div>
+        <div class="type-specimen-row">
+          <div style="font-family:'Inter',sans-serif; font-weight:400; font-size:22px; color:#fff;">Inter Regular</div>
+          <div class="type-sample"><strong>Body copy, descriptions, metadata</strong>Modal descriptions, card metadata, captions — anywhere reading comfort matters more than emphasis.</div>
+        </div>
+      </div>
+
+      <div class="bs-callout warn">
+        <div class="bs-callout-label">Inconsistency flagged</div>
+        <div class="bs-callout-text">One hero slide (<code>.hero-tagline</code>, "Stepping into Maggie's Shoes") uses <strong style="font-family:'Cinzel',serif;">Cinzel</strong>, a serif face that appears nowhere else in the system — likely added for one moment of flourish rather than as a deliberate third typeface. Recommend retiring it: either drop the tagline treatment or restyle it in Syne at a lighter weight, so the type system stays to two families everywhere, the same discipline already applied to color.</div>
+      </div>
+
+      <h3 class="bs-h3">Type scale</h3>
+      <p class="bs-p">The sizes already in use across the live product, organized into a single reference scale so new screens pull from here instead of picking arbitrary values.</p>
+      <div class="type-scale-row"><div class="type-scale-name">Display XL</div><div class="type-scale-px">38–52px</div><div style="color:var(--dim); font-size:13px;">Modal titles, section heroes — Syne 800–900</div></div>
+      <div class="type-scale-row"><div class="type-scale-name">Display L</div><div class="type-scale-px">22–36px</div><div style="color:var(--dim); font-size:13px;">Hero titles — Inter 800, clamp() responsive</div></div>
+      <div class="type-scale-row"><div class="type-scale-name">Heading</div><div class="type-scale-px">15–17px</div><div style="color:var(--dim); font-size:13px;">Section titles, card titles — Inter 600–700</div></div>
+      <div class="type-scale-row"><div class="type-scale-name">Body</div><div class="type-scale-px">13–14px</div><div style="color:var(--dim); font-size:13px;">Descriptions, modal body — Inter 400</div></div>
+      <div class="type-scale-row" style="border-bottom:none;"><div class="type-scale-name">Caption / Meta</div><div class="type-scale-px">10–12px</div><div style="color:var(--dim); font-size:13px;">Metadata, badges, timestamps — Inter 500–700</div></div>
+
+      <div class="bs-pagenav">
+        <a href="foundations.html" class="bs-pagenav-link">
+          <span class="bs-pagenav-dir">← Back</span>
+          <span class="bs-pagenav-title">01 — Foundations</span>
+        </a>
+        <a href="patterns.html" class="bs-pagenav-link next">
+          <span class="bs-pagenav-dir">Next →</span>
+          <span class="bs-pagenav-title">03 — Motifs &amp; Imagery</span>
+        </a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+</body>
+</html>

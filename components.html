@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Components — FaithStream Brand System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/tokens.css">
+<style>
+  /* ── Buttons (lifted directly from product code) ── */
+  .btn-play {
+    display: flex; align-items: center; gap: 8px; white-space: nowrap;
+    background: #fff; color: #111; font-weight: 700; font-size: 13px;
+    padding: 10px 20px; border-radius: 8px; transition: opacity 0.2s;
+  }
+  .btn-play:hover { opacity: 0.88; }
+  .btn-play svg { width: 14px; height: 14px; fill: #111; }
+  .btn-more {
+    display: flex; align-items: center; gap: 8px; white-space: nowrap;
+    background: rgba(255,255,255,0.1); backdrop-filter: blur(6px);
+    color: #fff; font-weight: 600; font-size: 13px;
+    padding: 10px 18px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.16);
+  }
+  .btn-give {
+    display: flex; align-items: center; gap: 8px; white-space: nowrap;
+    background: var(--plum); color: #fff; font-weight: 700; font-size: 13px;
+    padding: 10px 18px; border-radius: 8px; box-shadow: 0 4px 20px rgba(155,47,135,0.4);
+  }
+  .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  /* ── Badges ── */
+  .badge-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .hero-badge {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 3px 9px; border-radius: 4px;
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.75);
+  }
+  .hero-badge.rating { background: rgba(155,47,135,0.25); border-color: rgba(155,47,135,0.4); color: var(--magenta); }
+
+  /* ── Cards: landscape ── */
+  .card-land {
+    flex-shrink: 0; width: 220px; border-radius: 12px; overflow: hidden; position: relative;
+    background: var(--surface2); cursor: pointer; transition: transform 0.28s cubic-bezier(.4,0,.2,1), box-shadow 0.28s;
+  }
+  .card-land:hover { transform: scale(1.05) translateY(-5px); box-shadow: 0 20px 48px rgba(0,0,0,0.55); z-index: 5; }
+  .card-land-thumb { width: 100%; aspect-ratio: 16/9; position: relative; overflow: hidden;
+    background: linear-gradient(135deg, var(--magenta2), var(--plum)); }
+  .card-hover-overlay { position: absolute; inset:0; background: linear-gradient(to top, rgba(10,10,15,0.85) 0%, transparent 55%); opacity:0; transition: opacity 0.28s; }
+  .card-land:hover .card-hover-overlay { opacity: 1; }
+  .card-play-btn {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    width: 44px; height: 44px; border-radius: 50%; background: rgba(155,47,135,0.88); border: 2px solid rgba(255,255,255,0.28);
+    display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.28s;
+  }
+  .card-land:hover .card-play-btn { opacity: 1; }
+  .card-play-btn svg { width:15px; height:15px; fill:white; margin-left:2px; }
+  .card-land-info { padding: 10px 13px 13px; }
+  .card-land-title { font-size: 13px; font-weight: 600; color: var(--cream); margin-bottom: 4px; }
+  .card-land-meta { font-size: 11px; color: var(--dim2); display: flex; gap: 6px; align-items: center; }
+  .meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--dim2); }
+
+  /* ── Cards: portrait (Top 10) ── */
+  .card-port { flex-shrink: 0; width: 130px; border-radius: 12px; overflow: hidden; position: relative; background: var(--surface2); cursor: pointer;
+    transition: transform 0.28s cubic-bezier(.4,0,.2,1), box-shadow 0.28s; }
+  .card-port:hover { transform: scale(1.05) translateY(-5px); box-shadow: 0 20px 48px rgba(0,0,0,0.55); z-index: 5; }
+  .card-port-thumb { width: 100%; aspect-ratio: 1080/1600; position: relative; overflow: hidden;
+    background: linear-gradient(160deg, var(--lavender), var(--plum)); }
+  .card-port-overlay { position: absolute; inset:0; background: linear-gradient(to top, rgba(10,10,15,0.9) 0%, transparent 55%); }
+  .card-port-num { position: absolute; bottom: 6px; left: 10px; font-family: var(--font-display); font-weight: 800;
+    font-size: 42px; line-height: 1; color: rgba(255,255,255,0.06); -webkit-text-stroke: 1.5px rgba(255,255,255,0.2); }
+  .card-port-info { padding: 8px 10px 10px; }
+  .card-port-title { font-size: 12px; font-weight: 600; color: var(--cream); }
+  .card-port-meta { font-size: 10px; color: var(--dim2); margin-top: 3px; }
+
+  /* ── Continue watching ── */
+  .card-cont { flex-shrink: 0; width: 240px; border-radius: 12px; overflow: hidden; background: var(--surface2); cursor: pointer;
+    transition: transform 0.28s cubic-bezier(.4,0,.2,1), box-shadow 0.28s; position: relative; }
+  .card-cont:hover { transform: scale(1.03) translateY(-4px); box-shadow: 0 18px 44px rgba(0,0,0,0.5); z-index: 5; }
+  .card-cont-thumb { width: 100%; aspect-ratio: 16/9; position: relative; overflow: hidden;
+    background: linear-gradient(135deg, var(--plum-tint), var(--plum-black)); }
+  .card-cont-overlay { position: absolute; inset:0; background: linear-gradient(to top, rgba(10,10,15,0.92) 0%, transparent 55%); }
+  .card-cont-resume { position: absolute; bottom: 12px; left: 12px; display:flex; align-items:center; gap:8px; font-size: 12px; font-weight: 700; color:#fff; }
+  .resume-btn { width: 30px; height: 30px; border-radius: 50%; background: rgba(255,255,255,0.92); display:flex; align-items:center; justify-content:center; }
+  .resume-btn svg { width:11px; height:11px; fill:#0A0A0F; margin-left:1px; }
+  .card-cont-info { padding: 10px 13px 13px; }
+  .card-cont-prog-bar { width:100%; height:3px; background: rgba(255,255,255,0.1); border-radius:2px; margin-bottom:8px; }
+  .card-cont-prog-fill { height:100%; border-radius:2px; background: var(--magenta); }
+  .card-cont-row { display:flex; justify-content:space-between; align-items:center; }
+  .card-cont-title { font-size:12px; font-weight:600; color:var(--cream); }
+  .card-cont-time { font-size:11px; color:var(--dim2); }
+
+  .card-row-demo { display: flex; gap: 14px; overflow-x: auto; padding-bottom: 8px; }
+
+  /* ── Nav components ── */
+  .navdemo-topnav {
+    display: flex; align-items: center; justify-content: space-between; height: 56px; padding: 0 18px;
+    background: rgba(10,10,15,0.65); border: 1px solid var(--border); border-radius: var(--radius-md);
+  }
+  .navdemo-logo { display: flex; align-items: center; gap: 9px; font-family: var(--font-display); font-weight: 800; font-size: 14px; color: var(--cream); }
+  .navdemo-links { display: flex; gap: 18px; font-size: 12px; color: var(--dim); }
+  .navdemo-links span.active { color: #fff; }
+  .navdemo-icons { display: flex; gap: 8px; align-items: center; }
+  .navdemo-icon { width: 30px; height: 30px; border-radius: 7px; display:flex; align-items:center; justify-content:center; color: var(--dim); font-size: 13px; background: rgba(255,255,255,0.04); }
+  .navdemo-avatar { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, var(--magenta2), var(--lavender)); display:flex; align-items:center; justify-content:center; font-size: 11px; font-weight: 700; color:#fff; }
+
+  /* ── Modal demo (static, non-interactive preview) ── */
+  .modal-static {
+    background: #1C1C28; border-radius: 18px; overflow: hidden; max-width: 560px;
+  }
+  .modal-static-hero { height: 180px; background: linear-gradient(135deg, var(--magenta2), var(--plum-black)); position: relative; }
+  .modal-static-close { position: absolute; top: 12px; right: 12px; width: 30px; height: 30px; border-radius: 50%;
+    background: rgba(10,10,15,0.75); display:flex; align-items:center; justify-content:center; color:#fff; font-size: 13px; }
+  .modal-static-body { padding: 4px 24px 24px; }
+  .modal-static-title { font-family: var(--font-display); font-weight: 900; font-size: 24px; color: #fff; margin-bottom: 10px; }
+  .modal-static-meta { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; font-size: 12px; }
+  .modal-static-match { color: #4ade80; font-weight: 700; }
+  .modal-static-rating { font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 5px; border: 1.5px solid rgba(155,47,135,0.5); color: var(--magenta); background: rgba(155,47,135,0.12); }
+  .modal-static-actions { display: flex; gap: 8px; margin-bottom: 16px; }
+  .modal-static-play { display:flex; align-items:center; gap:6px; background:#fff; color:#111; font-weight:700; font-size:12px; padding:8px 16px; border-radius:7px; }
+  .modal-static-action { display:flex; align-items:center; gap:6px; background: rgba(255,255,255,0.1); color:#fff; font-weight:600; font-size:12px; padding:8px 14px; border-radius:7px; border: 1px solid rgba(255,255,255,0.16); }
+  .modal-static-desc { font-size: 12.5px; line-height: 1.65; color: rgba(240,238,248,0.72); }
+
+  /* preview popup static */
+  .preview-static { width: 260px; border-radius: 14px; background: #1C1C28; box-shadow: 0 20px 50px rgba(0,0,0,0.6); overflow: hidden; }
+  .preview-static-thumb { height: 140px; background: linear-gradient(135deg, var(--lavender), var(--plum)); }
+  .preview-static-body { padding: 12px 14px 16px; }
+  .preview-static-title { font-family: var(--font-display); font-size: 14px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+  .preview-static-actions { display: flex; gap: 6px; margin-bottom: 8px; }
+  .preview-static-play { display:flex; align-items:center; gap:5px; background:#fff; color:#111; font-weight:700; font-size:11px; padding:6px 12px; border-radius:6px; }
+  .preview-static-icon { width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.28); display:flex; align-items:center; justify-content:center; color:#fff; font-size: 11px; }
+
+  .component-pair { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-6); align-items: start; }
+  @media (max-width: 760px) { .component-pair { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body data-page="components">
+
+<div class="bs-shell">
+  <script src="assets/sidebar.js"></script>
+
+  <main class="bs-main">
+    <div class="bs-page">
+
+      <div class="bs-kicker">04 — Product</div>
+      <h1 class="bs-h1">Components</h1>
+      <p class="bs-lede">Every component below is lifted directly from the live FaithStream product code — not redesigned, just documented and annotated against the token system, so new screens reuse these patterns instead of building slightly-different versions each time.</p>
+
+      <span class="bs-tag kept">All components below are live product code, unchanged</span>
+
+      <!-- BUTTONS -->
+      <h2 class="bs-h2" style="margin-top:0;padding-top:0;border-top:none;">Buttons</h2>
+      <p class="bs-p">Three button styles, each with a distinct job. None compete with each other for attention because each one only appears in its own context.</p>
+      <div class="bs-demo dark-product">
+        <div class="btn-row">
+          <a href="#" class="btn-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Watch now</a>
+          <a href="#" class="btn-more"><svg viewBox="0 0 24 24" stroke="white" fill="none" stroke-width="2" width="14" height="14"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>More info</a>
+          <a href="#" class="btn-give">Make A Donation</a>
+        </div>
+      </div>
+      <table class="bs-table">
+        <tr><th>Style</th><th>Token</th><th>Use for</th></tr>
+        <tr><td><strong>Primary (white)</strong></td><td><code>background: #fff</code></td><td>The one action per screen that matters most — Watch / Play. Never more than one per view.</td></tr>
+        <tr><td><strong>Secondary (glass)</strong></td><td><code>rgba(255,255,255,0.1)</code> + blur</td><td>Supporting actions — More Info, secondary navigation.</td></tr>
+        <tr><td><strong>Brand (plum)</strong></td><td><code>background: var(--plum)</code></td><td>Mission-specific actions — Give, Donate. Reserved for House of Faith's support/donation calls to action specifically.</td></tr>
+      </table>
+
+      <!-- BADGES -->
+      <h2 class="bs-h2">Badges</h2>
+      <p class="bs-p">Content metadata — rating, genre, duration — shown as small pills. The rating badge is the only one that uses the magenta accent; everything else stays neutral so it doesn't compete for attention.</p>
+      <div class="bs-demo dark-product">
+        <div class="badge-row">
+          <span class="hero-badge rating">TV-14</span>
+          <span class="hero-badge">Faith</span>
+          <span class="hero-badge">Drama</span>
+          <span class="hero-badge">2h 14m</span>
+        </div>
+      </div>
+
+      <!-- CARDS -->
+      <h2 class="bs-h2">Cards</h2>
+      <p class="bs-p">Three card types, used for three distinct content rails. All three share the same hover language: scale 1.03–1.05, lift 4–5px, shadow growth — consistent enough to feel like one system.</p>
+
+      <h3 class="bs-h3">Landscape card — "New on FaithStream"</h3>
+      <div class="bs-demo dark-product">
+        <div class="card-row-demo">
+          <div class="card-land"><div class="card-land-thumb"><div class="card-hover-overlay"></div><div class="card-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div><div class="card-land-info"><div class="card-land-title">Abejoye</div><div class="card-land-meta">Faith<span class="meta-dot"></span>2024<span class="meta-dot"></span>1h 45m</div></div></div>
+          <div class="card-land"><div class="card-land-thumb"><div class="card-hover-overlay"></div><div class="card-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div><div class="card-land-info"><div class="card-land-title">Sims</div><div class="card-land-meta">Drama<span class="meta-dot"></span>2024<span class="meta-dot"></span>1h 52m</div></div></div>
+          <div class="card-land"><div class="card-land-thumb"><div class="card-hover-overlay"></div><div class="card-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div><div class="card-land-info"><div class="card-land-title">Million Dollar Baby</div><div class="card-land-meta">Drama<span class="meta-dot"></span>2024<span class="meta-dot"></span>2h 12m</div></div></div>
+        </div>
+      </div>
+
+      <h3 class="bs-h3">Portrait card — "Top 10"</h3>
+      <div class="bs-demo dark-product">
+        <div class="card-row-demo">
+          <div class="card-port"><div class="card-port-thumb"><div class="card-port-overlay"></div><div class="card-port-num">1</div></div><div class="card-port-info"><div class="card-port-title">Title Here</div><div class="card-port-meta">Faith · Drama</div></div></div>
+          <div class="card-port"><div class="card-port-thumb"><div class="card-port-overlay"></div><div class="card-port-num">2</div></div><div class="card-port-info"><div class="card-port-title">Title Here</div><div class="card-port-meta">Family · 2024</div></div></div>
+          <div class="card-port"><div class="card-port-thumb"><div class="card-port-overlay"></div><div class="card-port-num">3</div></div><div class="card-port-info"><div class="card-port-title">Title Here</div><div class="card-port-meta">Worship</div></div></div>
+          <div class="card-port"><div class="card-port-thumb"><div class="card-port-overlay"></div><div class="card-port-num">4</div></div><div class="card-port-info"><div class="card-port-title">Title Here</div><div class="card-port-meta">Drama · 2023</div></div></div>
+        </div>
+      </div>
+      <p class="bs-p" style="font-size:13px;">The outlined numeral (<code>-webkit-text-stroke</code>, near-transparent fill) is a distinctive, already-shipped detail worth protecting — it reads as premium and is unique enough to be a recognizable FaithStream signature, similar to how Netflix's Top 10 numerals work.</p>
+
+      <h3 class="bs-h3">Continue Watching card</h3>
+      <div class="bs-demo dark-product">
+        <div class="card-row-demo">
+          <div class="card-cont"><div class="card-cont-thumb"><div class="card-cont-overlay"></div><div class="card-cont-resume"><div class="resume-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>Resume</div></div><div class="card-cont-info"><div class="card-cont-prog-bar"><div class="card-cont-prog-fill" style="width:62%"></div></div><div class="card-cont-row"><span class="card-cont-title">Title Placeholder</span><span class="card-cont-time">34 min left</span></div></div></div>
+          <div class="card-cont"><div class="card-cont-thumb"><div class="card-cont-overlay"></div><div class="card-cont-resume"><div class="resume-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>Resume</div></div><div class="card-cont-info"><div class="card-cont-prog-bar"><div class="card-cont-prog-fill" style="width:28%"></div></div><div class="card-cont-row"><span class="card-cont-title">Title Placeholder</span><span class="card-cont-time">1h 22m left</span></div></div></div>
+        </div>
+      </div>
+      <p class="bs-p" style="font-size:13px;">Progress fill uses <code>--magenta</code> exclusively — the one place in the system where the accent color directly represents user data (how much they've watched), which is why it should never be reused for decoration elsewhere.</p>
+
+      <!-- NAV -->
+      <h2 class="bs-h2">Navigation</h2>
+      <p class="bs-p">Top nav (persistent) and nav drawer (hamburger-triggered overlay) — both already share the same logo treatment and icon language.</p>
+      <div class="bs-demo dark-product col">
+        <div class="bs-demo-label">Top nav</div>
+        <div class="navdemo-topnav" style="width:100%;">
+          <div class="navdemo-logo"><span style="width:26px;height:26px;background:var(--plum);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;">✦</span>FAITHSTREAM</div>
+          <div class="navdemo-links"><span class="active">Home</span><span>Movie</span><span>Series</span><span>Worship</span><span>Devotionals</span></div>
+          <div class="navdemo-icons"><div class="navdemo-icon">⌕</div><div class="navdemo-icon">🔔</div><div class="navdemo-avatar">U</div></div>
+        </div>
+      </div>
+
+      <!-- MODAL + PREVIEW -->
+      <h2 class="bs-h2">Modal &amp; Hover Preview</h2>
+      <p class="bs-p">The two states a content card can expand into: a quick hover preview (desktop only, 380ms delay to avoid accidental triggers) and the full info modal (click, any device).</p>
+      <div class="component-pair">
+        <div>
+          <div class="bs-demo-label" style="margin-bottom:8px;">Hover preview popup</div>
+          <div class="preview-static">
+            <div class="preview-static-thumb"></div>
+            <div class="preview-static-body">
+              <div class="preview-static-title">Abejoye</div>
+              <div class="preview-static-actions">
+                <div class="preview-static-play"><svg viewBox="0 0 24 24" width="10" height="10" fill="#111"><path d="M8 5v14l11-7z"/></svg>Play</div>
+                <div class="preview-static-icon">+</div>
+                <div class="preview-static-icon">👍</div>
+              </div>
+              <div style="font-size:11px; color:#4ade80; font-weight:700; margin-bottom:6px;">97% Match</div>
+              <div style="font-size:11px; color:var(--dim); line-height:1.6;">A powerful story of faith, redemption, and family set in a vibrant Nigerian community.</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="bs-demo-label" style="margin-bottom:8px;">Full info modal</div>
+          <div class="modal-static">
+            <div class="modal-static-hero"><div class="modal-static-close">✕</div></div>
+            <div class="modal-static-body">
+              <div class="modal-static-title">Abejoye</div>
+              <div class="modal-static-meta">
+                <span class="modal-static-match">97% Match</span>
+                <span class="modal-static-rating">PG</span>
+                <span style="color:var(--dim);">2024</span>
+                <span style="color:var(--dim);">1h 45m</span>
+              </div>
+              <div class="modal-static-actions">
+                <div class="modal-static-play">▶ Play</div>
+                <div class="modal-static-action">+ My List</div>
+                <div class="modal-static-action">👍 Like</div>
+              </div>
+              <div class="modal-static-desc">A powerful story of faith, redemption, and family set in a vibrant Nigerian community. Abejoye follows a young man's journey from waywardness to purpose.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bs-callout warn">
+        <div class="bs-callout-label">Same flagged inconsistency as Identity page</div>
+        <div class="bs-callout-text">Both components use <code>#4ade80</code> green for "Match %" — see the Color System section on the Logo, Color &amp; Type page for the open decision on whether this stays as a deliberate exception or gets retired to a purple-family equivalent.</div>
+      </div>
+
+      <div class="bs-pagenav">
+        <a href="patterns.html" class="bs-pagenav-link">
+          <span class="bs-pagenav-dir">← Back</span>
+          <span class="bs-pagenav-title">03 — Motifs &amp; Imagery</span>
+        </a>
+        <a href="web-ui.html" class="bs-pagenav-link next">
+          <span class="bs-pagenav-dir">Next →</span>
+          <span class="bs-pagenav-title">05 — Web &amp; UI System</span>
+        </a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+</body>
+</html>
