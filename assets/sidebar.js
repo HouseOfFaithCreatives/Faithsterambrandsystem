@@ -1,7 +1,7 @@
 document.write(`
 <aside class="bs-sidebar">
   <div class="bs-logo">
-    <div class="bs-logo-mark">✦</div>
+    <img src="assets/logo/faithstream_icon_purple.png" alt="FaithStream" class="bs-logo-mark" onerror="this.outerHTML='<div class=\\'bs-logo-mark\\'>✦</div>'">
     FAITHSTREAM
   </div>
   <div class="bs-subtitle">Brand System — v1.0</div>
