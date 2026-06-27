@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <link rel="stylesheet" href="assets/tokens.css">
 <style>
   /* ── Buttons (lifted directly from product code) ── */
@@ -28,7 +29,90 @@
     background: var(--plum); color: #fff; font-weight: 700; font-size: 13px;
     padding: 10px 18px; border-radius: 8px; box-shadow: 0 4px 20px rgba(155,47,135,0.4);
   }
-  .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+
+  /* ── EXTENDED BUTTON SYSTEM ── */
+  .btn-base {
+    display: inline-flex; align-items: center; gap: 8px; white-space: nowrap;
+    font-weight: 700; border-radius: 8px; transition: opacity 0.2s, background 0.2s, border-color 0.2s, transform 0.15s;
+    cursor: pointer; border: none; font-family: 'Inter', sans-serif;
+  }
+  .btn-base:active { transform: scale(0.97); }
+  .btn-base svg, .btn-base i[data-lucide] { flex-shrink: 0; }
+
+  /* Sizes */
+  .btn-sm { font-size: 12px; padding: 7px 14px; border-radius: 6px; }
+  .btn-sm svg, .btn-sm i[data-lucide] { width: 12px; height: 12px; }
+  .btn-md { font-size: 13px; padding: 10px 20px; border-radius: 8px; }
+  .btn-md svg, .btn-md i[data-lucide] { width: 14px; height: 14px; }
+  .btn-lg { font-size: 15px; padding: 13px 26px; border-radius: 9px; }
+  .btn-lg svg, .btn-lg i[data-lucide] { width: 16px; height: 16px; }
+
+  /* Variants */
+  .v-primary { background: #fff; color: #111; }
+  .v-primary:hover { opacity: 0.88; }
+  .v-secondary { background: rgba(255,255,255,0.1); backdrop-filter: blur(6px); color: #fff; border: 1px solid rgba(255,255,255,0.16); }
+  .v-secondary:hover { background: rgba(255,255,255,0.18); }
+  .v-brand { background: var(--plum); color: #fff; box-shadow: 0 4px 20px rgba(155,47,135,0.4); }
+  .v-brand:hover { opacity: 0.9; }
+  .v-accent { background: var(--magenta); color: #fff; }
+  .v-accent:hover { background: #B23FA0; }
+  .v-ghost { background: transparent; color: var(--dim); }
+  .v-ghost:hover { color: #fff; background: rgba(255,255,255,0.06); }
+  .v-outline { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.28); }
+  .v-outline:hover { border-color: #fff; background: rgba(255,255,255,0.06); }
+  .v-outline-brand { background: transparent; color: var(--magenta); border: 1.5px solid var(--magenta); }
+  .v-outline-brand:hover { background: rgba(155,47,135,0.1); }
+  .v-destructive { background: #E5484D; color: #fff; }
+  .v-destructive:hover { background: #C9383D; }
+  .v-link { background: transparent; color: var(--lavender-light); padding: 0; text-decoration: underline; text-decoration-color: transparent; }
+  .v-link:hover { text-decoration-color: var(--lavender-light); }
+  .v-disabled { background: var(--surface2); color: var(--dim2); cursor: not-allowed; opacity: 0.6; }
+
+  /* Icon-only circular buttons */
+  .btn-icon-only {
+    display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; flex-shrink: 0;
+    border: none; cursor: pointer; transition: background 0.18s, border-color 0.18s, transform 0.15s;
+  }
+  .btn-icon-only:active { transform: scale(0.94); }
+  .io-sm { width: 30px; height: 30px; }
+  .io-sm svg, .io-sm i[data-lucide] { width: 13px; height: 13px; }
+  .io-md { width: 38px; height: 38px; }
+  .io-md svg, .io-md i[data-lucide] { width: 16px; height: 16px; }
+  .io-lg { width: 48px; height: 48px; }
+  .io-lg svg, .io-lg i[data-lucide] { width: 19px; height: 19px; }
+  .io-filled { background: rgba(255,255,255,0.92); color: #111; }
+  .io-filled:hover { background: #fff; }
+  .io-outline { background: rgba(0,0,0,0.25); border: 2px solid rgba(255,255,255,0.28); color: #fff; }
+  .io-outline:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+  .io-ghost { background: rgba(255,255,255,0.06); color: var(--dim); }
+  .io-ghost:hover { color: #fff; background: rgba(255,255,255,0.12); }
+  .io-brand { background: var(--magenta); color: #fff; }
+  .io-brand:hover { background: #B23FA0; }
+
+  /* Pill / tag buttons (filter chips) */
+  .btn-pill {
+    display: inline-flex; align-items: center; gap: 6px; padding: 7px 16px; border-radius: 999px;
+    font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.18s, color 0.18s, border-color 0.18s;
+    border: 1px solid rgba(255,255,255,0.14); background: transparent; color: var(--dim);
+  }
+  .btn-pill:hover { color: #fff; border-color: rgba(255,255,255,0.3); }
+  .btn-pill.active { background: var(--magenta); color: #fff; border-color: var(--magenta); }
+
+  /* Full-width button (mobile CTAs, forms) */
+  .btn-full { width: 100%; justify-content: center; }
+
+  /* Loading state */
+  .btn-loading { position: relative; color: transparent !important; pointer-events: none; }
+  .btn-loading::after {
+    content: ''; position: absolute; width: 14px; height: 14px; border-radius: 50%;
+    border: 2px solid rgba(0,0,0,0.2); border-top-color: #111; animation: btnSpin 0.7s linear infinite;
+  }
+  .v-secondary.btn-loading::after, .v-outline.btn-loading::after, .v-ghost.btn-loading::after { border: 2px solid rgba(255,255,255,0.25); border-top-color: #fff; }
+  @keyframes btnSpin { to { transform: rotate(360deg); } }
+
+  .btn-section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--dim2); margin: var(--sp-6) 0 var(--sp-3); }
+  .btn-section-label:first-child { margin-top: 0; }
 
   /* ── Badges ── */
   .badge-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
@@ -152,20 +236,96 @@
 
       <!-- BUTTONS -->
       <h2 class="bs-h2" style="margin-top:0;padding-top:0;border-top:none;">Buttons</h2>
-      <p class="bs-p">Three button styles, each with a distinct job. None compete with each other for attention because each one only appears in its own context.</p>
+      <span class="bs-tag new">Extended — three core styles already shipped, expanded into a full system</span>
+      <p class="bs-p">The live product ships three button styles (primary white, secondary glass, brand plum). This expands that into a complete system — eight variants, three sizes, icon-only circular buttons, pill filters, and the states every button needs (loading, disabled, full-width) — so new screens stop inventing one-off button treatments.</p>
+
+      <div class="btn-section-label">Variants — medium size</div>
       <div class="bs-demo dark-product">
         <div class="btn-row">
-          <a href="#" class="btn-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Watch now</a>
-          <a href="#" class="btn-more"><svg viewBox="0 0 24 24" stroke="white" fill="none" stroke-width="2" width="14" height="14"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>More info</a>
-          <a href="#" class="btn-give">Make A Donation</a>
+          <button class="btn-base btn-md v-primary"><svg viewBox="0 0 24 24" width="14" height="14" fill="#111"><path d="M8 5v14l11-7z"/></svg>Primary</button>
+          <button class="btn-base btn-md v-secondary"><i data-lucide="info"></i>Secondary</button>
+          <button class="btn-base btn-md v-brand"><i data-lucide="heart"></i>Brand</button>
+          <button class="btn-base btn-md v-accent"><i data-lucide="plus"></i>Accent</button>
+          <button class="btn-base btn-md v-ghost"><i data-lucide="x"></i>Ghost</button>
+          <button class="btn-base btn-md v-outline">Outline</button>
+          <button class="btn-base btn-md v-outline-brand">Outline Brand</button>
+          <button class="btn-base btn-md v-destructive"><i data-lucide="trash-2"></i>Destructive</button>
+          <button class="btn-base btn-md v-link">Link button</button>
+          <button class="btn-base btn-md v-disabled" disabled>Disabled</button>
+        </div>
+      </div>
+
+      <table class="bs-table">
+        <tr><th>Variant</th><th>Token</th><th>Use for</th></tr>
+        <tr><td><strong>Primary (white)</strong></td><td><code>background: #fff</code></td><td>The one action per screen that matters most — Watch / Play. Never more than one per view.</td></tr>
+        <tr><td><strong>Secondary (glass)</strong></td><td><code>rgba(255,255,255,0.1)</code> + blur</td><td>Supporting actions — More Info, secondary navigation.</td></tr>
+        <tr><td><strong>Brand (plum)</strong></td><td><code>background: var(--plum)</code></td><td>Mission-specific actions — Give, Donate. Reserved for House of Faith's support/donation calls to action.</td></tr>
+        <tr><td><strong>Accent (magenta)</strong></td><td><code>background: var(--magenta)</code></td><td>In-app confirmations — Subscribe, Confirm, Add to List when it needs to stand out more than secondary but isn't the page's primary action.</td></tr>
+        <tr><td><strong>Ghost</strong></td><td><code>transparent</code>, dim text</td><td>Low-emphasis actions sitting next to a stronger one — Cancel, Skip, Not now.</td></tr>
+        <tr><td><strong>Outline</strong></td><td><code>1.5px solid rgba(255,255,255,.28)</code></td><td>Secondary actions on photo/video backgrounds where glass blur isn't available or wanted.</td></tr>
+        <tr><td><strong>Outline Brand</strong></td><td><code>1.5px solid var(--magenta)</code></td><td>Secondary action that still needs to read as on-brand rather than neutral.</td></tr>
+        <tr><td><strong>Destructive</strong></td><td><code>background: #E5484D</code></td><td>Irreversible actions only — Remove from list, Delete account, Cancel subscription.</td></tr>
+        <tr><td><strong>Link</strong></td><td>No fill, underline on hover</td><td>Inline text actions — "See all," "Learn more," footer links.</td></tr>
+      </table>
+
+      <div class="btn-section-label">Sizes</div>
+      <div class="bs-demo dark-product">
+        <div class="btn-row">
+          <button class="btn-base btn-sm v-primary"><svg viewBox="0 0 24 24" width="12" height="12" fill="#111"><path d="M8 5v14l11-7z"/></svg>Small</button>
+          <button class="btn-base btn-md v-primary"><svg viewBox="0 0 24 24" width="14" height="14" fill="#111"><path d="M8 5v14l11-7z"/></svg>Medium</button>
+          <button class="btn-base btn-lg v-primary"><svg viewBox="0 0 24 24" width="16" height="16" fill="#111"><path d="M8 5v14l11-7z"/></svg>Large</button>
         </div>
       </div>
       <table class="bs-table">
-        <tr><th>Style</th><th>Token</th><th>Use for</th></tr>
-        <tr><td><strong>Primary (white)</strong></td><td><code>background: #fff</code></td><td>The one action per screen that matters most — Watch / Play. Never more than one per view.</td></tr>
-        <tr><td><strong>Secondary (glass)</strong></td><td><code>rgba(255,255,255,0.1)</code> + blur</td><td>Supporting actions — More Info, secondary navigation.</td></tr>
-        <tr><td><strong>Brand (plum)</strong></td><td><code>background: var(--plum)</code></td><td>Mission-specific actions — Give, Donate. Reserved for House of Faith's support/donation calls to action specifically.</td></tr>
+        <tr><th>Size</th><th>Padding</th><th>Font</th><th>Use for</th></tr>
+        <tr><td><strong>Small</strong></td><td><code>7px 14px</code></td><td>12px</td><td>Inline within cards, table row actions, dense UI</td></tr>
+        <tr><td><strong>Medium</strong></td><td><code>10px 20px</code></td><td>13px</td><td>Default everywhere — nav, modals, most CTAs</td></tr>
+        <tr><td><strong>Large</strong></td><td><code>13px 26px</code></td><td>15px</td><td>Hero CTAs, empty states, the single most important action on a page</td></tr>
       </table>
+
+      <div class="btn-section-label">Icon-only / circular</div>
+      <div class="bs-demo dark-product">
+        <div class="btn-row">
+          <button class="btn-icon-only io-sm io-filled"><svg viewBox="0 0 24 24" width="11" height="11" fill="#111"><path d="M8 5v14l11-7z"/></svg></button>
+          <button class="btn-icon-only io-md io-filled"><svg viewBox="0 0 24 24" width="14" height="14" fill="#111"><path d="M8 5v14l11-7z"/></svg></button>
+          <button class="btn-icon-only io-lg io-filled"><svg viewBox="0 0 24 24" width="17" height="17" fill="#111"><path d="M8 5v14l11-7z"/></svg></button>
+          <button class="btn-icon-only io-md io-outline"><i data-lucide="plus"></i></button>
+          <button class="btn-icon-only io-md io-outline"><i data-lucide="thumbs-up"></i></button>
+          <button class="btn-icon-only io-md io-ghost"><i data-lucide="share-2"></i></button>
+          <button class="btn-icon-only io-md io-brand"><i data-lucide="heart"></i></button>
+        </div>
+      </div>
+      <p class="bs-p" style="font-size:13px;">Filled circular buttons are reserved for the play action specifically (resume cards, hover previews, modals) — outline and ghost variants cover everything else (add to list, like, share) so the play button always reads as the one filled, unmistakable action in any card.</p>
+
+      <div class="btn-section-label">Pill filters / tags</div>
+      <div class="bs-demo dark-product">
+        <div class="btn-row">
+          <button class="btn-pill active">All</button>
+          <button class="btn-pill">Faith</button>
+          <button class="btn-pill">Drama</button>
+          <button class="btn-pill">Documentary</button>
+          <button class="btn-pill">Family</button>
+          <button class="btn-pill">Worship</button>
+        </div>
+      </div>
+      <p class="bs-p" style="font-size:13px;">For genre filters, language toggles, or any horizontal multi-select row — active state uses the magenta accent, matching the genre color system on the Motifs &amp; Imagery page.</p>
+
+      <div class="btn-section-label">States</div>
+      <div class="bs-demo dark-product">
+        <div class="btn-row">
+          <button class="btn-base btn-md v-primary"><svg viewBox="0 0 24 24" width="14" height="14" fill="#111"><path d="M8 5v14l11-7z"/></svg>Default</button>
+          <button class="btn-base btn-md v-primary" style="opacity:0.88;">Hover</button>
+          <button class="btn-base btn-md v-primary" style="transform:scale(0.97);">Active / pressed</button>
+          <button class="btn-base btn-md v-primary btn-loading">Loading</button>
+          <button class="btn-base btn-md v-disabled" disabled>Disabled</button>
+        </div>
+      </div>
+
+      <div class="btn-section-label">Full-width (mobile / forms)</div>
+      <div class="bs-demo dark-product col">
+        <button class="btn-base btn-lg v-brand btn-full"><i data-lucide="heart"></i>Make A Donation</button>
+      </div>
+      <p class="bs-p" style="font-size:13px;">Reserved for mobile CTA bars and form submissions — never used in desktop content rows, where a full-width button would compete with the card grid for visual weight.</p>
 
       <!-- BADGES -->
       <h2 class="bs-h2">Badges</h2>
@@ -286,5 +446,6 @@
   </main>
 </div>
 
+<script>lucide.createIcons();</script>
 </body>
 </html>

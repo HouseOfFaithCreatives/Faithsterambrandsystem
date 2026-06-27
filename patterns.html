@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <link rel="stylesheet" href="assets/tokens.css">
 <style>
   .motif-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); margin: var(--sp-5) 0 var(--sp-8); }
@@ -53,6 +54,145 @@
   .photo-swatch { width: 28px; height: 28px; border-radius: 6px; }
 
   .motion-table td code { font-size: 12px; }
+
+  /* ── ICONOGRAPHY ── */
+  .icon-set-grid {
+    display: grid; grid-template-columns: repeat(8, 1fr); gap: var(--sp-3);
+    margin: var(--sp-5) 0 var(--sp-8);
+  }
+  .icon-set-item {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md);
+    aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 6px; transition: border-color 0.18s, background 0.18s;
+  }
+  .icon-set-item:hover { border-color: rgba(155,47,135,0.4); background: rgba(155,47,135,0.06); }
+  .icon-set-item i[data-lucide] { width: 22px; height: 22px; color: var(--cream); stroke-width: 1.75; }
+  .icon-set-label { font-size: 9px; color: var(--dim2); text-align: center; line-height: 1.2; padding: 0 4px; }
+
+  .icon-style-row { display: flex; gap: var(--sp-6); align-items: center; margin: var(--sp-5) 0 var(--sp-8); flex-wrap: wrap; }
+  .icon-style-demo { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .icon-style-box {
+    width: 64px; height: 64px; border-radius: var(--radius-md); background: var(--surface); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .icon-style-box.bad { opacity: 0.5; }
+  .icon-style-name { font-size: 11px; color: var(--dim2); }
+
+  /* Color utility classes — these transfer correctly when Lucide replaces <i> with <svg>,
+     unlike inline style="color:..." which Lucide does NOT carry over to the new element */
+  .icon-cream { color: var(--cream); }
+  .icon-genre { color: rgba(255,255,255,0.7); }
+  .icon-dim2 { color: var(--dim2); }
+
+  /* ── MOODBOARD ── */
+  .moodboard-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 90px;
+    gap: 8px;
+    margin: var(--sp-5) 0 var(--sp-6);
+  }
+  .mood-tile {
+    border-radius: var(--radius-md); overflow: hidden; position: relative;
+    background: var(--surface2); display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--border);
+  }
+  .mood-tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .mood-tile .mood-ph { font-size: 10px; color: var(--dim2); text-align: center; padding: 6px; line-height: 1.4; }
+  .mood-tile .mood-num {
+    position: absolute; top: 6px; left: 6px; font-size: 9px; font-weight: 700; color: rgba(255,255,255,0.55);
+    background: rgba(0,0,0,0.4); padding: 1px 6px; border-radius: 3px; font-family: monospace;
+  }
+  /* varied spans for rough moodboard feel */
+  .mood-tile.s-2x2 { grid-column: span 2; grid-row: span 2; }
+  .mood-tile.s-2x1 { grid-column: span 2; grid-row: span 1; }
+  .mood-tile.s-1x2 { grid-column: span 1; grid-row: span 2; }
+  .mood-tile.s-3x1 { grid-column: span 3; grid-row: span 1; }
+  .mood-tile.s-1x1 { grid-column: span 1; grid-row: span 1; }
+
+  @media (max-width: 760px) {
+    .moodboard-grid { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 70px; }
+    .icon-set-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  /* ── MOTION BACKGROUND DEMOS ── */
+  .motion-bg-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sp-5); margin: var(--sp-5) 0 var(--sp-8); }
+  .motion-bg-card { border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); }
+  .motion-bg-demo {
+    height: 200px; position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .motion-bg-info { background: var(--surface); padding: var(--sp-4) var(--sp-5); }
+  .motion-bg-name { font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--cream); margin-bottom: 4px; }
+  .motion-bg-desc { font-size: 12.5px; color: var(--dim); line-height: 1.5; }
+  .motion-bg-label-overlay {
+    position: relative; z-index: 2; font-family: var(--font-display); font-weight: 700;
+    font-size: 18px; color: rgba(255,255,255,0.92); letter-spacing: -0.01em;
+  }
+
+  /* 1. Aurora glow */
+  .mbg-aurora { background: #0A0A0F; }
+  .mbg-aurora::before, .mbg-aurora::after {
+    content: ''; position: absolute; border-radius: 50%; filter: blur(40px); opacity: 0.55;
+  }
+  .mbg-aurora::before {
+    width: 260px; height: 260px; background: var(--magenta); top: -60px; left: -40px;
+    animation: auroraDrift1 9s ease-in-out infinite alternate;
+  }
+  .mbg-aurora::after {
+    width: 220px; height: 220px; background: var(--lavender); bottom: -60px; right: -30px;
+    animation: auroraDrift2 11s ease-in-out infinite alternate;
+  }
+  @keyframes auroraDrift1 { from { transform: translate(0,0) scale(1); } to { transform: translate(60px,30px) scale(1.15); } }
+  @keyframes auroraDrift2 { from { transform: translate(0,0) scale(1); } to { transform: translate(-50px,-20px) scale(1.1); } }
+
+  /* 2. Mesh gradient drift */
+  .mbg-mesh {
+    background: linear-gradient(120deg, #491440, #702263, #6C59A6, #2A1530);
+    background-size: 300% 300%;
+    animation: meshShift 12s ease-in-out infinite;
+  }
+  @keyframes meshShift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* 3. Ember / particle drift */
+  .mbg-particles { background: #0A0A0F; }
+  .mbg-particles .ember {
+    position: absolute; bottom: -10px; border-radius: 50%; background: var(--magenta);
+    opacity: 0.7; animation: emberRise linear infinite;
+  }
+  @keyframes emberRise {
+    0%   { transform: translateY(0) translateX(0); opacity: 0; }
+    10%  { opacity: 0.8; }
+    100% { transform: translateY(-220px) translateX(20px); opacity: 0; }
+  }
+
+  /* 4. Radial pulse */
+  .mbg-pulse { background: #0A0A0F; }
+  .mbg-pulse::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(155,47,135,0.5) 0%, transparent 60%);
+    animation: pulseScale 3.5s ease-in-out infinite;
+  }
+  @keyframes pulseScale {
+    0%, 100% { transform: scale(0.85); opacity: 0.6; }
+    50% { transform: scale(1.15); opacity: 1; }
+  }
+
+  /* 5. Diagonal sweep / silk */
+  .mbg-sweep { background: #150A1A; }
+  .mbg-sweep::before {
+    content: ''; position: absolute; top: -50%; left: -50%; width: 220%; height: 220%;
+    background: linear-gradient(115deg, transparent 35%, rgba(155,47,135,0.35) 48%, rgba(108,89,166,0.3) 52%, transparent 65%);
+    animation: sweepMove 6s linear infinite;
+  }
+  @keyframes sweepMove {
+    0%   { transform: translateX(-15%) translateY(-10%); }
+    100% { transform: translateX(15%) translateY(10%); }
+  }
 </style>
 </head>
 <body data-page="patterns">
@@ -90,47 +230,124 @@
         <div class="bs-callout-text">All three motifs follow the same rule as Netflix and UNC's pattern systems: subtle, used as texture or background layer — never as the dominant visual element, never directly behind body copy, never used to construct a custom logo.</div>
       </div>
 
+      <h2 class="bs-h2">Iconography</h2>
+      <span class="bs-tag kept">Lucide — already loaded in the live product</span>
+      <p class="bs-p">The live FaithStream code already loads Lucide (<code>unpkg.com/lucide</code>) for every UI icon — search, bell, play, plus, thumbs-up, house, and the rest. Rather than introduce a second icon library, this formalizes Lucide as the system's one icon set and documents the actual usage rule already implicit in the code: <strong>1.5–1.75px stroke weight, no fill except for play/action glyphs</strong>.</p>
+
+      <div class="icon-set-grid" id="iconSetGrid">
+        <div class="icon-set-item"><i data-lucide="house"></i><span class="icon-set-label">house</span></div>
+        <div class="icon-set-item"><i data-lucide="search"></i><span class="icon-set-label">search</span></div>
+        <div class="icon-set-item"><i data-lucide="bell"></i><span class="icon-set-label">bell</span></div>
+        <div class="icon-set-item"><i data-lucide="play"></i><span class="icon-set-label">play</span></div>
+        <div class="icon-set-item"><i data-lucide="plus"></i><span class="icon-set-label">plus</span></div>
+        <div class="icon-set-item"><i data-lucide="thumbs-up"></i><span class="icon-set-label">thumbs-up</span></div>
+        <div class="icon-set-item"><i data-lucide="chevron-down"></i><span class="icon-set-label">chevron-down</span></div>
+        <div class="icon-set-item"><i data-lucide="x"></i><span class="icon-set-label">x / close</span></div>
+        <div class="icon-set-item"><i data-lucide="clapperboard"></i><span class="icon-set-label">clapperboard</span></div>
+        <div class="icon-set-item"><i data-lucide="tv-minimal"></i><span class="icon-set-label">tv-minimal</span></div>
+        <div class="icon-set-item"><i data-lucide="music"></i><span class="icon-set-label">music</span></div>
+        <div class="icon-set-item"><i data-lucide="book-open"></i><span class="icon-set-label">book-open</span></div>
+        <div class="icon-set-item"><i data-lucide="mic"></i><span class="icon-set-label">mic</span></div>
+        <div class="icon-set-item"><i data-lucide="settings-2"></i><span class="icon-set-label">settings-2</span></div>
+        <div class="icon-set-item"><i data-lucide="circle-user-round"></i><span class="icon-set-label">circle-user</span></div>
+        <div class="icon-set-item"><i data-lucide="share-2"></i><span class="icon-set-label">share-2</span></div>
+        <div class="icon-set-item"><i data-lucide="cross"></i><span class="icon-set-label">cross — Faith</span></div>
+        <div class="icon-set-item"><i data-lucide="drama"></i><span class="icon-set-label">drama — genre</span></div>
+        <div class="icon-set-item"><i data-lucide="video"></i><span class="icon-set-label">video — doc</span></div>
+        <div class="icon-set-item"><i data-lucide="users"></i><span class="icon-set-label">users — family</span></div>
+        <div class="icon-set-item"><i data-lucide="heart"></i><span class="icon-set-label">heart — give</span></div>
+        <div class="icon-set-item"><i data-lucide="download"></i><span class="icon-set-label">download</span></div>
+        <div class="icon-set-item"><i data-lucide="globe"></i><span class="icon-set-label">globe — language</span></div>
+        <div class="icon-set-item"><i data-lucide="rewind"></i><span class="icon-set-label">rewind</span></div>
+      </div>
+
+      <div class="bs-callout warn">
+        <div class="bs-callout-label">Bug found in the live product, not just this document</div>
+        <div class="bs-callout-text">The current FaithStream code uses <code>tv-2</code>, <code>music-4</code>, and <code>mic-2</code> as Lucide icon names in the nav drawer (Series, Worship, Podcasts). Current Lucide has renamed these — the correct names are <code>tv-minimal</code>, <code>music</code>, and <code>mic</code>. This means those three nav icons are likely rendering blank in the live app right now. Worth a one-line fix in the product code itself, independent of this brand system.</div>
+      </div>
+
+      <h3 class="bs-h3">Stroke weight rule</h3>
+      <div class="icon-style-row">
+        <div class="icon-style-demo">
+          <div class="icon-style-box"><i data-lucide="play" width="26" height="26" stroke-width="1.5" class="icon-cream"></i></div>
+          <span class="icon-style-name">1.5px — correct</span>
+        </div>
+        <div class="icon-style-demo">
+          <div class="icon-style-box"><i data-lucide="play" width="26" height="26" stroke-width="1.75" class="icon-cream"></i></div>
+          <span class="icon-style-name">1.75px — correct, slightly bolder</span>
+        </div>
+        <div class="icon-style-demo">
+          <div class="icon-style-box bad"><i data-lucide="play" width="26" height="26" stroke-width="0.75" class="icon-cream"></i></div>
+          <span class="icon-style-name">0.75px — too thin, avoid</span>
+        </div>
+        <div class="icon-style-demo">
+          <div class="icon-style-box bad"><i data-lucide="play" width="26" height="26" stroke-width="3" class="icon-cream"></i></div>
+          <span class="icon-style-name">3px — too heavy, avoid</span>
+        </div>
+      </div>
+
+      <table class="bs-table">
+        <tr><th>Context</th><th>Size</th><th>Stroke</th><th>Fill</th></tr>
+        <tr><td>Nav / drawer icons</td><td>18–20px</td><td>1.5px</td><td>None — outline only</td></tr>
+        <tr><td>Card play buttons, modal actions</td><td>14–15px</td><td>n/a</td><td>Filled (white or magenta circle background)</td></tr>
+        <tr><td>Browse panel genre icons</td><td>18px</td><td>2px</td><td>None, white stroke on gradient tile</td></tr>
+        <tr><td>Mobile tab bar</td><td>22px</td><td>1.75px</td><td>None — outline, color shifts to magenta when active</td></tr>
+      </table>
+      <div class="bs-callout">
+        <div class="bs-callout-label">Rule</div>
+        <div class="bs-callout-text">Outline icons throughout — never switch a single icon to a filled style except the play triangle and similar primary-action glyphs, which read faster filled. Mixing outline and filled icons in the same row (e.g. nav bar) is the most common, most visible iconography mistake to avoid.</div>
+      </div>
+
       <h2 class="bs-h2">Genre &amp; category color coding</h2>
       <p class="bs-p">The live browse panel already color-codes genres with gradients (<code>.bg-thumb.g1</code> through <code>.g5</code>) — but the five gradients currently span unrelated hue families (purple, blue, green, brown) with no documented system behind them. This formalizes that into one purple-only range, consistent with the color system on the Identity page.</p>
 
       <div class="genre-grid">
-        <div class="genre-tile" style="background:linear-gradient(135deg,#491440,#6C59A6);"><div class="genre-name">Faith</div><div class="genre-count">128 titles</div></div>
-        <div class="genre-tile" style="background:linear-gradient(135deg,#702263,#9C8FC4);"><div class="genre-name">Drama</div><div class="genre-count">96 titles</div></div>
-        <div class="genre-tile" style="background:linear-gradient(135deg,#3D2870,#6C59A6);"><div class="genre-name">Documentary</div><div class="genre-count">43 titles</div></div>
-        <div class="genre-tile" style="background:linear-gradient(135deg,#6E3D63,#9B2F87);"><div class="genre-name">Family</div><div class="genre-count">67 titles</div></div>
-        <div class="genre-tile" style="background:linear-gradient(135deg,#1A0E22,#491440);"><div class="genre-name">Worship</div><div class="genre-count">52 titles</div></div>
+        <div class="genre-tile" style="background:linear-gradient(135deg,#491440,#6C59A6);"><i data-lucide="cross" width="16" height="16" class="icon-genre"></i><div class="genre-name">Faith</div><div class="genre-count">128 titles</div></div>
+        <div class="genre-tile" style="background:linear-gradient(135deg,#702263,#9C8FC4);"><i data-lucide="drama" width="16" height="16" class="icon-genre"></i><div class="genre-name">Drama</div><div class="genre-count">96 titles</div></div>
+        <div class="genre-tile" style="background:linear-gradient(135deg,#3D2870,#6C59A6);"><i data-lucide="video" width="16" height="16" class="icon-genre"></i><div class="genre-name">Documentary</div><div class="genre-count">43 titles</div></div>
+        <div class="genre-tile" style="background:linear-gradient(135deg,#6E3D63,#9B2F87);"><i data-lucide="users" width="16" height="16" class="icon-genre"></i><div class="genre-name">Family</div><div class="genre-count">67 titles</div></div>
+        <div class="genre-tile" style="background:linear-gradient(135deg,#1A0E22,#491440);"><i data-lucide="music" width="16" height="16" class="icon-genre"></i><div class="genre-name">Worship</div><div class="genre-count">52 titles</div></div>
       </div>
       <p class="bs-p" style="font-size:13px;">Each genre gets a unique two-point gradient, but every stop comes from the purple range defined in the color system — no genre "escapes" into an unrelated hue the way the current blue/green/brown set does.</p>
 
-      <h2 class="bs-h2">Photography &amp; key art direction</h2>
-      <p class="bs-p">Marked "TBC" in the original one-page brand guide, and critical given thumbnails are the single most active, most inconsistent area of current production work.</p>
+      <h2 class="bs-h2">Photography &amp; key art moodboard</h2>
+      <p class="bs-p">Marked "TBC" in the original one-page brand guide, and critical given thumbnails are the single most active, most inconsistent area of current production work. The grid below is a working moodboard, not a finished spec — drop your own reference images in to replace the placeholder tiles; the deliberately uneven sizing is intentional, the way a real moodboard gets pinned up.</p>
 
-      <div class="photo-grid">
-        <div class="photo-card">
-          <h4>Tone</h4>
-          <p>Cinematic, warm, high-contrast — matching the "story-driven" language already present in FaithStream's positioning. Avoid flat, evenly-lit stock-photo lighting.</p>
-        </div>
-        <div class="photo-card">
-          <h4>Subject matter</h4>
-          <p>Community, worship, family, and purpose — themes already named in the existing guide, now backed by composition rules rather than left abstract.</p>
-        </div>
-        <div class="photo-card">
-          <h4>Color grading</h4>
-          <p>Imagery should grade toward the purple family in shadows and midtones where possible — a subtle, consistent treatment, not a heavy filter.</p>
-          <div class="photo-swatch-row">
-            <div class="photo-swatch" style="background:#491440;"></div>
-            <div class="photo-swatch" style="background:#702263;"></div>
-            <div class="photo-swatch" style="background:#6C59A6;"></div>
-          </div>
-        </div>
-        <div class="photo-card">
-          <h4>Representation</h4>
-          <p>Reflect the diversity of the continental and diaspora audience — no single region or look should stand in for the whole brand across the content catalogue.</p>
-        </div>
+      <div class="moodboard-grid" id="moodboardGrid">
+        <div class="mood-tile s-2x2"><span class="mood-num">01</span><div class="mood-ph">Community gathering, warm light</div></div>
+        <div class="mood-tile s-1x1"><span class="mood-num">02</span><div class="mood-ph">Close portrait</div></div>
+        <div class="mood-tile s-1x1"><span class="mood-num">03</span><div class="mood-ph">Hands in prayer</div></div>
+        <div class="mood-tile s-1x2"><span class="mood-num">04</span><div class="mood-ph">Worship, vertical</div></div>
+        <div class="mood-tile s-2x1"><span class="mood-num">05</span><div class="mood-ph">Family at table, wide</div></div>
+        <div class="mood-tile s-1x1"><span class="mood-num">06</span><div class="mood-ph">Texture / fabric</div></div>
+        <div class="mood-tile s-1x1"><span class="mood-num">07</span><div class="mood-ph">Production still</div></div>
+        <div class="mood-tile s-2x2"><span class="mood-num">08</span><div class="mood-ph">Key art, dramatic light</div></div>
+        <div class="mood-tile s-1x1"><span class="mood-num">09</span><div class="mood-ph">Street scene, Lagos</div></div>
+        <div class="mood-tile s-1x1"><span class="mood-num">10</span><div class="mood-ph">Candid laugh</div></div>
+        <div class="mood-tile s-1x2"><span class="mood-num">11</span><div class="mood-ph">On-set, vertical</div></div>
+        <div class="mood-tile s-1x1"><span class="mood-num">12</span><div class="mood-ph">Hands / detail shot</div></div>
+        <div class="mood-tile s-2x1"><span class="mood-num">13</span><div class="mood-ph">Choir / worship wide</div></div>
+        <div class="mood-tile s-1x1"><span class="mood-num">14</span><div class="mood-ph">Color reference</div></div>
+        <div class="mood-tile s-1x1"><span class="mood-num">15</span><div class="mood-ph">Elder portrait</div></div>
+        <div class="mood-tile s-3x1"><span class="mood-num">16</span><div class="mood-ph">Wide establishing shot — diaspora city skyline</div></div>
+        <div class="mood-tile s-1x1"><span class="mood-num">17</span><div class="mood-ph">Children, candid</div></div>
+        <div class="mood-tile s-1x1"><span class="mood-num">18</span><div class="mood-ph">Textile pattern ref</div></div>
+        <div class="mood-tile s-1x1"><span class="mood-num">19</span><div class="mood-ph">Night scene, warm</div></div>
+        <div class="mood-tile s-1x1"><span class="mood-num">20</span><div class="mood-ph">Title card mockup</div></div>
       </div>
+      <p class="bs-p" style="font-size:13px;">To replace a tile: swap the placeholder <code>&lt;div class="mood-ph"&gt;</code> inside any <code>.mood-tile</code> in <code>patterns.html</code> for an <code>&lt;img src="..."&gt;</code> pointing at your reference image. Tile sizes (<code>s-1x1</code>, <code>s-2x1</code>, <code>s-1x2</code>, <code>s-2x2</code>, <code>s-3x1</code>) are reusable classes — change which class a tile has to resize it, the grid reflows automatically.</p>
+
+      <table class="bs-table">
+        <tr><th>Direction</th><th>Detail</th></tr>
+        <tr><td><strong>Tone</strong></td><td>Cinematic, warm, high-contrast — matching the "story-driven" language already present in FaithStream's positioning. Avoid flat, evenly-lit stock-photo lighting.</td></tr>
+        <tr><td><strong>Subject matter</strong></td><td>Community, worship, family, and purpose — themes already named in the existing guide, now backed by composition rules rather than left abstract.</td></tr>
+        <tr><td><strong>Color grading</strong></td><td>Imagery should grade toward the purple family in shadows and midtones where possible — a subtle, consistent treatment, not a heavy filter.</td></tr>
+        <tr><td><strong>Representation</strong></td><td>Reflect the diversity of the continental and diaspora audience — no single region or look should stand in for the whole brand across the content catalogue.</td></tr>
+      </table>
+
 
       <h2 class="bs-h2">Motion &amp; transition language</h2>
-      <p class="bs-p">The live product already has a considered motion system — these are the actual timing/easing values in use, documented here so new components match instead of guessing.</p>
+      <p class="bs-p">The live product already has a considered motion system for component interactions — these are the actual timing/easing values in use, documented here so new components match instead of guessing.</p>
       <table class="bs-table motion-table">
         <tr><th>Interaction</th><th>Timing</th><th>Easing</th><th>Where it's used</th></tr>
         <tr><td>Card hover lift</td><td><code>0.28s</code></td><td><code>cubic-bezier(.4,0,.2,1)</code></td><td>card-land, card-port, card-cont</td></tr>
@@ -142,6 +359,59 @@
       <div class="bs-callout">
         <div class="bs-callout-label">Rule</div>
         <div class="bs-callout-text"><code>cubic-bezier(.4,0,.2,1)</code> (Material-style "standard" easing) is the default for anything functional — hovers, drawers, slides. Reserve <code>cubic-bezier(.22,1,.36,1)</code> (slight overshoot) for moments that should feel a little more special, like the full info modal opening — don't use it everywhere or it stops feeling special.</div>
+      </div>
+
+      <h3 class="bs-h3">Brand motion reel — video slot</h3>
+      <span class="bs-tag fixed">Placeholder — drop your motion video in</span>
+      <p class="bs-p">For a hero loop, splash screen, or brand intro motion piece. Once you have a rendered file, drop it in <code>/assets/motion/</code> and swap the placeholder block below for a <code>&lt;video&gt;</code> tag pointing at it.</p>
+      <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg); height:280px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; margin: var(--sp-5) 0 var(--sp-8);">
+        <i data-lucide="circle-play" width="40" height="40" class="icon-dim2"></i>
+        <div style="font-size:13px; color:var(--dim2);">Drop your rendered motion file at <code>assets/motion/faithstream_brand_loop.mp4</code></div>
+      </div>
+
+      <h3 class="bs-h3">Five animated background directions</h3>
+      <p class="bs-p">Five pure-CSS motion backgrounds, no video dependency — usable directly on hero sections, loading screens, and splash states while your own motion video is in production, or as a lighter-weight permanent alternative to a rendered video loop.</p>
+
+      <div class="motion-bg-grid">
+        <div class="motion-bg-card">
+          <div class="motion-bg-demo mbg-aurora"><span class="motion-bg-label-overlay">FaithStream</span></div>
+          <div class="motion-bg-info">
+            <div class="motion-bg-name">01 — Aurora Glow</div>
+            <div class="motion-bg-desc">Two soft blurred light masses drift slowly behind the logo — calm, ambient, faith-forward. Best for splash screens and donation pages.</div>
+          </div>
+        </div>
+        <div class="motion-bg-card">
+          <div class="motion-bg-demo mbg-mesh"><span class="motion-bg-label-overlay">FaithStream</span></div>
+          <div class="motion-bg-info">
+            <div class="motion-bg-name">02 — Mesh Gradient Drift</div>
+            <div class="motion-bg-desc">The full purple range flowing slowly through itself. Most "premium streaming platform" of the five — good for the main hero background.</div>
+          </div>
+        </div>
+        <div class="motion-bg-card">
+          <div class="motion-bg-demo mbg-particles" id="emberDemo"><span class="motion-bg-label-overlay">FaithStream</span></div>
+          <div class="motion-bg-info">
+            <div class="motion-bg-name">03 — Ember Drift</div>
+            <div class="motion-bg-desc">Small magenta embers rising slowly, tied to the "radiance" motif from this same page. Distinctive and a little more playful — good for loading states.</div>
+          </div>
+        </div>
+        <div class="motion-bg-card">
+          <div class="motion-bg-demo mbg-pulse"><span class="motion-bg-label-overlay">FaithStream</span></div>
+          <div class="motion-bg-info">
+            <div class="motion-bg-name">04 — Radial Pulse</div>
+            <div class="motion-bg-desc">A slow breathing glow from center — the calmest option, good for a "waiting" or buffering state where you don't want to add visual noise.</div>
+          </div>
+        </div>
+        <div class="motion-bg-card">
+          <div class="motion-bg-demo mbg-sweep"><span class="motion-bg-label-overlay">FaithStream</span></div>
+          <div class="motion-bg-info">
+            <div class="motion-bg-name">05 — Diagonal Sweep</div>
+            <div class="motion-bg-desc">A soft silk-like light band moving across the frame. The most cinematic and "key art" feeling of the five — good for marketing hero sections.</div>
+          </div>
+        </div>
+      </div>
+      <div class="bs-callout">
+        <div class="bs-callout-label">Recommendation</div>
+        <div class="bs-callout-text">Mesh Gradient Drift (02) is the closest match to the existing product's hero gradients already in use — recommend it as the default if only one of these five gets adopted permanently, with Aurora Glow (01) as the calmer alternative for donation/give screens specifically, matching that flow's gentler tone.</div>
       </div>
 
       <div class="bs-pagenav">
@@ -159,5 +429,23 @@
   </main>
 </div>
 
+<script>
+  // Generate ember particles for motion demo 03
+  const emberHost = document.getElementById('emberDemo');
+  if (emberHost) {
+    for (let i = 0; i < 14; i++) {
+      const e = document.createElement('div');
+      e.className = 'ember';
+      const size = 3 + Math.random() * 5;
+      e.style.width = size + 'px';
+      e.style.height = size + 'px';
+      e.style.left = (Math.random() * 100) + '%';
+      e.style.animationDuration = (4 + Math.random() * 4) + 's';
+      e.style.animationDelay = (Math.random() * 5) + 's';
+      emberHost.appendChild(e);
+    }
+  }
+  lucide.createIcons();
+</script>
 </body>
 </html>
