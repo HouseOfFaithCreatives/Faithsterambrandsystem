@@ -9,20 +9,87 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800;900&family=Cinzel:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/tokens.css">
 <style>
-  /* ── LOGO — real assets from /assets/logo/ ── */
+
+  /* ═══════════════════════════════════════════
+     LOGO SECTION STYLES
+  ═══════════════════════════════════════════ */
+
   .logo-demo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); margin: var(--sp-5) 0 var(--sp-6); }
-  .logo-tile { border-radius: var(--radius-lg); padding: var(--sp-8) var(--sp-5); display: flex; align-items: center; justify-content: center; height: 110px; }
-  .logo-tile.dark { background: var(--plum-black); border: 1px solid var(--border); }
-  .logo-tile.surface { background: var(--surface); border: 1px solid var(--border); }
+  .logo-tile { border-radius: var(--radius-lg); padding: var(--sp-8) var(--sp-5); display: flex; align-items: center; justify-content: center; height: 110px; position: relative; }
+  .logo-tile.dark  { background: #0A0A0F; border: 1px solid var(--border); }
+  .logo-tile.surface { background: #111118; border: 1px solid var(--border); }
   .logo-tile.light { background: var(--cream); }
-  .logo-tile img { max-height: 46px; max-width: 85%; width: auto; object-fit: contain; }
+  .logo-tile img   { max-height: 46px; max-width: 85%; width: auto; object-fit: contain; }
   .logo-tile-label { position: absolute; bottom: 10px; left: 0; right: 0; text-align: center; font-size: 11px; color: var(--dim2); }
-  .logo-tile { position: relative; }
 
   .icon-demo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); margin: var(--sp-5) 0 var(--sp-8); }
   .icon-tile { border-radius: var(--radius-lg); padding: var(--sp-6); display: flex; align-items: center; justify-content: center; height: 100px; position: relative; }
   .icon-tile img { height: 48px; width: auto; object-fit: contain; }
 
+  /* ── Logo on every brand background ── */
+  .logo-bg-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--sp-3);
+    margin: var(--sp-5) 0 var(--sp-8);
+  }
+  .logo-bg-tile {
+    border-radius: var(--radius-lg);
+    padding: var(--sp-6) var(--sp-4) var(--sp-4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--sp-3);
+    min-height: 130px;
+    justify-content: center;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .logo-bg-tile img { max-height: 40px; max-width: 90%; object-fit: contain; }
+  .logo-bg-label-name { font-size: 11px; font-weight: 600; text-align: center; margin-top: 2px; }
+  .logo-bg-label-file { font-size: 10px; text-align: center; opacity: 0.6; font-family: monospace; }
+
+  /* ── Size scale ── */
+  .size-scale-row {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-5);
+    padding: var(--sp-5) var(--sp-6);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--sp-3);
+    flex-wrap: wrap;
+  }
+  .size-scale-meta { min-width: 140px; }
+  .size-scale-name { font-size: 12px; font-weight: 700; color: var(--dim); }
+  .size-scale-px   { font-size: 11px; color: var(--dim2); font-family: monospace; }
+  .size-scale-note { font-size: 11px; color: var(--dim2); margin-top: 2px; }
+
+  /* ── Minimum size ── */
+  .minsize-demo {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+    padding: var(--sp-8); display: flex; align-items: center; gap: var(--sp-6); margin: var(--sp-5) 0 var(--sp-8);
+    flex-wrap: wrap;
+  }
+  .minsize-badge {
+    background: rgba(229,72,77,0.15); border: 1px solid #E5484D; border-radius: var(--radius-sm);
+    padding: 4px 10px; font-size: 11px; font-weight: 700; color: #E5484D; white-space: nowrap;
+  }
+
+  /* ── Co-brand lockup ── */
+  .cobrand-demo {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+    padding: var(--sp-8); display: flex; align-items: center; justify-content: center;
+    gap: var(--sp-6); margin: var(--sp-5) 0 var(--sp-8); min-height: 120px;
+  }
+  .cobrand-separator { width: 1px; height: 44px; background: rgba(255,255,255,0.18); flex-shrink: 0; }
+  .cobrand-partner {
+    width: 120px; height: 40px; border: 1.5px dashed rgba(255,255,255,0.3);
+    border-radius: 6px; display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: var(--dim2); font-style: italic; flex-shrink: 0;
+  }
+
+  /* ── Clear space ── */
   .clearspace-demo {
     background: var(--plum-black); border: 1px solid var(--border); border-radius: var(--radius-lg);
     padding: var(--sp-10); display: flex; align-items: center; justify-content: center; margin: var(--sp-5) 0 var(--sp-8);
@@ -34,9 +101,10 @@
     content: 'x'; position: absolute; font-size: 10px; color: var(--magenta); font-family: monospace;
   }
   .clearspace-box::before { top: 4px; left: -16px; }
-  .clearspace-box::after { bottom: 4px; right: -16px; }
+  .clearspace-box::after  { bottom: 4px; right: -16px; }
   .clearspace-box img { height: 40px; width: auto; }
 
+  /* ── Misuse grid ── */
   .misuse-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-3); margin: var(--sp-5) 0 var(--sp-8); }
   .misuse-tile {
     background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md);
@@ -47,7 +115,9 @@
   .misuse-label { font-size: 11px; color: var(--dim2); text-align: center; margin-top: 6px; }
   .misuse-item { display: flex; flex-direction: column; }
 
-  /* ── COLOR ── */
+  /* ═══════════════════════════════════════════
+     COLOR SECTION STYLES
+  ═══════════════════════════════════════════ */
   .color-role-table .swatch-cell { display: flex; align-items: center; gap: 10px; }
   .swatch-dot { width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0; border: 1px solid rgba(255,255,255,0.1); }
 
@@ -57,8 +127,9 @@
   }
   .gradient-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--dim2); margin-bottom: var(--sp-8); }
 
-
-  /* ── TYPE ── */
+  /* ═══════════════════════════════════════════
+     TYPOGRAPHY SECTION STYLES
+  ═══════════════════════════════════════════ */
   .type-specimen-row {
     display: flex; justify-content: space-between; align-items: baseline; gap: var(--sp-6);
     padding: var(--sp-6) 0; border-bottom: 1px solid var(--border); flex-wrap: wrap;
@@ -69,7 +140,179 @@
 
   .type-scale-row { display: flex; align-items: baseline; gap: var(--sp-6); padding: var(--sp-4) 0; border-bottom: 1px solid var(--border); }
   .type-scale-name { width: 110px; font-size: 12px; color: var(--dim2); flex-shrink: 0; }
-  .type-scale-px { width: 60px; font-size: 12px; color: var(--dim2); font-family: monospace; flex-shrink: 0; }
+  .type-scale-px   { width: 60px;  font-size: 12px; color: var(--dim2); font-family: monospace; flex-shrink: 0; }
+
+  /* ── Pair showcase ── */
+  .type-pairing-showcase {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+    padding: var(--sp-10); margin: var(--sp-5) 0 var(--sp-8);
+  }
+  .type-pairing-eyebrow {
+    font-family: 'Inter', sans-serif; font-weight: 600; font-size: 11px;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--magenta);
+    margin-bottom: var(--sp-3);
+  }
+  .type-pairing-headline {
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 42px;
+    line-height: 1.1; color: #fff; margin-bottom: var(--sp-5);
+  }
+  .type-pairing-body {
+    font-family: 'Inter', sans-serif; font-weight: 400; font-size: 16px;
+    line-height: 1.7; color: var(--dim); max-width: 620px;
+  }
+  .type-pairing-divider {
+    width: 48px; height: 3px;
+    background: linear-gradient(90deg, var(--magenta), var(--lavender));
+    border-radius: 2px; margin: var(--sp-6) 0;
+  }
+
+  /* ── Hierarchy pyramid ── */
+  .type-hierarchy {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+    padding: var(--sp-8); margin: var(--sp-5) 0 var(--sp-8);
+  }
+  .type-hierarchy-row {
+    display: flex; align-items: baseline; gap: var(--sp-5);
+    padding: var(--sp-4) 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .type-hierarchy-row:last-child { border-bottom: none; }
+  .type-hierarchy-meta { min-width: 150px; flex-shrink: 0; }
+  .type-hierarchy-label { font-size: 11px; font-weight: 600; color: var(--dim2); text-transform: uppercase; letter-spacing: 0.08em; }
+  .type-hierarchy-spec  { font-size: 10px; color: var(--dim2); font-family: monospace; margin-top: 2px; }
+
+  /* ── Context mockups ── */
+  .context-flyer {
+    background: linear-gradient(145deg, #0A0A0F 0%, #491440 40%, #702263 70%, #9B2F87 100%);
+    border-radius: var(--radius-lg); padding: var(--sp-10) var(--sp-8);
+    margin: var(--sp-5) 0 var(--sp-8); min-height: 280px;
+    display: flex; flex-direction: column; justify-content: flex-end; gap: var(--sp-3);
+    position: relative; overflow: hidden;
+  }
+  .context-flyer::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 30%, rgba(108,89,166,0.3) 0%, transparent 65%);
+  }
+  .flyer-kicker {
+    font-family: 'Inter', sans-serif; font-weight: 600; font-size: 11px;
+    letter-spacing: 0.18em; text-transform: uppercase; color: rgba(220,214,236,0.8);
+    position: relative;
+  }
+  .flyer-title {
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 36px;
+    line-height: 1.1; color: #fff; position: relative;
+  }
+  .flyer-subtitle {
+    font-family: 'Inter', sans-serif; font-weight: 400; font-size: 15px;
+    color: rgba(240,238,248,0.75); position: relative;
+  }
+  .flyer-tags { display: flex; gap: var(--sp-2); flex-wrap: wrap; position: relative; }
+  .flyer-tag {
+    background: rgba(155,47,135,0.35); border: 1px solid rgba(155,47,135,0.5);
+    border-radius: 20px; padding: 4px 12px; font-size: 11px; font-weight: 600;
+    color: var(--lavender-pale); font-family: 'Inter', sans-serif;
+  }
+  .flyer-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--magenta); color: #fff; border: none;
+    border-radius: 24px; padding: 12px 24px; font-size: 14px; font-weight: 700;
+    font-family: 'Inter', sans-serif; cursor: default; position: relative;
+    width: fit-content; margin-top: var(--sp-2);
+  }
+
+  .context-hero {
+    background: linear-gradient(90deg, #0A0A0F 35%, #491440 70%, transparent 100%),
+                linear-gradient(135deg, #111118, #491440);
+    border-radius: var(--radius-lg); padding: var(--sp-10) var(--sp-8);
+    margin: var(--sp-5) 0 var(--sp-8); min-height: 220px;
+    display: flex; flex-direction: column; justify-content: center; gap: var(--sp-4);
+    position: relative; overflow: hidden;
+  }
+  .context-hero::after {
+    content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 45%;
+    background: linear-gradient(90deg, transparent, rgba(108,89,166,0.15));
+  }
+  .hero-eyebrow {
+    font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--lavender-light);
+  }
+  .hero-title-mock {
+    font-family: 'Syne', sans-serif; font-weight: 900; font-size: clamp(28px, 4vw, 48px);
+    color: #fff; line-height: 1.05; max-width: 560px;
+  }
+  .hero-sub-mock {
+    font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 400;
+    color: rgba(240,238,248,0.7); max-width: 440px; line-height: 1.6;
+  }
+  .hero-buttons { display: flex; gap: var(--sp-3); flex-wrap: wrap; margin-top: var(--sp-2); }
+  .hero-btn-primary {
+    background: #fff; color: #0A0A0F; border-radius: 6px;
+    padding: 11px 22px; font-size: 14px; font-weight: 700;
+    font-family: 'Inter', sans-serif; cursor: default;
+  }
+  .hero-btn-secondary {
+    background: rgba(255,255,255,0.15); color: #fff; border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 11px 22px; font-size: 14px; font-weight: 600;
+    font-family: 'Inter', sans-serif; cursor: default;
+  }
+
+  .context-card-overlay {
+    background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.95) 100%),
+                linear-gradient(135deg, #18181F, #491440 80%);
+    border-radius: var(--radius-lg); padding: var(--sp-6);
+    margin: var(--sp-5) 0 var(--sp-8); height: 180px;
+    display: flex; flex-direction: column; justify-content: flex-end; gap: 4px;
+    position: relative;
+  }
+  .card-overlay-genre {
+    font-size: 10px; font-weight: 700; color: var(--magenta); text-transform: uppercase; letter-spacing: 0.12em;
+    font-family: 'Inter', sans-serif;
+  }
+  .card-overlay-title {
+    font-family: 'Inter', sans-serif; font-weight: 600; font-size: 17px; color: #fff; line-height: 1.2;
+  }
+  .card-overlay-meta {
+    font-family: 'Inter', sans-serif; font-weight: 400; font-size: 12px;
+    color: rgba(240,238,248,0.55); margin-top: 2px;
+  }
+
+  .context-toast {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-left: 3px solid var(--magenta);
+    border-radius: var(--radius-md); padding: var(--sp-4) var(--sp-5);
+    margin: var(--sp-5) 0 var(--sp-8);
+    display: flex; align-items: flex-start; gap: var(--sp-4); max-width: 440px;
+  }
+  .toast-icon {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--magenta), var(--lavender));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; flex-shrink: 0;
+  }
+  .toast-title {
+    font-family: 'Inter', sans-serif; font-weight: 700; font-size: 14px; color: #fff;
+  }
+  .toast-body {
+    font-family: 'Inter', sans-serif; font-weight: 400; font-size: 13px;
+    color: var(--dim); margin-top: 3px; line-height: 1.5;
+  }
+
+  /* ── Context label ── */
+  .context-label {
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--dim2); margin-bottom: var(--sp-3); display: flex; align-items: center; gap: var(--sp-2);
+  }
+  .context-label::before {
+    content: ''; display: block; width: 18px; height: 2px;
+    background: var(--magenta); border-radius: 1px;
+  }
+
+  /* ── Section divider ── */
+  .section-rule {
+    border: none; border-top: 1px solid var(--border);
+    margin: var(--sp-10) 0 var(--sp-8);
+  }
+
 </style>
 </head>
 <body data-page="identity">
@@ -84,35 +327,206 @@
       <h1 class="bs-h1">Logo, Color &amp; Type</h1>
       <p class="bs-lede">The foundation layer every other surface is built from. Logo files are live in <code>/assets/logo/</code> — nine variants covering every context already visible in the FaithStream product (top nav, nav drawer, footer, light-mode panels), plus the dark and light cases the original one-page guide didn't cover.</p>
 
-      <!-- ═══════════════ LOGO ═══════════════ -->
+
+      <!-- ═══════════════════════════════════════════════════════════
+           LOGO SYSTEM
+      ═══════════════════════════════════════════════════════════ -->
       <h2 class="bs-h2" style="margin-top:0;padding-top:0;border-top:none;">Logo System</h2>
       <span class="bs-tag kept">Live assets — /assets/logo/</span>
       <p class="bs-p">Nine files, one naming pattern: <code>faithstream_&lt;variant&gt;_&lt;color&gt;.png</code>. Three variants (full lockup, icon only, wordmark only) × three colors (purple, white, black) — plus one square favicon. Full reference list at the bottom of this section.</p>
 
+      <!-- ─── Full lockup — three contexts ─── -->
       <h3 class="bs-h3">Full lockup — three contexts</h3>
       <div class="logo-demo-grid">
         <div class="logo-tile dark">
           <img src="assets/logo/faithstream_full_purple.png" alt="FaithStream logo, full color, on dark">
+          <div class="logo-tile-label">Dark bg · purple lockup</div>
         </div>
         <div class="logo-tile surface">
           <img src="assets/logo/faithstream_full_white.png" alt="FaithStream logo, white, on surface">
+          <div class="logo-tile-label">Surface bg · white lockup</div>
         </div>
         <div class="logo-tile light">
           <img src="assets/logo/faithstream_full_black.png" alt="FaithStream logo, black, on light">
+          <div class="logo-tile-label">Light bg · black lockup</div>
         </div>
       </div>
       <p class="bs-p" style="font-size:13px;">Dark background, surface background, light background — the three contexts the logo already appears in across the live product (top nav, nav drawer, browse panel). Purple reads on both dark and surface; switch to the white variant only when the purple's own contrast against a busy photo or video background drops, switch to black only on light-mode panels.</p>
 
+      <!-- ─── Logo on every brand background ─── -->
+      <h3 class="bs-h3">Logo on every brand background</h3>
+      <p class="bs-p">A full grid of all eight canonical backgrounds the logo may appear on — each labeled with the background name and the correct file to use. This removes all guesswork for thumbnail artists, social designers, and partner teams placing the logo on any brand surface.</p>
+      <div class="logo-bg-grid">
+
+        <!-- Black #0A0A0F -->
+        <div class="logo-bg-tile" style="background:#0A0A0F;">
+          <img src="assets/logo/faithstream_full_purple.png" alt="Logo on black">
+          <div class="logo-bg-label-name" style="color:#9C8FC4;">Black</div>
+          <div class="logo-bg-label-file" style="color:#6C59A6;">faithstream_full_purple.png</div>
+        </div>
+
+        <!-- Deep Surface #111118 -->
+        <div class="logo-bg-tile" style="background:#111118;">
+          <img src="assets/logo/faithstream_full_purple.png" alt="Logo on surface">
+          <div class="logo-bg-label-name" style="color:#9C8FC4;">Deep Surface</div>
+          <div class="logo-bg-label-file" style="color:#6C59A6;">faithstream_full_purple.png</div>
+        </div>
+
+        <!-- Plum #491440 -->
+        <div class="logo-bg-tile" style="background:#491440;">
+          <img src="assets/logo/faithstream_full_white.png" alt="Logo on plum">
+          <div class="logo-bg-label-name" style="color:#DCD6EC;">Plum</div>
+          <div class="logo-bg-label-file" style="color:#9C8FC4;">faithstream_full_white.png</div>
+        </div>
+
+        <!-- Magenta #9B2F87 -->
+        <div class="logo-bg-tile" style="background:#9B2F87;">
+          <img src="assets/logo/faithstream_full_white.png" alt="Logo on magenta">
+          <div class="logo-bg-label-name" style="color:#F0EEF8;">Magenta</div>
+          <div class="logo-bg-label-file" style="color:#DCD6EC;">faithstream_full_white.png</div>
+        </div>
+
+        <!-- Lavender #6C59A6 -->
+        <div class="logo-bg-tile" style="background:#6C59A6;">
+          <img src="assets/logo/faithstream_full_white.png" alt="Logo on lavender">
+          <div class="logo-bg-label-name" style="color:#F0EEF8;">Lavender</div>
+          <div class="logo-bg-label-file" style="color:#DCD6EC;">faithstream_full_white.png</div>
+        </div>
+
+        <!-- Lavender Pale #DCD6EC -->
+        <div class="logo-bg-tile" style="background:#DCD6EC;">
+          <img src="assets/logo/faithstream_full_purple.png" alt="Logo on lavender pale">
+          <div class="logo-bg-label-name" style="color:#491440;">Lavender Pale</div>
+          <div class="logo-bg-label-file" style="color:#702263;">faithstream_full_purple.png</div>
+        </div>
+
+        <!-- Cream #F0EEF8 -->
+        <div class="logo-bg-tile" style="background:#F0EEF8;">
+          <img src="assets/logo/faithstream_full_black.png" alt="Logo on cream">
+          <div class="logo-bg-label-name" style="color:#491440;">Cream</div>
+          <div class="logo-bg-label-file" style="color:#702263;">faithstream_full_black.png</div>
+        </div>
+
+        <!-- White #fff -->
+        <div class="logo-bg-tile" style="background:#fff;">
+          <img src="assets/logo/faithstream_full_black.png" alt="Logo on white">
+          <div class="logo-bg-label-name" style="color:#491440;">White</div>
+          <div class="logo-bg-label-file" style="color:#702263;">faithstream_full_black.png</div>
+        </div>
+
+      </div>
+
+      <!-- ─── Logo size scale ─── -->
+      <h3 class="bs-h3">Size scale</h3>
+      <p class="bs-p">The logo across all contexts — from a 200px marketing banner down to 16px favicon. At 48px and below the full lockup becomes illegible; use the icon-only variant instead. Each row shows the logo rendered at that actual size.</p>
+
+      <div class="size-scale-row">
+        <div class="size-scale-meta">
+          <div class="size-scale-name">Banner / OG Image</div>
+          <div class="size-scale-px">200px wide</div>
+          <div class="size-scale-note">Full lockup — social covers, event banners</div>
+        </div>
+        <img src="assets/logo/faithstream_full_purple.png" alt="" style="height:auto;width:200px;max-width:100%;">
+      </div>
+
+      <div class="size-scale-row">
+        <div class="size-scale-meta">
+          <div class="size-scale-name">Marketing / Editorial</div>
+          <div class="size-scale-px">120px wide</div>
+          <div class="size-scale-note">Full lockup — articles, email headers</div>
+        </div>
+        <img src="assets/logo/faithstream_full_purple.png" alt="" style="height:auto;width:120px;max-width:100%;">
+      </div>
+
+      <div class="size-scale-row">
+        <div class="size-scale-meta">
+          <div class="size-scale-name">Hero Nav</div>
+          <div class="size-scale-px">80px wide</div>
+          <div class="size-scale-note">Full lockup — large-screen navigation bar</div>
+        </div>
+        <img src="assets/logo/faithstream_full_purple.png" alt="" style="height:auto;width:80px;max-width:100%;">
+      </div>
+
+      <div class="size-scale-row">
+        <div class="size-scale-meta">
+          <div class="size-scale-name">Standard Nav</div>
+          <div class="size-scale-px">48px wide</div>
+          <div class="size-scale-note">Full lockup — standard top nav, drawer header</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:var(--sp-6);">
+          <img src="assets/logo/faithstream_full_purple.png" alt="" style="height:auto;width:48px;max-width:100%;">
+          <span style="font-size:11px;color:var(--dim2);">↑ minimum size for full lockup</span>
+        </div>
+      </div>
+
+      <div class="size-scale-row" style="border-left: 2px solid var(--lavender); padding-left: calc(var(--sp-6) - 2px);">
+        <div class="size-scale-meta">
+          <div class="size-scale-name" style="color:var(--lavender-light);">Switch to icon-only →</div>
+          <div class="size-scale-px">28px</div>
+          <div class="size-scale-note">Below 48px — use icon only, wordmark too small</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:var(--sp-5);">
+          <img src="assets/logo/faithstream_icon_purple.png" alt="" style="height:28px;width:auto;">
+          <span style="font-size:11px;color:var(--lavender-light);">Icon-only at compact size</span>
+        </div>
+      </div>
+
+      <div class="size-scale-row">
+        <div class="size-scale-meta">
+          <div class="size-scale-name">Favicon / App Badge</div>
+          <div class="size-scale-px">16px</div>
+          <div class="size-scale-note">Use faithstream_favicon.png — pre-optimised</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:var(--sp-4);">
+          <img src="assets/logo/faithstream_favicon.png" alt="" style="height:16px;width:auto;image-rendering:pixelated;">
+          <span style="font-size:11px;color:var(--dim2);">faithstream_favicon.png — do not scale the full lockup to this size</span>
+        </div>
+      </div>
+
+      <!-- ─── Minimum size rule ─── -->
+      <h3 class="bs-h3">Minimum size rule</h3>
+      <p class="bs-p">The full lockup must never appear narrower than 48px. Below that threshold the wordmark becomes unreadable even at retina resolution. Always switch to the icon-only file at compact sizes.</p>
+      <div class="minsize-demo">
+        <img src="assets/logo/faithstream_full_purple.png" alt="Logo at minimum size" style="width:48px;height:auto;">
+        <div>
+          <div class="minsize-badge">⚠ Minimum — 48px wide</div>
+          <p style="font-size:13px;color:var(--dim);margin:var(--sp-2) 0 0;">This is the smallest the full lockup may appear in any medium. At this size the wordmark is still legible on retina displays. Anything smaller must use <code>faithstream_icon_purple.png</code> instead.</p>
+        </div>
+      </div>
+
+      <!-- ─── Co-brand lockup ─── -->
+      <h3 class="bs-h3">Co-brand lockup</h3>
+      <p class="bs-p">When FaithStream appears alongside a partner brand, use the wordmark-only file and separate the two lockups with a 1px vertical rule. Neither brand should dominate — equal optical weight, equal vertical alignment. Minimum clear space between the separator and each logo is 24px.</p>
+      <div class="cobrand-demo">
+        <img src="assets/logo/faithstream_wordmark_purple.png" alt="FaithStream wordmark" style="height:34px;width:auto;">
+        <div class="cobrand-separator"></div>
+        <div class="cobrand-partner">Partner Logo</div>
+      </div>
+      <div class="bs-callout">
+        <div class="bs-callout-label">Co-brand rules</div>
+        <div class="bs-callout-text">
+          1. Always use the wordmark-only file — not the full lockup with icon — in partner contexts.<br>
+          2. The separator line height should match the cap-height of the taller of the two logos.<br>
+          3. On dark backgrounds use <code>faithstream_wordmark_white.png</code>; on light use <code>faithstream_wordmark_purple.png</code>.<br>
+          4. FaithStream may appear on either side of the separator — left or right is equally valid.<br>
+          5. Never place partner branding <em>above</em> the FaithStream mark in vertical stacks.
+        </div>
+      </div>
+
+      <!-- ─── Icon only ─── -->
       <h3 class="bs-h3">Icon only</h3>
       <div class="icon-demo-grid">
         <div class="icon-tile" style="background:var(--plum-black); border:1px solid var(--border);">
           <img src="assets/logo/faithstream_icon_purple.png" alt="FaithStream icon, purple">
+          <div class="logo-tile-label">Purple icon on dark</div>
         </div>
         <div class="icon-tile" style="background:var(--plum-black); border:1px solid var(--border);">
           <img src="assets/logo/faithstream_icon_white.png" alt="FaithStream icon, white">
+          <div class="logo-tile-label">White icon on dark</div>
         </div>
         <div class="icon-tile" style="background:var(--cream);">
           <img src="assets/logo/faithstream_icon_black.png" alt="FaithStream icon, black">
+          <div class="logo-tile-label">Black icon on light</div>
         </div>
       </div>
 
@@ -121,16 +535,20 @@
         <div class="bs-callout-text"><code>faithstream_icon_purple.png</code> includes the full circular badge background, but <code>faithstream_icon_white.png</code> and <code>faithstream_icon_black.png</code> are the bare flame mark with no circle — visible above, the white and black icons look noticeably smaller and "float" without the badge the purple one has. This looks like an inconsistency in how the white/black variants were exported, not a deliberate design choice. Recommend re-exporting white and black icon versions with the same circular badge treatment as the purple one, so all three are interchangeable.</div>
       </div>
 
+      <!-- ─── Wordmark only ─── -->
       <h3 class="bs-h3">Wordmark only</h3>
       <div class="logo-demo-grid">
         <div class="logo-tile dark">
           <img src="assets/logo/faithstream_wordmark_purple.png" alt="FaithStream wordmark, purple" style="max-height:34px;">
+          <div class="logo-tile-label">Purple wordmark on dark</div>
         </div>
         <div class="logo-tile surface">
           <img src="assets/logo/faithstream_wordmark_white.png" alt="FaithStream wordmark, white" style="max-height:34px;">
+          <div class="logo-tile-label">White wordmark on surface</div>
         </div>
         <div class="logo-tile light" style="background:var(--cream);">
           <img src="assets/logo/faithstream_wordmark_purple.png" alt="FaithStream wordmark, purple on light" style="max-height:34px;">
+          <div class="logo-tile-label">Purple wordmark on cream</div>
         </div>
       </div>
       <p class="bs-p" style="font-size:13px;">For tight horizontal spaces or partnership lockups where the full circular icon doesn't fit. Note there's no black wordmark variant currently in the asset set — only purple and white — so on light backgrounds the purple wordmark itself is the light-mode option, not a separate black file.</p>
@@ -140,6 +558,7 @@
         <div class="bs-callout-text">The wordmark itself is set in a serif display face — the same one named "Miller Text" in House of Faith's original one-page brand guide. This system's Syne/Inter typography rules (below) govern everything <em>around</em> the logo — UI, headlines, body copy — not the wordmark itself. The logo is a fixed asset, not something redrawn in the new type system; retiring Miller Text from headlines elsewhere doesn't require changing the logo file.</div>
       </div>
 
+      <!-- ─── Clear space ─── -->
       <h3 class="bs-h3">Clear space</h3>
       <p class="bs-p">Defined as a unit relative to the icon's own height — labeled <code style="color:var(--lavender-light)">x</code> below — so it scales correctly whether the logo appears at app-icon size or on a banner. Minimum clear space on all sides is <strong>0.5x</strong>.</p>
       <div class="clearspace-demo">
@@ -148,6 +567,7 @@
         </div>
       </div>
 
+      <!-- ─── Things to avoid: original 8 ─── -->
       <h3 class="bs-h3">Things to avoid</h3>
       <p class="bs-p">A documented misuse gallery — not just rules in prose — removes guesswork for anyone touching a thumbnail, banner, or partner co-brand. This is the single highest-impact addition to the current logo guide. Each example below uses the real icon file with the violation applied, not a redrawn placeholder.</p>
       <div class="misuse-grid">
@@ -185,21 +605,116 @@
         </div>
       </div>
 
+      <!-- ─── Extended misuse gallery ─── -->
+      <p class="bs-p" style="margin-top:calc(-1 * var(--sp-4));">Additional violations — for completeness and for any vendor, partner, or contractor working with the assets:</p>
+      <div class="misuse-grid">
+
+        <!-- Pixelated / low-res -->
+        <div class="misuse-item">
+          <div class="misuse-tile"><img src="assets/logo/faithstream_icon_purple.png" alt="" style="height:42px;width:42px;image-rendering:pixelated;filter:blur(0.5px);transform:scale(0.4) scale(2.5);"></div>
+          <div class="misuse-label">Don't use pixelated / low-res artwork</div>
+        </div>
+
+        <!-- Blurry -->
+        <div class="misuse-item">
+          <div class="misuse-tile"><img src="assets/logo/faithstream_icon_purple.png" alt="" style="filter:blur(2.5px);"></div>
+          <div class="misuse-label">Don't use blurry or out-of-focus renders</div>
+        </div>
+
+        <!-- Logo on busy text background -->
+        <div class="misuse-item">
+          <div class="misuse-tile" style="background:repeating-linear-gradient(-45deg, #1a1a2e 0 4px, #16213e 4px 8px); position:relative;">
+            <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:9px;color:rgba(255,255,255,0.4);font-family:monospace;padding:4px;text-align:center;line-height:1.3;z-index:0;word-break:break-all;">FAITHSTREAM FAITHSTREAM FAITHSTREAM FAITHSTREAM</span>
+            <img src="assets/logo/faithstream_icon_purple.png" alt="" style="height:38px;position:relative;z-index:1;">
+          </div>
+          <div class="misuse-label">Don't place on busy text or pattern backgrounds</div>
+        </div>
+
+        <!-- Text over logo mark -->
+        <div class="misuse-item">
+          <div class="misuse-tile" style="position:relative;">
+            <img src="assets/logo/faithstream_icon_purple.png" alt="" style="height:42px;">
+            <span style="position:absolute;font-family:'Inter',sans-serif;font-weight:800;font-size:11px;color:#fff;text-shadow:0 1px 2px #000;top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;">SEASON 2</span>
+          </div>
+          <div class="misuse-label">Don't place text over the logo mark</div>
+        </div>
+
+        <!-- Glow effect -->
+        <div class="misuse-item">
+          <div class="misuse-tile"><img src="assets/logo/faithstream_icon_purple.png" alt="" style="filter:drop-shadow(0 0 12px #9B2F87) drop-shadow(0 0 24px #9B2F87);"></div>
+          <div class="misuse-label">Don't add glow or neon effects</div>
+        </div>
+
+        <!-- Semi-transparent / wrong opacity -->
+        <div class="misuse-item">
+          <div class="misuse-tile"><img src="assets/logo/faithstream_icon_purple.png" alt="" style="opacity:0.35;"></div>
+          <div class="misuse-label">Don't render at reduced opacity</div>
+        </div>
+
+        <!-- Squished vertically -->
+        <div class="misuse-item">
+          <div class="misuse-tile"><img src="assets/logo/faithstream_icon_purple.png" alt="" style="transform:scaleY(0.55);"></div>
+          <div class="misuse-label">Don't squish vertically</div>
+        </div>
+
+        <!-- Small angle rotation -->
+        <div class="misuse-item">
+          <div class="misuse-tile"><img src="assets/logo/faithstream_icon_purple.png" alt="" style="transform:rotate(-8deg);"></div>
+          <div class="misuse-label">Don't use slight rotations — even subtle angles</div>
+        </div>
+
+        <!-- Outline / stroke -->
+        <div class="misuse-item">
+          <div class="misuse-tile"><img src="assets/logo/faithstream_icon_purple.png" alt="" style="filter:drop-shadow(0 0 0 2px #9B2F87) drop-shadow(1px 0 0 2px #9B2F87) drop-shadow(-1px 0 0 2px #9B2F87) drop-shadow(0 1px 0 2px #9B2F87) drop-shadow(0 -1px 0 2px #9B2F87); -webkit-text-stroke:1px red;"></div>
+          <div class="misuse-label">Don't add outlines or strokes to the mark</div>
+        </div>
+
+        <!-- Wrong color in dark mode (black on dark) -->
+        <div class="misuse-item">
+          <div class="misuse-tile" style="background:#0A0A0F;"><img src="assets/logo/faithstream_icon_black.png" alt="" style="height:42px;"></div>
+          <div class="misuse-label">Don't use black logo on dark backgrounds</div>
+        </div>
+
+        <!-- Squished horizontally -->
+        <div class="misuse-item">
+          <div class="misuse-tile"><img src="assets/logo/faithstream_full_purple.png" alt="" style="height:42px;width:auto;transform:scaleX(0.55);"></div>
+          <div class="misuse-label">Don't compress the lockup horizontally</div>
+        </div>
+
+        <!-- Visual clutter around logo -->
+        <div class="misuse-item">
+          <div class="misuse-tile" style="position:relative;overflow:hidden;">
+            <span style="position:absolute;top:8px;left:6px;font-size:9px;color:#E5484D;font-weight:700;">NEW</span>
+            <span style="position:absolute;top:8px;right:24px;font-size:9px;color:#4ade80;font-weight:700;">LIVE</span>
+            <span style="position:absolute;bottom:8px;left:4px;font-size:8px;color:#facc15;">★★★★★</span>
+            <img src="assets/logo/faithstream_icon_purple.png" alt="" style="height:32px;">
+            <span style="position:absolute;bottom:6px;right:4px;font-size:8px;color:rgba(255,255,255,0.5);">HD 4K</span>
+          </div>
+          <div class="misuse-label">Don't surround with competing visual clutter</div>
+        </div>
+
+      </div>
+
+      <!-- ─── Full file reference ─── -->
       <h3 class="bs-h3">Full file reference</h3>
       <table class="bs-table">
         <tr><th>Filename</th><th>Contains</th><th>Use for</th></tr>
-        <tr><td><code>faithstream_full_purple.png</code></td><td>Icon + wordmark, full color</td><td>Top nav, footer, primary marketing — default choice</td></tr>
-        <tr><td><code>faithstream_full_white.png</code></td><td>Icon + wordmark, white</td><td>Dark hero overlays, video end-cards, photo backgrounds</td></tr>
-        <tr><td><code>faithstream_full_black.png</code></td><td>Icon + wordmark, black</td><td>Light-mode marketing pages, printed materials</td></tr>
-        <tr><td><code>faithstream_icon_purple.png</code></td><td>Circular badge + flame mark, full color</td><td>App icon, nav drawer, small UI badges</td></tr>
-        <tr><td><code>faithstream_icon_white.png</code></td><td>Flame mark only, white <em>(no badge — see flag above)</em></td><td>On dark/photo backgrounds, pending badge fix</td></tr>
-        <tr><td><code>faithstream_icon_black.png</code></td><td>Flame mark only, black <em>(no badge — see flag above)</em></td><td>On light backgrounds, pending badge fix</td></tr>
-        <tr><td><code>faithstream_wordmark_purple.png</code></td><td>Text only, full color</td><td>Tight horizontal spaces, partnership lockups, light backgrounds</td></tr>
+        <tr><td><code>faithstream_full_purple.png</code></td><td>Icon + wordmark, full color</td><td>Top nav, footer, primary marketing — default choice on dark + surface</td></tr>
+        <tr><td><code>faithstream_full_white.png</code></td><td>Icon + wordmark, white</td><td>Plum/magenta/lavender backgrounds, dark hero overlays, video end-cards</td></tr>
+        <tr><td><code>faithstream_full_black.png</code></td><td>Icon + wordmark, black</td><td>Cream/white backgrounds, light-mode marketing pages, print</td></tr>
+        <tr><td><code>faithstream_icon_purple.png</code></td><td>Circular badge + flame mark, full color</td><td>App icon, nav drawer, compact UI badges at ≥28px</td></tr>
+        <tr><td><code>faithstream_icon_white.png</code></td><td>Flame mark only, white <em>(no badge — see flag)</em></td><td>Dark/photo backgrounds; pending badge fix</td></tr>
+        <tr><td><code>faithstream_icon_black.png</code></td><td>Flame mark only, black <em>(no badge — see flag)</em></td><td>Light backgrounds; pending badge fix</td></tr>
+        <tr><td><code>faithstream_wordmark_purple.png</code></td><td>Text only, full color</td><td>Partnership lockups, tight horizontal spaces, light-mode</td></tr>
         <tr><td><code>faithstream_wordmark_white.png</code></td><td>Text only, white</td><td>Same, on dark backgrounds</td></tr>
-        <tr><td><code>faithstream_favicon.png</code></td><td>Square icon, pre-sized</td><td>Browser tab, social preview fallback</td></tr>
+        <tr><td><code>faithstream_favicon.png</code></td><td>Square icon, pre-sized</td><td>Browser tab, PWA icon, social preview fallback</td></tr>
       </table>
 
-      <!-- ═══════════════ COLOR ═══════════════ -->
+
+      <!-- ═══════════════════════════════════════════════════════════
+           COLOR SYSTEM
+      ═══════════════════════════════════════════════════════════ -->
+      <hr class="section-rule">
       <h2 class="bs-h2">Color System</h2>
       <span class="bs-tag kept">Reconciled with live product CSS variables</span>
       <p class="bs-p">The values below are not new colors invented for this document — they're the exact tokens already running in the FaithStream product (<code>--plum</code>, <code>--magenta</code>, <code>--magenta2</code>, <code>--lavender</code>), with the gap this system fills: a defined range of tints and shades so there's a full palette to design with, not just four points.</p>
@@ -248,11 +763,16 @@
         <div class="bs-callout-text">Not resolved in this draft — flagging for review rather than silently picking one. Worth deciding once, then documenting the answer here so it doesn't get re-litigated per feature.</div>
       </div>
 
-      <!-- ═══════════════ TYPE ═══════════════ -->
+
+      <!-- ═══════════════════════════════════════════════════════════
+           TYPOGRAPHY SYSTEM
+      ═══════════════════════════════════════════════════════════ -->
+      <hr class="section-rule">
       <h2 class="bs-h2">Typography System</h2>
       <span class="bs-tag kept">Inter + Syne already shipped — formalizing the system around them</span>
-      <p class="bs-p">The live product already uses <strong>Syne</strong> for display moments and <strong>Inter</strong> for everything else — confirming the direction tested earlier in this project. This section formalizes the rule set and flags one inconsistency to resolve.</p>
+      <p class="bs-p">The live product already uses <strong>Syne</strong> for display moments and <strong>Inter</strong> for everything else — confirming the direction tested earlier in this project. This section formalizes the rule set, shows the system in real creative context, and flags one inconsistency to resolve.</p>
 
+      <!-- ─── Base specimen ─── -->
       <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg); padding: var(--sp-8); margin: var(--sp-5) 0 var(--sp-8);">
         <div class="type-specimen-row">
           <div style="font-family:'Syne',sans-serif; font-weight:800; font-size:40px; color:#fff;">Syne</div>
@@ -277,6 +797,64 @@
         <div class="bs-callout-text">One hero slide (<code>.hero-tagline</code>, "Stepping into Maggie's Shoes") uses <strong style="font-family:'Cinzel',serif;">Cinzel</strong>, a serif face that appears nowhere else in the system — likely added for one moment of flourish rather than as a deliberate third typeface. Recommend retiring it: either drop the tagline treatment or restyle it in Syne at a lighter weight, so the type system stays to two families everywhere, the same discipline already applied to color.</div>
       </div>
 
+      <!-- ─── Type pairing showcase ─── -->
+      <h3 class="bs-h3">Typeface pairing showcase</h3>
+      <p class="bs-p">The visual relationship between Syne and Inter — the two families working in concert. Syne commands attention; Inter carries the message. The difference in texture between them creates natural hierarchy without relying solely on size.</p>
+      <div class="type-pairing-showcase">
+        <div class="type-pairing-eyebrow">FaithStream Original Series</div>
+        <div class="type-pairing-headline">Faith-Filled Stories<br>for Africa and the World</div>
+        <div class="type-pairing-divider"></div>
+        <div class="type-pairing-body">Discover a world of faith-inspired stories, documentaries, and live worship events curated for believers across the continent and the diaspora. FaithStream brings the richness of African Christian storytelling to screens everywhere — with the production quality it deserves.</div>
+      </div>
+
+      <!-- ─── Type hierarchy pyramid ─── -->
+      <h3 class="bs-h3">Type hierarchy — all five levels at a glance</h3>
+      <p class="bs-p">The complete scale stack from Display XL down to Caption. Use this as a quick visual reference — if text you're designing doesn't fit cleanly into one of these five rows, it likely needs to be reconsidered.</p>
+      <div class="type-hierarchy">
+
+        <div class="type-hierarchy-row">
+          <div class="type-hierarchy-meta">
+            <div class="type-hierarchy-label">Display XL</div>
+            <div class="type-hierarchy-spec">Syne 800–900 · 38–52px</div>
+          </div>
+          <div style="font-family:'Syne',sans-serif;font-weight:900;font-size:48px;color:#fff;line-height:1;">Believe Deeper</div>
+        </div>
+
+        <div class="type-hierarchy-row">
+          <div class="type-hierarchy-meta">
+            <div class="type-hierarchy-label">Display L</div>
+            <div class="type-hierarchy-spec">Inter 800 · 22–36px · clamp()</div>
+          </div>
+          <div style="font-family:'Inter',sans-serif;font-weight:800;font-size:32px;color:#fff;line-height:1.1;">The Path to Grace</div>
+        </div>
+
+        <div class="type-hierarchy-row">
+          <div class="type-hierarchy-meta">
+            <div class="type-hierarchy-label">Heading</div>
+            <div class="type-hierarchy-spec">Inter 600–700 · 15–17px</div>
+          </div>
+          <div style="font-family:'Inter',sans-serif;font-weight:700;font-size:16px;color:#fff;">Featured Faith Documentaries</div>
+        </div>
+
+        <div class="type-hierarchy-row">
+          <div class="type-hierarchy-meta">
+            <div class="type-hierarchy-label">Body</div>
+            <div class="type-hierarchy-spec">Inter 400 · 13–14px</div>
+          </div>
+          <div style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;color:var(--dim);line-height:1.6;max-width:500px;">A deeply personal story of faith, loss, and redemption set against the vibrant landscapes of Lagos. Winner of the African Christian Film Award 2024.</div>
+        </div>
+
+        <div class="type-hierarchy-row" style="border-bottom:none;">
+          <div class="type-hierarchy-meta">
+            <div class="type-hierarchy-label">Caption / Meta</div>
+            <div class="type-hierarchy-spec">Inter 500–700 · 10–12px</div>
+          </div>
+          <div style="font-family:'Inter',sans-serif;font-weight:600;font-size:11px;color:var(--dim2);letter-spacing:0.03em;">2024 · Drama · 1h 48m · 98% Match</div>
+        </div>
+
+      </div>
+
+      <!-- ─── Type scale ─── -->
       <h3 class="bs-h3">Type scale</h3>
       <p class="bs-p">The sizes already in use across the live product, organized into a single reference scale so new screens pull from here instead of picking arbitrary values.</p>
       <div class="type-scale-row"><div class="type-scale-name">Display XL</div><div class="type-scale-px">38–52px</div><div style="color:var(--dim); font-size:13px;">Modal titles, section heroes — Syne 800–900</div></div>
@@ -285,6 +863,71 @@
       <div class="type-scale-row"><div class="type-scale-name">Body</div><div class="type-scale-px">13–14px</div><div style="color:var(--dim); font-size:13px;">Descriptions, modal body — Inter 400</div></div>
       <div class="type-scale-row" style="border-bottom:none;"><div class="type-scale-name">Caption / Meta</div><div class="type-scale-px">10–12px</div><div style="color:var(--dim); font-size:13px;">Metadata, badges, timestamps — Inter 500–700</div></div>
 
+      <!-- ─── Typography in context ─── -->
+      <h3 class="bs-h3">Typography in context</h3>
+      <p class="bs-p">The type system doesn't live in isolation — these mockups show how Syne and Inter work together in the actual contexts they inhabit: social flyers, hero banners, card overlays, and app notifications.</p>
+
+      <!-- Context 1: Flyer / Social post -->
+      <div class="context-label">Social post / Event flyer</div>
+      <div class="context-flyer">
+        <div class="flyer-kicker">FaithStream Original Film</div>
+        <div class="flyer-title">The Magic of Belle Isle</div>
+        <div class="flyer-subtitle">A story of faith, family, and finding your way home.</div>
+        <div class="flyer-tags">
+          <span class="flyer-tag">Drama</span>
+          <span class="flyer-tag">Faith</span>
+          <span class="flyer-tag">Award-Winning</span>
+          <span class="flyer-tag">Africa</span>
+        </div>
+        <div class="flyer-cta">
+          <span>▶</span> Watch Now on FaithStream
+        </div>
+      </div>
+
+      <!-- Context 2: Hero banner -->
+      <div class="context-label">Streaming hero banner</div>
+      <div class="context-hero">
+        <div class="hero-eyebrow">Now Streaming · FaithStream Exclusive</div>
+        <div class="hero-title-mock">Kingdom Come:<br>The Series</div>
+        <div class="hero-sub-mock">A prophetic drama following seven believers whose lives converge at a moment of national crisis. Season 2 now complete.</div>
+        <div class="hero-buttons">
+          <div class="hero-btn-primary">▶  Watch Now</div>
+          <div class="hero-btn-secondary">ⓘ  More Info</div>
+        </div>
+      </div>
+
+      <!-- Context 3: Card title overlay -->
+      <div class="context-label">Card thumbnail overlay</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-3);margin:0 0 var(--sp-8);">
+        <div class="context-card-overlay">
+          <div class="card-overlay-genre">Drama · Faith</div>
+          <div class="card-overlay-title">Stepping into Maggie's Shoes</div>
+          <div class="card-overlay-meta">2024 · 1h 52m · 96% Match</div>
+        </div>
+        <div class="context-card-overlay" style="background:linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.95) 100%), linear-gradient(135deg, #111118, #702263 80%);">
+          <div class="card-overlay-genre">Documentary · Worship</div>
+          <div class="card-overlay-title">Rivers of Praise: Lagos 2024</div>
+          <div class="card-overlay-meta">2024 · 58m · New Release</div>
+        </div>
+        <div class="context-card-overlay" style="background:linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.95) 100%), linear-gradient(135deg, #111118, #6C59A6 80%);">
+          <div class="card-overlay-genre">Series · Youth</div>
+          <div class="card-overlay-title">The Called</div>
+          <div class="card-overlay-meta">Season 3 · 12 Episodes · 99% Match</div>
+        </div>
+      </div>
+
+      <!-- Context 4: App notification / toast -->
+      <div class="context-label">In-app notification toast</div>
+      <div class="context-toast">
+        <div class="toast-icon">🔔</div>
+        <div>
+          <div class="toast-title">New Episode Available</div>
+          <div class="toast-body">Season 3, Episode 4 of <em>The Called</em> is ready to watch. Continue where you left off.</div>
+        </div>
+      </div>
+
+
+      <!-- ─── Page nav ─── -->
       <div class="bs-pagenav">
         <a href="foundations.html" class="bs-pagenav-link">
           <span class="bs-pagenav-dir">← Back</span>

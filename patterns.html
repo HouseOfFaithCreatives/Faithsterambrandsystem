@@ -10,10 +10,31 @@
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <link rel="stylesheet" href="assets/tokens.css">
 <style>
-  .motif-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); margin: var(--sp-5) 0 var(--sp-8); }
-  .motif-tile { aspect-ratio: 1; border-radius: var(--radius-lg); overflow: hidden; position: relative; }
-  .motif-label { position: absolute; bottom: 10px; left: 12px; font-size: 12px; font-weight: 700; color: #fff; }
+  /* ── MOTIF GRID ── */
+  .motif-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--sp-4);
+    margin: var(--sp-5) 0 var(--sp-8);
+  }
+  .motif-tile {
+    aspect-ratio: 1;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    position: relative;
+  }
+  .motif-label {
+    position: absolute;
+    bottom: 10px;
+    left: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+    z-index: 2;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+  }
 
+  /* 1. Radiance */
   .motif-rays { background: var(--plum-black); position: relative; overflow: hidden; }
   .motif-rays::before {
     content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
@@ -22,6 +43,7 @@
   }
   @keyframes spin { to { transform: rotate(360deg); } }
 
+  /* 2. Woven */
   .motif-weave { background: var(--plum); position: relative; overflow: hidden; }
   .motif-weave::before {
     content: ''; position: absolute; inset: 0;
@@ -31,6 +53,7 @@
     background-size: 24px 24px;
   }
 
+  /* 3. Halftone */
   .motif-dots { background: var(--surface2); position: relative; overflow: hidden; }
   .motif-dots::before {
     content: ''; position: absolute; inset: 0;
@@ -38,6 +61,178 @@
     background-size: 16px 16px;
   }
 
+  /* 4. Bokeh */
+  .motif-bokeh { background: #0A0A0F; position: relative; overflow: hidden; }
+  .motif-bokeh::before {
+    content: ''; position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(155,47,135,0.55) 0%, transparent 25%),
+      radial-gradient(circle at 70% 20%, rgba(108,89,166,0.45) 0%, transparent 18%),
+      radial-gradient(circle at 50% 70%, rgba(112,34,99,0.5) 0%, transparent 22%),
+      radial-gradient(circle at 85% 65%, rgba(155,47,135,0.3) 0%, transparent 14%),
+      radial-gradient(circle at 10% 80%, rgba(156,143,196,0.35) 0%, transparent 18%),
+      radial-gradient(circle at 60% 45%, rgba(73,20,64,0.6) 0%, transparent 30%);
+    filter: blur(10px);
+    animation: bokehDrift 14s ease-in-out infinite alternate;
+  }
+  @keyframes bokehDrift {
+    from { transform: translate(0,0) scale(1); }
+    to   { transform: translate(8px, -8px) scale(1.05); }
+  }
+
+  /* 5. Diagonal Silk */
+  .motif-silk { background: #150A1A; position: relative; overflow: hidden; }
+  .motif-silk::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(155,47,135,0.12) 10px,
+      rgba(155,47,135,0.12) 11px
+    );
+  }
+  .motif-silk::after {
+    content: ''; position: absolute; top: -60%; left: -60%; width: 220%; height: 220%;
+    background: linear-gradient(115deg, transparent 40%, rgba(108,89,166,0.18) 50%, transparent 60%);
+    animation: silkSweep 8s linear infinite;
+  }
+  @keyframes silkSweep {
+    from { transform: translateX(-20%) translateY(-10%); }
+    to   { transform: translateX(20%) translateY(10%); }
+  }
+
+  /* 6. Diamond Lattice */
+  .motif-diamond { background: #1A0E22; position: relative; overflow: hidden; }
+  .motif-diamond::before {
+    content: ''; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(45deg, rgba(155,47,135,0.22) 25%, transparent 25%, transparent 75%, rgba(155,47,135,0.22) 75%),
+      linear-gradient(-45deg, rgba(108,89,166,0.22) 25%, transparent 25%, transparent 75%, rgba(108,89,166,0.22) 75%);
+    background-size: 32px 32px;
+    background-position: 0 0, 16px 0;
+  }
+
+  /* 7. Concentric Rings */
+  .motif-rings { background: #0A0A0F; position: relative; overflow: hidden; }
+  .motif-rings::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: radial-gradient(
+      circle at 50% 50%,
+      transparent 10%,
+      rgba(155,47,135,0.2) 11%,
+      transparent 12%,
+      transparent 22%,
+      rgba(108,89,166,0.18) 23%,
+      transparent 24%,
+      transparent 36%,
+      rgba(155,47,135,0.14) 37%,
+      transparent 38%,
+      transparent 51%,
+      rgba(108,89,166,0.1) 52%,
+      transparent 53%,
+      transparent 67%,
+      rgba(155,47,135,0.07) 68%,
+      transparent 69%
+    );
+    animation: ringsExpand 6s ease-in-out infinite alternate;
+  }
+  @keyframes ringsExpand {
+    from { transform: scale(0.9); opacity: 0.7; }
+    to   { transform: scale(1.1); opacity: 1; }
+  }
+
+  /* 8. Faith Grid */
+  .motif-faithgrid { background: #0D0612; position: relative; overflow: hidden; }
+  .motif-faithgrid::before {
+    content: ''; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(155,47,135,0.12) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(155,47,135,0.12) 1px, transparent 1px),
+      linear-gradient(rgba(108,89,166,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(108,89,166,0.06) 1px, transparent 1px);
+    background-size: 48px 48px, 48px 48px, 16px 16px, 16px 16px;
+  }
+  .motif-faithgrid::after {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 50% 50%, rgba(155,47,135,0.08) 0%, transparent 55%);
+  }
+
+  /* 9. Noise Grain */
+  .motif-grain { background: #0A0A0F; position: relative; overflow: hidden; }
+  .motif-grain::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.18'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+    opacity: 0.7;
+  }
+  .motif-grain::after {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 40% 40%, rgba(112,34,99,0.4) 0%, transparent 60%);
+  }
+
+  /* 10. Chevron Wave */
+  .motif-chevron { background: #150A1A; position: relative; overflow: hidden; }
+  .motif-chevron::before {
+    content: ''; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(135deg, rgba(155,47,135,0.18) 25%, transparent 25%) -20px 0,
+      linear-gradient(225deg, rgba(155,47,135,0.18) 25%, transparent 25%) -20px 0,
+      linear-gradient(315deg, rgba(155,47,135,0.18) 25%, transparent 25%),
+      linear-gradient(45deg,  rgba(155,47,135,0.18) 25%, transparent 25%);
+    background-size: 40px 40px;
+    background-color: #150A1A;
+  }
+
+  /* 11. Audio Wave */
+  .motif-audio { background: #0A0A0F; position: relative; overflow: hidden; }
+  .motif-audio::before {
+    content: ''; position: absolute; inset: 0;
+    background-image:
+      radial-gradient(ellipse 80% 3px at 50% 20%, rgba(155,47,135,0.4) 0%, transparent 100%),
+      radial-gradient(ellipse 90% 4px at 50% 33%, rgba(108,89,166,0.3) 0%, transparent 100%),
+      radial-gradient(ellipse 70% 3px at 50% 46%, rgba(155,47,135,0.35) 0%, transparent 100%),
+      radial-gradient(ellipse 85% 5px at 50% 60%, rgba(112,34,99,0.3) 0%, transparent 100%),
+      radial-gradient(ellipse 75% 3px at 50% 73%, rgba(108,89,166,0.25) 0%, transparent 100%),
+      radial-gradient(ellipse 60% 2px at 50% 85%, rgba(155,47,135,0.2) 0%, transparent 100%);
+    animation: audioWave 4s ease-in-out infinite alternate;
+  }
+  @keyframes audioWave {
+    from { transform: scaleY(0.8); }
+    to   { transform: scaleY(1.2); }
+  }
+
+  /* 12. Constellation */
+  .motif-constellation { background: #07050F; position: relative; overflow: hidden; }
+  .motif-constellation::before {
+    content: ''; position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(255,255,255,0.8) 1px, transparent 1px),
+      radial-gradient(circle at 35% 10%, rgba(255,255,255,0.5) 1px, transparent 1px),
+      radial-gradient(circle at 60% 25%, rgba(156,143,196,0.9) 1.5px, transparent 1.5px),
+      radial-gradient(circle at 80% 15%, rgba(255,255,255,0.6) 1px, transparent 1px),
+      radial-gradient(circle at 90% 40%, rgba(155,47,135,0.9) 1.5px, transparent 1.5px),
+      radial-gradient(circle at 25% 55%, rgba(255,255,255,0.7) 1px, transparent 1px),
+      radial-gradient(circle at 50% 65%, rgba(156,143,196,0.8) 2px, transparent 2px),
+      radial-gradient(circle at 70% 75%, rgba(255,255,255,0.6) 1px, transparent 1px),
+      radial-gradient(circle at 10% 85%, rgba(155,47,135,0.8) 1.5px, transparent 1.5px),
+      radial-gradient(circle at 45% 88%, rgba(255,255,255,0.5) 1px, transparent 1px),
+      radial-gradient(circle at 75% 90%, rgba(108,89,166,0.8) 1px, transparent 1px),
+      radial-gradient(circle at 92% 78%, rgba(255,255,255,0.7) 1.5px, transparent 1.5px);
+    background-size: 100% 100%;
+  }
+  .motif-constellation::after {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(108,89,166,0.07) 0%, transparent 70%);
+    animation: constPulse 8s ease-in-out infinite alternate;
+  }
+  @keyframes constPulse {
+    from { opacity: 0.6; }
+    to   { opacity: 1; }
+  }
+
+  /* ── GENRE GRID ── */
   .genre-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--sp-3); margin: var(--sp-5) 0 var(--sp-8); }
   .genre-tile {
     border-radius: var(--radius-md); padding: var(--sp-4); display: flex; flex-direction: column; gap: var(--sp-3);
@@ -46,6 +241,7 @@
   .genre-name { font-size: 13px; font-weight: 700; color: #fff; }
   .genre-count { font-size: 10.5px; color: rgba(255,255,255,0.6); }
 
+  /* ── PHOTO MOODBOARD ── */
   .photo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sp-4); margin: var(--sp-5) 0 var(--sp-3); }
   .photo-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--sp-5); }
   .photo-card h4 { font-size: 14px; color: var(--cream); margin-bottom: 8px; }
@@ -78,11 +274,9 @@
   .icon-style-box.bad { opacity: 0.5; }
   .icon-style-name { font-size: 11px; color: var(--dim2); }
 
-  /* Color utility classes — these transfer correctly when Lucide replaces <i> with <svg>,
-     unlike inline style="color:..." which Lucide does NOT carry over to the new element */
-  .icon-cream { color: var(--cream); }
-  .icon-genre { color: rgba(255,255,255,0.7); }
-  .icon-dim2 { color: var(--dim2); }
+  .icon-cream  { color: var(--cream); }
+  .icon-genre  { color: rgba(255,255,255,0.7); }
+  .icon-dim2   { color: var(--dim2); }
 
   /* ── MOODBOARD ── */
   .moodboard-grid {
@@ -103,19 +297,401 @@
     position: absolute; top: 6px; left: 6px; font-size: 9px; font-weight: 700; color: rgba(255,255,255,0.55);
     background: rgba(0,0,0,0.4); padding: 1px 6px; border-radius: 3px; font-family: monospace;
   }
-  /* varied spans for rough moodboard feel */
   .mood-tile.s-2x2 { grid-column: span 2; grid-row: span 2; }
   .mood-tile.s-2x1 { grid-column: span 2; grid-row: span 1; }
   .mood-tile.s-1x2 { grid-column: span 1; grid-row: span 2; }
   .mood-tile.s-3x1 { grid-column: span 3; grid-row: span 1; }
   .mood-tile.s-1x1 { grid-column: span 1; grid-row: span 1; }
 
-  @media (max-width: 760px) {
-    .moodboard-grid { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 70px; }
-    .icon-set-grid { grid-template-columns: repeat(4, 1fr); }
+  /* ── BRAND MOTION & LOGO SHOWCASE ── */
+
+  /* Logo animation card grid */
+  .logo-anim-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--sp-5);
+    margin: var(--sp-5) 0 var(--sp-8);
+  }
+  .logo-anim-card {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .logo-anim-demo {
+    height: 240px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo-anim-demo img {
+    position: relative;
+    z-index: 2;
+    max-width: 70%;
+    max-height: 60%;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 16px rgba(0,0,0,0.4));
+  }
+  .logo-anim-info {
+    background: var(--surface);
+    padding: var(--sp-4) var(--sp-5);
+  }
+  .logo-anim-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--cream);
+    margin-bottom: 4px;
+  }
+  .logo-anim-desc {
+    font-size: 12px;
+    color: var(--dim);
+    line-height: 1.5;
   }
 
-  /* ── MOTION BACKGROUND DEMOS ── */
+  /* ─ Animated backgrounds for logo cards ─ */
+
+  /* 1. Aurora Glow (dark) */
+  .lbg-aurora { background: #0A0A0F; }
+  .lbg-aurora::before, .lbg-aurora::after {
+    content: ''; position: absolute; border-radius: 50%; filter: blur(50px); opacity: 0.5;
+  }
+  .lbg-aurora::before {
+    width: 280px; height: 280px; background: #9B2F87; top: -80px; left: -60px;
+    animation: auroraDrift1 9s ease-in-out infinite alternate;
+  }
+  .lbg-aurora::after {
+    width: 240px; height: 240px; background: #6C59A6; bottom: -80px; right: -50px;
+    animation: auroraDrift2 11s ease-in-out infinite alternate;
+  }
+  @keyframes auroraDrift1 {
+    from { transform: translate(0,0) scale(1); }
+    to   { transform: translate(60px,30px) scale(1.15); }
+  }
+  @keyframes auroraDrift2 {
+    from { transform: translate(0,0) scale(1); }
+    to   { transform: translate(-50px,-20px) scale(1.1); }
+  }
+
+  /* 2. Mesh Gradient */
+  .lbg-mesh {
+    background: linear-gradient(120deg, #491440, #702263, #6C59A6, #2A1530);
+    background-size: 300% 300%;
+    animation: meshShift 12s ease-in-out infinite;
+  }
+  @keyframes meshShift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* 3. White + Pulse */
+  .lbg-whitepulse { background: #F0EEF8; }
+  .lbg-whitepulse::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(155,47,135,0.25) 0%, transparent 60%);
+    animation: whitePulse 3.5s ease-in-out infinite;
+  }
+  @keyframes whitePulse {
+    0%, 100% { transform: scale(0.8); opacity: 0.5; }
+    50%      { transform: scale(1.2); opacity: 1; }
+  }
+
+  /* 4. Lavender Circle breathing */
+  .lbg-lavcircle { background: #0A0A0F; }
+  .lbg-lavcircle::before {
+    content: ''; position: absolute;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(108,89,166,0.6) 0%, rgba(73,20,64,0.4) 50%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%) scale(1);
+    animation: lavBreath 5s ease-in-out infinite;
+  }
+  @keyframes lavBreath {
+    0%, 100% { transform: translate(-50%,-50%) scale(0.9); opacity: 0.8; }
+    50%      { transform: translate(-50%,-50%) scale(1.1); opacity: 1; }
+  }
+
+  /* 5. Magenta Burst */
+  .lbg-magburst { background: #0A0A0F; }
+  .lbg-magburst::before {
+    content: ''; position: absolute; inset: 0;
+    background: conic-gradient(from 0deg at 50% 50%,
+      rgba(155,47,135,0.4) 0deg,
+      transparent 30deg,
+      rgba(112,34,99,0.35) 60deg,
+      transparent 90deg,
+      rgba(155,47,135,0.4) 120deg,
+      transparent 150deg,
+      rgba(73,20,64,0.3) 180deg,
+      transparent 210deg,
+      rgba(155,47,135,0.35) 240deg,
+      transparent 270deg,
+      rgba(108,89,166,0.3) 300deg,
+      transparent 330deg,
+      rgba(155,47,135,0.4) 360deg
+    );
+    filter: blur(8px);
+    animation: magBurst 8s linear infinite;
+  }
+  .lbg-magburst::after {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(155,47,135,0.35) 0%, transparent 55%);
+    animation: magPulse 3s ease-in-out infinite;
+  }
+  @keyframes magBurst {
+    to { transform: rotate(360deg); }
+  }
+  @keyframes magPulse {
+    0%, 100% { opacity: 0.7; }
+    50%      { opacity: 1; }
+  }
+
+  /* 6. Film Grain (dark cinematic) */
+  .lbg-filmgrain { background: #07050F; position: relative; overflow: hidden; }
+  .lbg-filmgrain::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.22'/%3E%3C/svg%3E");
+    background-size: 256px 256px;
+    opacity: 0.6;
+    animation: grainShift 0.15s steps(1) infinite;
+  }
+  .lbg-filmgrain::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(73,20,64,0.18) 0%, transparent 40%, rgba(10,10,15,0.5) 100%);
+  }
+  @keyframes grainShift {
+    0%  { background-position: 0 0; }
+    25% { background-position: -50px 25px; }
+    50% { background-position: 25px -50px; }
+    75% { background-position: -25px 50px; }
+  }
+
+  /* Ember particles for logo card 2 (ember/particle variant) */
+  .lbg-particles { background: #0A0A0F; }
+  .lbg-particles .ember {
+    position: absolute; bottom: -10px; border-radius: 50%; background: var(--magenta);
+    opacity: 0.7; animation: emberRise linear infinite;
+  }
+
+  /* ── MOTION BG (original five kept as utilities) ── */
+  .mbg-aurora { background: #0A0A0F; }
+  .mbg-aurora::before, .mbg-aurora::after {
+    content: ''; position: absolute; border-radius: 50%; filter: blur(40px); opacity: 0.55;
+  }
+  .mbg-aurora::before {
+    width: 260px; height: 260px; background: var(--magenta); top: -60px; left: -40px;
+    animation: auroraDrift1 9s ease-in-out infinite alternate;
+  }
+  .mbg-aurora::after {
+    width: 220px; height: 220px; background: var(--lavender); bottom: -60px; right: -30px;
+    animation: auroraDrift2 11s ease-in-out infinite alternate;
+  }
+
+  .mbg-mesh {
+    background: linear-gradient(120deg, #491440, #702263, #6C59A6, #2A1530);
+    background-size: 300% 300%;
+    animation: meshShift 12s ease-in-out infinite;
+  }
+
+  .mbg-particles { background: #0A0A0F; }
+  .mbg-particles .ember {
+    position: absolute; bottom: -10px; border-radius: 50%; background: var(--magenta);
+    opacity: 0.7; animation: emberRise linear infinite;
+  }
+  @keyframes emberRise {
+    0%   { transform: translateY(0) translateX(0); opacity: 0; }
+    10%  { opacity: 0.8; }
+    100% { transform: translateY(-260px) translateX(20px); opacity: 0; }
+  }
+
+  .mbg-pulse { background: #0A0A0F; }
+  .mbg-pulse::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(155,47,135,0.5) 0%, transparent 60%);
+    animation: pulseScale 3.5s ease-in-out infinite;
+  }
+  @keyframes pulseScale {
+    0%, 100% { transform: scale(0.85); opacity: 0.6; }
+    50%      { transform: scale(1.15); opacity: 1; }
+  }
+
+  .mbg-sweep { background: #150A1A; }
+  .mbg-sweep::before {
+    content: ''; position: absolute; top: -50%; left: -50%; width: 220%; height: 220%;
+    background: linear-gradient(115deg, transparent 35%, rgba(155,47,135,0.35) 48%, rgba(108,89,166,0.3) 52%, transparent 65%);
+    animation: sweepMove 6s linear infinite;
+  }
+  @keyframes sweepMove {
+    0%   { transform: translateX(-15%) translateY(-10%); }
+    100% { transform: translateX(15%) translateY(10%); }
+  }
+
+  /* ── KINETIC TYPOGRAPHY ── */
+  .kinetic-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--sp-5);
+    margin: var(--sp-5) 0 var(--sp-8);
+  }
+  .kinetic-card {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .kinetic-demo {
+    height: 160px;
+    background: #0A0A0F;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+  .kinetic-info {
+    background: var(--surface);
+    padding: var(--sp-3) var(--sp-4);
+  }
+  .kinetic-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 3px;
+  }
+  .kinetic-use {
+    font-size: 11px;
+    color: var(--dim);
+    line-height: 1.4;
+  }
+
+  /* 1. Fade Up */
+  .kt-fadeup {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.02em;
+    animation: fadeUp 3s ease-out infinite;
+  }
+  @keyframes fadeUp {
+    0%   { opacity: 0; transform: translateY(24px); }
+    20%  { opacity: 1; transform: translateY(0); }
+    70%  { opacity: 1; transform: translateY(0); }
+    90%  { opacity: 0; transform: translateY(-12px); }
+    100% { opacity: 0; transform: translateY(24px); }
+  }
+
+  /* 2. Letter Spacing Bloom */
+  .kt-bloom {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--cream);
+    text-transform: uppercase;
+    animation: spacingBloom 4s ease-in-out infinite;
+  }
+  @keyframes spacingBloom {
+    0%, 100% { letter-spacing: -0.08em; opacity: 0.4; }
+    50%      { letter-spacing: 0.22em;  opacity: 1; }
+  }
+
+  /* 3. Word Reveal */
+  .kt-wordreveal {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--cream);
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  .kt-wordreveal span {
+    display: inline-block;
+    opacity: 0;
+    animation: wordIn 4.5s ease-in-out infinite;
+  }
+  .kt-wordreveal span:nth-child(1) { animation-delay: 0s; }
+  .kt-wordreveal span:nth-child(2) { animation-delay: 0.5s; }
+  .kt-wordreveal span:nth-child(3) { animation-delay: 1s; }
+  .kt-wordreveal span:nth-child(4) { animation-delay: 1.5s; }
+  .kt-wordreveal span:nth-child(5) { animation-delay: 2s; }
+  @keyframes wordIn {
+    0%   { opacity: 0; transform: translateY(10px); }
+    15%  { opacity: 1; transform: translateY(0); }
+    70%  { opacity: 1; }
+    85%  { opacity: 0; }
+    100% { opacity: 0; }
+  }
+
+  /* 4. Gradient Sweep */
+  .kt-gradsweep {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    background: linear-gradient(90deg,
+      #9C8FC4 0%,
+      #9B2F87 25%,
+      #F0EEF8 50%,
+      #9B2F87 75%,
+      #9C8FC4 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradSweep 3s linear infinite;
+  }
+  @keyframes gradSweep {
+    from { background-position: 0% center; }
+    to   { background-position: 200% center; }
+  }
+
+  /* 5. Typewriter */
+  .kt-typewriter {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--lavender-light);
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid rgba(155,47,135,0.8);
+    width: 0;
+    animation: typeOut 5s steps(38) infinite, cursorBlink 0.75s step-end infinite;
+    max-width: calc(100% - 24px);
+  }
+  @keyframes typeOut {
+    0%,  5%  { width: 0; }
+    60%, 80% { width: 19em; }
+    95%, 100%{ width: 0; }
+  }
+  @keyframes cursorBlink {
+    from, to { border-color: transparent; }
+    50%      { border-color: rgba(155,47,135,0.8); }
+  }
+
+  /* 6. Gradient sweep background in kinetic demo */
+  .kinetic-demo.kd-dark-mesh {
+    background: linear-gradient(135deg, #0D0612 60%, #1A0E22 100%);
+  }
+  .kinetic-demo.kd-aurora {
+    background: #0A0A0F;
+    position: relative;
+  }
+  .kinetic-demo.kd-aurora::before {
+    content: '';
+    position: absolute;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(155,47,135,0.3) 0%, transparent 70%);
+    top: -40px; left: -40px;
+    animation: auroraDrift1 7s ease-in-out infinite alternate;
+  }
+
+  /* ── MOTION BG CARD ── */
   .motion-bg-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sp-5); margin: var(--sp-5) 0 var(--sp-8); }
   .motion-bg-card { border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); }
   .motion-bg-demo {
@@ -130,68 +706,18 @@
     font-size: 18px; color: rgba(255,255,255,0.92); letter-spacing: -0.01em;
   }
 
-  /* 1. Aurora glow */
-  .mbg-aurora { background: #0A0A0F; }
-  .mbg-aurora::before, .mbg-aurora::after {
-    content: ''; position: absolute; border-radius: 50%; filter: blur(40px); opacity: 0.55;
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .motif-grid { grid-template-columns: repeat(3, 1fr); }
+    .logo-anim-grid { grid-template-columns: repeat(2, 1fr); }
+    .kinetic-grid { grid-template-columns: repeat(2, 1fr); }
   }
-  .mbg-aurora::before {
-    width: 260px; height: 260px; background: var(--magenta); top: -60px; left: -40px;
-    animation: auroraDrift1 9s ease-in-out infinite alternate;
-  }
-  .mbg-aurora::after {
-    width: 220px; height: 220px; background: var(--lavender); bottom: -60px; right: -30px;
-    animation: auroraDrift2 11s ease-in-out infinite alternate;
-  }
-  @keyframes auroraDrift1 { from { transform: translate(0,0) scale(1); } to { transform: translate(60px,30px) scale(1.15); } }
-  @keyframes auroraDrift2 { from { transform: translate(0,0) scale(1); } to { transform: translate(-50px,-20px) scale(1.1); } }
-
-  /* 2. Mesh gradient drift */
-  .mbg-mesh {
-    background: linear-gradient(120deg, #491440, #702263, #6C59A6, #2A1530);
-    background-size: 300% 300%;
-    animation: meshShift 12s ease-in-out infinite;
-  }
-  @keyframes meshShift {
-    0%   { background-position: 0% 50%; }
-    50%  { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-
-  /* 3. Ember / particle drift */
-  .mbg-particles { background: #0A0A0F; }
-  .mbg-particles .ember {
-    position: absolute; bottom: -10px; border-radius: 50%; background: var(--magenta);
-    opacity: 0.7; animation: emberRise linear infinite;
-  }
-  @keyframes emberRise {
-    0%   { transform: translateY(0) translateX(0); opacity: 0; }
-    10%  { opacity: 0.8; }
-    100% { transform: translateY(-220px) translateX(20px); opacity: 0; }
-  }
-
-  /* 4. Radial pulse */
-  .mbg-pulse { background: #0A0A0F; }
-  .mbg-pulse::before {
-    content: ''; position: absolute; inset: 0;
-    background: radial-gradient(circle at 50% 50%, rgba(155,47,135,0.5) 0%, transparent 60%);
-    animation: pulseScale 3.5s ease-in-out infinite;
-  }
-  @keyframes pulseScale {
-    0%, 100% { transform: scale(0.85); opacity: 0.6; }
-    50% { transform: scale(1.15); opacity: 1; }
-  }
-
-  /* 5. Diagonal sweep / silk */
-  .mbg-sweep { background: #150A1A; }
-  .mbg-sweep::before {
-    content: ''; position: absolute; top: -50%; left: -50%; width: 220%; height: 220%;
-    background: linear-gradient(115deg, transparent 35%, rgba(155,47,135,0.35) 48%, rgba(108,89,166,0.3) 52%, transparent 65%);
-    animation: sweepMove 6s linear infinite;
-  }
-  @keyframes sweepMove {
-    0%   { transform: translateX(-15%) translateY(-10%); }
-    100% { transform: translateX(15%) translateY(10%); }
+  @media (max-width: 760px) {
+    .motif-grid { grid-template-columns: repeat(2, 1fr); }
+    .moodboard-grid { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 70px; }
+    .icon-set-grid { grid-template-columns: repeat(4, 1fr); }
+    .logo-anim-grid { grid-template-columns: 1fr; }
+    .kinetic-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -205,17 +731,29 @@
 
       <div class="bs-kicker">03 — Visual Identity</div>
       <h1 class="bs-h1">Motifs &amp; Imagery</h1>
-      <p class="bs-lede">A graphic language layer the current brand has none of — reusable motifs separate from the logo, a defined photography direction, and a genre/category color system, since none of these exist anywhere in the current guide or the live product.</p>
+      <p class="bs-lede">A graphic language layer the current brand has none of — reusable motifs separate from the logo, a defined photography direction, a genre/category color system, and a full brand motion &amp; logo showcase with kinetic type demos.</p>
 
       <span class="bs-tag new">New — no existing precedent</span>
 
+      <!-- ═══════════════════════════════════════════════════════
+           SECTION: GRAPHIC MOTIFS (12)
+      ═══════════════════════════════════════════════════════ -->
       <h2 class="bs-h2" style="margin-top:0;padding-top:0;border-top:none;">Graphic motifs</h2>
-      <p class="bs-p">Drawing on the brand essence rather than generic streaming-platform gradients — light and radiance (tied to faith imagery), woven pattern (tied to African textile traditions), and a subtle dot/halftone texture for backgrounds that need quiet visual interest without competing with content thumbnails.</p>
+      <p class="bs-p">Drawing on the brand essence rather than generic streaming-platform gradients — light and radiance (tied to faith imagery), woven pattern (tied to African textile traditions), bokeh and film grain (cinematic authority), constellation (community &amp; diaspora network), and more. All twelve follow the same discipline: texture layer only, never dominant.</p>
 
       <div class="motif-grid">
         <div class="motif-tile motif-rays"><div class="motif-label">Radiance</div></div>
         <div class="motif-tile motif-weave"><div class="motif-label">Woven</div></div>
         <div class="motif-tile motif-dots"><div class="motif-label">Halftone</div></div>
+        <div class="motif-tile motif-bokeh"><div class="motif-label">Bokeh</div></div>
+        <div class="motif-tile motif-silk"><div class="motif-label">Diagonal Silk</div></div>
+        <div class="motif-tile motif-diamond"><div class="motif-label">Diamond Lattice</div></div>
+        <div class="motif-tile motif-rings"><div class="motif-label">Concentric Rings</div></div>
+        <div class="motif-tile motif-faithgrid"><div class="motif-label">Faith Grid</div></div>
+        <div class="motif-tile motif-grain"><div class="motif-label">Noise Grain</div></div>
+        <div class="motif-tile motif-chevron"><div class="motif-label">Chevron Wave</div></div>
+        <div class="motif-tile motif-audio"><div class="motif-label">Audio Wave</div></div>
+        <div class="motif-tile motif-constellation"><div class="motif-label">Constellation</div></div>
       </div>
 
       <table class="bs-table">
@@ -223,13 +761,25 @@
         <tr><td><strong>Radiance</strong></td><td>Light breaking outward — tied directly to faith and hope themes already present in FaithStream's own copy ("Faith-Filled Stories")</td><td>Subtle background texture only, never full-opacity. Good for empty states, loading screens, donation pages.</td></tr>
         <tr><td><strong>Woven</strong></td><td>References African textile and architectural pattern traditions — gives the brand a visual root distinct from any generic streaming competitor</td><td>Section dividers, card backgrounds at low opacity. Never behind body text.</td></tr>
         <tr><td><strong>Halftone</strong></td><td>Quiet, modern texture for surfaces that need depth without pulling focus</td><td>Browse panel backgrounds, footer, empty states.</td></tr>
+        <tr><td><strong>Bokeh</strong></td><td>Out-of-focus light orbs — cinematic depth and warmth, echoing film production aesthetics</td><td>Hero section underlays, splash screens. Keep opacity low; never compete with the logo.</td></tr>
+        <tr><td><strong>Diagonal Silk</strong></td><td>Fine 45° repeating lines suggesting luxury fabric — cinematic, editorial</td><td>Marketing hero backgrounds, print collateral, campaign key art overlays.</td></tr>
+        <tr><td><strong>Diamond Lattice</strong></td><td>African-inspired geometric grid — rhombus forms echo kente and other pan-African textile traditions</td><td>Packaging, merchandise, and pattern fills on large surfaces. Pairs well with Woven.</td></tr>
+        <tr><td><strong>Concentric Rings</strong></td><td>Expanding ripple / sound wave — references both worship (sound, music) and reaching outward (broadcast)</td><td>Podcast covers, worship genre tiles, audio-player backgrounds.</td></tr>
+        <tr><td><strong>Faith Grid</strong></td><td>Thin-line grid with subtle cross intersections — a quiet, non-heavy reference to faith without being literal</td><td>Data-heavy screens (account, settings), dashboard panels, footer backgrounds.</td></tr>
+        <tr><td><strong>Noise Grain</strong></td><td>Film grain texture — grounds digital content in cinematic physicality</td><td>Key art overlays, video thumbnail borders, print-ready brand assets.</td></tr>
+        <tr><td><strong>Chevron Wave</strong></td><td>Repeating V-forms — movement and momentum, also echoes traditional kente weave chevron borders</td><td>Progress indicators, loading bars, banner overlays. Maximum 30% opacity.</td></tr>
+        <tr><td><strong>Audio Wave</strong></td><td>Horizontal undulating bands — immediately communicates sound, music, and worship without any icon needed</td><td>Worship genre, podcast, and live-stream UI panels. Animated version preferred where motion is supported.</td></tr>
+        <tr><td><strong>Constellation</strong></td><td>Small dots with implied connections — community, diaspora network, and the idea of a scattered people gathering around shared stories</td><td>About / community pages, onboarding screens, Give/Donate flow backgrounds.</td></tr>
       </table>
 
       <div class="bs-callout">
         <div class="bs-callout-label">Usage discipline</div>
-        <div class="bs-callout-text">All three motifs follow the same rule as Netflix and UNC's pattern systems: subtle, used as texture or background layer — never as the dominant visual element, never directly behind body copy, never used to construct a custom logo.</div>
+        <div class="bs-callout-text">All twelve motifs follow the same rule as Netflix and UNC's pattern systems: subtle, used as texture or background layer — never as the dominant visual element, never directly behind body copy, never used to construct a custom logo. Pick one motif per screen; mixing two on the same surface only in cases where one is at &lt;8% opacity.</div>
       </div>
 
+      <!-- ═══════════════════════════════════════════════════════
+           SECTION: ICONOGRAPHY
+      ═══════════════════════════════════════════════════════ -->
       <h2 class="bs-h2">Iconography</h2>
       <span class="bs-tag kept">Lucide — already loaded in the live product</span>
       <p class="bs-p">The live FaithStream code already loads Lucide (<code>unpkg.com/lucide</code>) for every UI icon — search, bell, play, plus, thumbs-up, house, and the rest. Rather than introduce a second icon library, this formalizes Lucide as the system's one icon set and documents the actual usage rule already implicit in the code: <strong>1.5–1.75px stroke weight, no fill except for play/action glyphs</strong>.</p>
@@ -298,6 +848,9 @@
         <div class="bs-callout-text">Outline icons throughout — never switch a single icon to a filled style except the play triangle and similar primary-action glyphs, which read faster filled. Mixing outline and filled icons in the same row (e.g. nav bar) is the most common, most visible iconography mistake to avoid.</div>
       </div>
 
+      <!-- ═══════════════════════════════════════════════════════
+           SECTION: GENRE COLOR CODING
+      ═══════════════════════════════════════════════════════ -->
       <h2 class="bs-h2">Genre &amp; category color coding</h2>
       <p class="bs-p">The live browse panel already color-codes genres with gradients (<code>.bg-thumb.g1</code> through <code>.g5</code>) — but the five gradients currently span unrelated hue families (purple, blue, green, brown) with no documented system behind them. This formalizes that into one purple-only range, consistent with the color system on the Identity page.</p>
 
@@ -310,6 +863,9 @@
       </div>
       <p class="bs-p" style="font-size:13px;">Each genre gets a unique two-point gradient, but every stop comes from the purple range defined in the color system — no genre "escapes" into an unrelated hue the way the current blue/green/brown set does.</p>
 
+      <!-- ═══════════════════════════════════════════════════════
+           SECTION: PHOTOGRAPHY MOODBOARD
+      ═══════════════════════════════════════════════════════ -->
       <h2 class="bs-h2">Photography &amp; key art moodboard</h2>
       <p class="bs-p">Marked "TBC" in the original one-page brand guide, and critical given thumbnails are the single most active, most inconsistent area of current production work. The grid below is a working moodboard, not a finished spec — drop your own reference images in to replace the placeholder tiles; the deliberately uneven sizing is intentional, the way a real moodboard gets pinned up.</p>
 
@@ -345,7 +901,170 @@
         <tr><td><strong>Representation</strong></td><td>Reflect the diversity of the continental and diaspora audience — no single region or look should stand in for the whole brand across the content catalogue.</td></tr>
       </table>
 
+      <!-- ═══════════════════════════════════════════════════════
+           SECTION: BRAND MOTION & LOGO SHOWCASE
+      ═══════════════════════════════════════════════════════ -->
+      <h2 class="bs-h2">Brand Motion &amp; Logo Showcase</h2>
+      <p class="bs-p">The FaithStream logo family — full lockup, icon mark, and wordmark — shown across six animated environments, from dark aurora to cinematic film grain. Use this section to align stakeholders on how the logo behaves across different product surfaces before committing to a motion video production run.</p>
 
+      <!-- A) LOGO ANIMATION CARDS -->
+      <h3 class="bs-h3">Logo on animated backgrounds</h3>
+      <div class="logo-anim-grid">
+
+        <!-- 1. Full logo on Aurora -->
+        <div class="logo-anim-card">
+          <div class="logo-anim-demo lbg-aurora">
+            <img src="assets/logo/faithstream_full_purple.png" alt="FaithStream full logo — purple">
+          </div>
+          <div class="logo-anim-info">
+            <div class="logo-anim-name">01 — Full Logo · Aurora Glow</div>
+            <div class="logo-anim-desc">The purple lockup on a slow drifting aurora. Splash screen, donation landing pages, and faith-forward hero moments.</div>
+          </div>
+        </div>
+
+        <!-- 2. Full white logo on Mesh Gradient -->
+        <div class="logo-anim-card">
+          <div class="logo-anim-demo lbg-mesh">
+            <img src="assets/logo/faithstream_full_white.png" alt="FaithStream full logo — white">
+          </div>
+          <div class="logo-anim-info">
+            <div class="logo-anim-name">02 — Full Logo · Mesh Gradient</div>
+            <div class="logo-anim-desc">White lockup on the full purple range in motion. The default hero background — closest to the product's existing aesthetic.</div>
+          </div>
+        </div>
+
+        <!-- 3. Black logo on White Pulse -->
+        <div class="logo-anim-card">
+          <div class="logo-anim-demo lbg-whitepulse">
+            <img src="assets/logo/faithstream_full_black.png" alt="FaithStream full logo — black">
+          </div>
+          <div class="logo-anim-info">
+            <div class="logo-anim-name">03 — Full Logo · White + Pulse</div>
+            <div class="logo-anim-desc">Black lockup on cream/white with a breathing radial glow. Light-mode contexts: print media, invoices, partner decks on white backgrounds.</div>
+          </div>
+        </div>
+
+        <!-- 4. Icon on Lavender Circle -->
+        <div class="logo-anim-card">
+          <div class="logo-anim-demo lbg-lavcircle" style="background:#07050F;">
+            <img src="assets/logo/faithstream_icon_purple.png" alt="FaithStream icon — purple" style="max-width:45%; max-height:55%;">
+          </div>
+          <div class="logo-anim-info">
+            <div class="logo-anim-name">04 — Icon Mark · Lavender Circle</div>
+            <div class="logo-anim-desc">The icon mark breathing slowly on a lavender radial glow. App icon animation, loading spinner context, and mobile splash frames.</div>
+          </div>
+        </div>
+
+        <!-- 5. Icon white on Magenta Burst -->
+        <div class="logo-anim-card">
+          <div class="logo-anim-demo lbg-magburst" style="overflow:hidden;">
+            <img src="assets/logo/faithstream_icon_white.png" alt="FaithStream icon — white" style="max-width:45%; max-height:55%;">
+          </div>
+          <div class="logo-anim-info">
+            <div class="logo-anim-name">05 — Icon Mark · Magenta Burst</div>
+            <div class="logo-anim-desc">White icon on a rotating magenta conic burst. High-energy moments: campaign launches, live event countdowns, social clips.</div>
+          </div>
+        </div>
+
+        <!-- 6. Wordmark on Film Grain -->
+        <div class="logo-anim-card">
+          <div class="logo-anim-demo lbg-filmgrain">
+            <img src="assets/logo/faithstream_wordmark_white.png" alt="FaithStream wordmark — white" style="max-width:75%; max-height:40%;">
+          </div>
+          <div class="logo-anim-info">
+            <div class="logo-anim-name">06 — Wordmark · Film Grain</div>
+            <div class="logo-anim-desc">White wordmark on dark cinematic noise. Theatrical, premium — title card at the end of a trailer or brand film, physical print on matte surfaces.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="bs-callout">
+        <div class="bs-callout-label">Production note</div>
+        <div class="bs-callout-text">Logo images are loaded from <code>assets/logo/</code>. If a file isn't showing, check the six filename variants: <code>faithstream_full_purple.png</code>, <code>faithstream_full_white.png</code>, <code>faithstream_full_black.png</code>, <code>faithstream_icon_purple.png</code>, <code>faithstream_icon_white.png</code>, <code>faithstream_wordmark_white.png</code>. The animated backgrounds are pure CSS — they work independently even before logo files are placed.</div>
+      </div>
+
+      <!-- B) KINETIC TYPOGRAPHY -->
+      <h3 class="bs-h3">Kinetic Type</h3>
+      <p class="bs-p">Five text animation patterns for motion graphics, social content, and in-product moments. Each is a self-contained pure-CSS loop — copy the class into any production context without a JavaScript dependency.</p>
+
+      <div class="kinetic-grid">
+
+        <!-- 1. Fade Up -->
+        <div class="kinetic-card">
+          <div class="kinetic-demo">
+            <div class="kt-fadeup">Faith-Filled Stories</div>
+          </div>
+          <div class="kinetic-info">
+            <div class="kinetic-name">01 — Fade Up</div>
+            <div class="kinetic-use">Splash screen entrance, hero section headline. The brand's most neutral, most versatile motion moment.</div>
+          </div>
+        </div>
+
+        <!-- 2. Letter Spacing Bloom -->
+        <div class="kinetic-card">
+          <div class="kinetic-demo">
+            <div class="kt-bloom">FAITHSTREAM</div>
+          </div>
+          <div class="kinetic-info">
+            <div class="kinetic-name">02 — Letter Spacing Bloom</div>
+            <div class="kinetic-use">Brand name reveal in motion graphics, intro sequences, and social video openers. Strong brand recall.</div>
+          </div>
+        </div>
+
+        <!-- 3. Word Reveal -->
+        <div class="kinetic-card">
+          <div class="kinetic-demo">
+            <div class="kt-wordreveal">
+              <span>Watch</span>
+              <span style="color:rgba(155,47,135,0.6); font-size:18px;">•</span>
+              <span>Believe</span>
+              <span style="color:rgba(155,47,135,0.6); font-size:18px;">•</span>
+              <span>Be Inspired</span>
+            </div>
+          </div>
+          <div class="kinetic-info">
+            <div class="kinetic-name">03 — Word Reveal</div>
+            <div class="kinetic-use">Tagline sequencing in brand films, onboarding slides, and subscription upsell screens.</div>
+          </div>
+        </div>
+
+        <!-- 4. Gradient Sweep -->
+        <div class="kinetic-card">
+          <div class="kinetic-demo kd-dark-mesh">
+            <div class="kt-gradsweep">FAITHSTREAM</div>
+          </div>
+          <div class="kinetic-info">
+            <div class="kinetic-name">04 — Gradient Sweep</div>
+            <div class="kinetic-use">Premium brand moments: partnership decks, award submissions, executive presentations. Do not use in body copy.</div>
+          </div>
+        </div>
+
+        <!-- 5. Typewriter -->
+        <div class="kinetic-card">
+          <div class="kinetic-demo kd-aurora" style="padding: 0 20px;">
+            <div class="kt-typewriter">Africa's Premier Streaming Platform</div>
+          </div>
+          <div class="kinetic-info">
+            <div class="kinetic-name">05 — Typewriter</div>
+            <div class="kinetic-use">Website hero sub-headline, loading screen message, or AI/tech-forward brand contexts (pitch decks, product demos).</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- C) VIDEO SLOT -->
+      <h3 class="bs-h3">Brand motion reel — video slot</h3>
+      <span class="bs-tag fixed">Placeholder — drop your motion video in</span>
+      <p class="bs-p">For a hero loop, splash screen, or brand intro motion piece. Once you have a rendered file, drop it in <code>/assets/motion/</code> and swap the placeholder block below for a <code>&lt;video&gt;</code> tag pointing at it.</p>
+      <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg); height:280px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; margin: var(--sp-5) 0 var(--sp-8);">
+        <i data-lucide="circle-play" width="40" height="40" class="icon-dim2"></i>
+        <div style="font-size:13px; color:var(--dim2);">Drop your rendered motion file at <code>assets/motion/faithstream_brand_loop.mp4</code></div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════
+           SECTION: MOTION & TRANSITION LANGUAGE
+      ═══════════════════════════════════════════════════════ -->
       <h2 class="bs-h2">Motion &amp; transition language</h2>
       <p class="bs-p">The live product already has a considered motion system for component interactions — these are the actual timing/easing values in use, documented here so new components match instead of guessing.</p>
       <table class="bs-table motion-table">
@@ -355,63 +1074,13 @@
         <tr><td>Nav drawer slide-in</td><td><code>0.32s</code></td><td><code>cubic-bezier(.4,0,.2,1)</code></td><td>nav-drawer</td></tr>
         <tr><td>Modal entrance</td><td><code>0.3s</code></td><td><code>cubic-bezier(.22,1,.36,1)</code></td><td>modal-box (slight overshoot — more "premium" feel)</td></tr>
         <tr><td>Hover preview popup</td><td><code>380ms delay</code> + <code>0.22s</code></td><td><code>ease</code></td><td>preview-popup (delay prevents accidental triggers while scanning)</td></tr>
+        <tr><td>Splash / fade-up entrance</td><td><code>0.6s</code></td><td><code>cubic-bezier(.22,1,.36,1)</code></td><td>Brand moments: splash, donate CTA, onboarding step entry</td></tr>
+        <tr><td>Letter spacing bloom</td><td><code>4s</code></td><td><code>ease-in-out</code></td><td>Brand name reveal loops in motion graphics</td></tr>
+        <tr><td>Aurora glow drift</td><td><code>9–11s</code></td><td><code>ease-in-out</code></td><td>Background ambient motion — splash, hero, give screens</td></tr>
       </table>
       <div class="bs-callout">
         <div class="bs-callout-label">Rule</div>
         <div class="bs-callout-text"><code>cubic-bezier(.4,0,.2,1)</code> (Material-style "standard" easing) is the default for anything functional — hovers, drawers, slides. Reserve <code>cubic-bezier(.22,1,.36,1)</code> (slight overshoot) for moments that should feel a little more special, like the full info modal opening — don't use it everywhere or it stops feeling special.</div>
-      </div>
-
-      <h3 class="bs-h3">Brand motion reel — video slot</h3>
-      <span class="bs-tag fixed">Placeholder — drop your motion video in</span>
-      <p class="bs-p">For a hero loop, splash screen, or brand intro motion piece. Once you have a rendered file, drop it in <code>/assets/motion/</code> and swap the placeholder block below for a <code>&lt;video&gt;</code> tag pointing at it.</p>
-      <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg); height:280px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; margin: var(--sp-5) 0 var(--sp-8);">
-        <i data-lucide="circle-play" width="40" height="40" class="icon-dim2"></i>
-        <div style="font-size:13px; color:var(--dim2);">Drop your rendered motion file at <code>assets/motion/faithstream_brand_loop.mp4</code></div>
-      </div>
-
-      <h3 class="bs-h3">Five animated background directions</h3>
-      <p class="bs-p">Five pure-CSS motion backgrounds, no video dependency — usable directly on hero sections, loading screens, and splash states while your own motion video is in production, or as a lighter-weight permanent alternative to a rendered video loop.</p>
-
-      <div class="motion-bg-grid">
-        <div class="motion-bg-card">
-          <div class="motion-bg-demo mbg-aurora"><span class="motion-bg-label-overlay">FaithStream</span></div>
-          <div class="motion-bg-info">
-            <div class="motion-bg-name">01 — Aurora Glow</div>
-            <div class="motion-bg-desc">Two soft blurred light masses drift slowly behind the logo — calm, ambient, faith-forward. Best for splash screens and donation pages.</div>
-          </div>
-        </div>
-        <div class="motion-bg-card">
-          <div class="motion-bg-demo mbg-mesh"><span class="motion-bg-label-overlay">FaithStream</span></div>
-          <div class="motion-bg-info">
-            <div class="motion-bg-name">02 — Mesh Gradient Drift</div>
-            <div class="motion-bg-desc">The full purple range flowing slowly through itself. Most "premium streaming platform" of the five — good for the main hero background.</div>
-          </div>
-        </div>
-        <div class="motion-bg-card">
-          <div class="motion-bg-demo mbg-particles" id="emberDemo"><span class="motion-bg-label-overlay">FaithStream</span></div>
-          <div class="motion-bg-info">
-            <div class="motion-bg-name">03 — Ember Drift</div>
-            <div class="motion-bg-desc">Small magenta embers rising slowly, tied to the "radiance" motif from this same page. Distinctive and a little more playful — good for loading states.</div>
-          </div>
-        </div>
-        <div class="motion-bg-card">
-          <div class="motion-bg-demo mbg-pulse"><span class="motion-bg-label-overlay">FaithStream</span></div>
-          <div class="motion-bg-info">
-            <div class="motion-bg-name">04 — Radial Pulse</div>
-            <div class="motion-bg-desc">A slow breathing glow from center — the calmest option, good for a "waiting" or buffering state where you don't want to add visual noise.</div>
-          </div>
-        </div>
-        <div class="motion-bg-card">
-          <div class="motion-bg-demo mbg-sweep"><span class="motion-bg-label-overlay">FaithStream</span></div>
-          <div class="motion-bg-info">
-            <div class="motion-bg-name">05 — Diagonal Sweep</div>
-            <div class="motion-bg-desc">A soft silk-like light band moving across the frame. The most cinematic and "key art" feeling of the five — good for marketing hero sections.</div>
-          </div>
-        </div>
-      </div>
-      <div class="bs-callout">
-        <div class="bs-callout-label">Recommendation</div>
-        <div class="bs-callout-text">Mesh Gradient Drift (02) is the closest match to the existing product's hero gradients already in use — recommend it as the default if only one of these five gets adopted permanently, with Aurora Glow (01) as the calmer alternative for donation/give screens specifically, matching that flow's gentler tone.</div>
       </div>
 
       <div class="bs-pagenav">
@@ -430,21 +1099,28 @@
 </div>
 
 <script>
-  // Generate ember particles for motion demo 03
-  const emberHost = document.getElementById('emberDemo');
-  if (emberHost) {
-    for (let i = 0; i < 14; i++) {
-      const e = document.createElement('div');
+  // ── Ember particles for original ember demo
+  function spawnEmbers(hostId, count) {
+    var host = document.getElementById(hostId);
+    if (!host) return;
+    for (var i = 0; i < count; i++) {
+      var e = document.createElement('div');
       e.className = 'ember';
-      const size = 3 + Math.random() * 5;
+      var size = 3 + Math.random() * 5;
       e.style.width = size + 'px';
       e.style.height = size + 'px';
       e.style.left = (Math.random() * 100) + '%';
       e.style.animationDuration = (4 + Math.random() * 4) + 's';
       e.style.animationDelay = (Math.random() * 5) + 's';
-      emberHost.appendChild(e);
+      // Vary ember colors across brand palette
+      var colors = ['#9B2F87','#702263','#6C59A6','#9C8FC4','#491440'];
+      e.style.background = colors[Math.floor(Math.random() * colors.length)];
+      host.appendChild(e);
     }
   }
+
+  spawnEmbers('emberDemo', 18);
+
   lucide.createIcons();
 </script>
 </body>
