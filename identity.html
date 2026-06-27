@@ -9,22 +9,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800;900&family=Cinzel:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/tokens.css">
 <style>
-  /* ── LOGO PLACEHOLDER MARKS ── */
+  /* ── LOGO — real assets from /assets/logo/ ── */
   .logo-demo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); margin: var(--sp-5) 0 var(--sp-6); }
   .logo-tile { border-radius: var(--radius-lg); padding: var(--sp-8) var(--sp-5); display: flex; align-items: center; justify-content: center; height: 110px; }
   .logo-tile.dark { background: var(--plum-black); border: 1px solid var(--border); }
   .logo-tile.surface { background: var(--surface); border: 1px solid var(--border); }
   .logo-tile.light { background: var(--cream); }
-  .logo-mark-full { display: flex; align-items: center; gap: 10px; }
-  .logo-mark-icon {
-    width: 36px; height: 36px; border-radius: 9px; background: var(--plum);
-    display: flex; align-items: center; justify-content: center; font-size: 17px; color: #fff; flex-shrink: 0;
-  }
-  .logo-mark-icon.light-bg { background: var(--magenta); }
-  .logo-wordmark { font-family: var(--font-display); font-weight: 800; font-size: 17px; letter-spacing: 0.04em; color: #fff; }
-  .logo-wordmark.on-light { color: var(--plum); }
+  .logo-tile img { max-height: 46px; max-width: 85%; width: auto; object-fit: contain; }
   .logo-tile-label { position: absolute; bottom: 10px; left: 0; right: 0; text-align: center; font-size: 11px; color: var(--dim2); }
   .logo-tile { position: relative; }
+
+  .icon-demo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); margin: var(--sp-5) 0 var(--sp-8); }
+  .icon-tile { border-radius: var(--radius-lg); padding: var(--sp-6); display: flex; align-items: center; justify-content: center; height: 100px; position: relative; }
+  .icon-tile img { height: 48px; width: auto; object-fit: contain; }
 
   .clearspace-demo {
     background: var(--plum-black); border: 1px solid var(--border); border-radius: var(--radius-lg);
@@ -38,6 +35,7 @@
   }
   .clearspace-box::before { top: 4px; left: -16px; }
   .clearspace-box::after { bottom: 4px; right: -16px; }
+  .clearspace-box img { height: 40px; width: auto; }
 
   .misuse-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-3); margin: var(--sp-5) 0 var(--sp-8); }
   .misuse-tile {
@@ -45,6 +43,7 @@
     height: 90px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;
   }
   .misuse-tile::after { content: '✕'; position: absolute; top: 6px; right: 8px; color: #E5484D; font-weight: 800; font-size: 13px; }
+  .misuse-tile img { height: 42px; width: auto; }
   .misuse-label { font-size: 11px; color: var(--dim2); text-align: center; margin-top: 6px; }
   .misuse-item { display: flex; flex-direction: column; }
 
@@ -57,6 +56,7 @@
     background: linear-gradient(90deg, #0A0A0F, #491440, #702263, #9B2F87, #6C59A6, #9C8FC4, #DCD6EC);
   }
   .gradient-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--dim2); margin-bottom: var(--sp-8); }
+
 
   /* ── TYPE ── */
   .type-specimen-row {
@@ -82,65 +82,106 @@
 
       <div class="bs-kicker">02 — Visual Identity</div>
       <h1 class="bs-h1">Logo, Color &amp; Type</h1>
-      <p class="bs-lede">The foundation layer every other surface is built from. The logo marks and primary purple shown here are placeholders standing in for the real brand assets — swap the actual logo files in once supplied, the structure and rules around them stay the same.</p>
+      <p class="bs-lede">The foundation layer every other surface is built from. Logo files are live in <code>/assets/logo/</code> — nine variants covering every context already visible in the FaithStream product (top nav, nav drawer, footer, light-mode panels), plus the dark and light cases the original one-page guide didn't cover.</p>
 
       <!-- ═══════════════ LOGO ═══════════════ -->
       <h2 class="bs-h2" style="margin-top:0;padding-top:0;border-top:none;">Logo System</h2>
-      <span class="bs-tag fixed">Placeholder — swap real logo files in</span>
-      <p class="bs-p">Until the supplied logo PNGs are in place, this placeholder mark stands in to demonstrate clear space, minimum size, and misuse rules. The structure below applies identically once the real files are swapped in.</p>
+      <span class="bs-tag kept">Live assets — /assets/logo/</span>
+      <p class="bs-p">Nine files, one naming pattern: <code>faithstream_&lt;variant&gt;_&lt;color&gt;.png</code>. Three variants (full lockup, icon only, wordmark only) × three colors (purple, white, black) — plus one square favicon. Full reference list at the bottom of this section.</p>
 
-      <h3 class="bs-h3">Color variants</h3>
+      <h3 class="bs-h3">Full lockup — three contexts</h3>
       <div class="logo-demo-grid">
         <div class="logo-tile dark">
-          <div class="logo-mark-full">
-            <div class="logo-mark-icon">✦</div>
-            <span class="logo-wordmark">FAITHSTREAM</span>
-          </div>
+          <img src="assets/logo/faithstream_full_purple.png" alt="FaithStream logo, full color, on dark">
         </div>
         <div class="logo-tile surface">
-          <div class="logo-mark-full">
-            <div class="logo-mark-icon">✦</div>
-            <span class="logo-wordmark">FAITHSTREAM</span>
-          </div>
+          <img src="assets/logo/faithstream_full_white.png" alt="FaithStream logo, white, on surface">
         </div>
         <div class="logo-tile light">
-          <div class="logo-mark-full">
-            <div class="logo-mark-icon light-bg">✦</div>
-            <span class="logo-wordmark on-light">FAITHSTREAM</span>
-          </div>
+          <img src="assets/logo/faithstream_full_black.png" alt="FaithStream logo, black, on light">
         </div>
       </div>
-      <p class="bs-p" style="font-size:13px;">Dark background, surface background, light background — the three contexts the logo already appears in across the live product (top nav, nav drawer, browse panel).</p>
+      <p class="bs-p" style="font-size:13px;">Dark background, surface background, light background — the three contexts the logo already appears in across the live product (top nav, nav drawer, browse panel). Purple reads on both dark and surface; switch to the white variant only when the purple's own contrast against a busy photo or video background drops, switch to black only on light-mode panels.</p>
+
+      <h3 class="bs-h3">Icon only</h3>
+      <div class="icon-demo-grid">
+        <div class="icon-tile" style="background:var(--plum-black); border:1px solid var(--border);">
+          <img src="assets/logo/faithstream_icon_purple.png" alt="FaithStream icon, purple">
+        </div>
+        <div class="icon-tile" style="background:var(--plum-black); border:1px solid var(--border);">
+          <img src="assets/logo/faithstream_icon_white.png" alt="FaithStream icon, white">
+        </div>
+        <div class="icon-tile" style="background:var(--cream);">
+          <img src="assets/logo/faithstream_icon_black.png" alt="FaithStream icon, black">
+        </div>
+      </div>
+
+      <div class="bs-callout warn">
+        <div class="bs-callout-label">Asset inconsistency flagged</div>
+        <div class="bs-callout-text"><code>faithstream_icon_purple.png</code> includes the full circular badge background, but <code>faithstream_icon_white.png</code> and <code>faithstream_icon_black.png</code> are the bare flame mark with no circle — visible above, the white and black icons look noticeably smaller and "float" without the badge the purple one has. This looks like an inconsistency in how the white/black variants were exported, not a deliberate design choice. Recommend re-exporting white and black icon versions with the same circular badge treatment as the purple one, so all three are interchangeable.</div>
+      </div>
+
+      <h3 class="bs-h3">Wordmark only</h3>
+      <div class="logo-demo-grid">
+        <div class="logo-tile dark">
+          <img src="assets/logo/faithstream_wordmark_purple.png" alt="FaithStream wordmark, purple" style="max-height:34px;">
+        </div>
+        <div class="logo-tile surface">
+          <img src="assets/logo/faithstream_wordmark_white.png" alt="FaithStream wordmark, white" style="max-height:34px;">
+        </div>
+        <div class="logo-tile light" style="background:var(--cream);">
+          <img src="assets/logo/faithstream_wordmark_purple.png" alt="FaithStream wordmark, purple on light" style="max-height:34px;">
+        </div>
+      </div>
+      <p class="bs-p" style="font-size:13px;">For tight horizontal spaces or partnership lockups where the full circular icon doesn't fit. Note there's no black wordmark variant currently in the asset set — only purple and white — so on light backgrounds the purple wordmark itself is the light-mode option, not a separate black file.</p>
+
+      <div class="bs-callout">
+        <div class="bs-callout-label">Note on the wordmark typeface</div>
+        <div class="bs-callout-text">The wordmark itself is set in a serif display face — the same one named "Miller Text" in House of Faith's original one-page brand guide. This system's Syne/Inter typography rules (below) govern everything <em>around</em> the logo — UI, headlines, body copy — not the wordmark itself. The logo is a fixed asset, not something redrawn in the new type system; retiring Miller Text from headlines elsewhere doesn't require changing the logo file.</div>
+      </div>
 
       <h3 class="bs-h3">Clear space</h3>
-      <p class="bs-p">Defined as a unit relative to the mark itself — labeled <code style="color:var(--lavender-light)">x</code> below — so it scales correctly whether the logo appears at app-icon size or on a banner. Minimum clear space on all sides is <strong>0.5x</strong>.</p>
+      <p class="bs-p">Defined as a unit relative to the icon's own height — labeled <code style="color:var(--lavender-light)">x</code> below — so it scales correctly whether the logo appears at app-icon size or on a banner. Minimum clear space on all sides is <strong>0.5x</strong>.</p>
       <div class="clearspace-demo">
         <div class="clearspace-box">
-          <div class="logo-mark-icon">✦</div>
-          <span class="logo-wordmark">FAITHSTREAM</span>
+          <img src="assets/logo/faithstream_full_purple.png" alt="FaithStream logo with clear space guide">
         </div>
       </div>
 
       <h3 class="bs-h3">Things to avoid</h3>
-      <p class="bs-p">A documented misuse gallery — not just rules in prose — removes guesswork for anyone touching a thumbnail, banner, or partner co-brand. This is the single highest-impact addition to the current logo guide.</p>
+      <p class="bs-p">A documented misuse gallery — not just rules in prose — removes guesswork for anyone touching a thumbnail, banner, or partner co-brand. This is the single highest-impact addition to the current logo guide. Each example below uses the real icon file with the violation applied, not a redrawn placeholder.</p>
       <div class="misuse-grid">
         <div class="misuse-item">
-          <div class="misuse-tile"><div class="logo-mark-icon" style="transform:scaleX(-1);">✦</div></div>
+          <div class="misuse-tile"><img src="assets/logo/faithstream_icon_purple.png" alt="" style="transform:scaleX(-1);"></div>
           <div class="misuse-label">Don't flip or mirror the mark</div>
         </div>
         <div class="misuse-item">
-          <div class="misuse-tile"><div class="logo-mark-icon" style="transform:rotate(20deg);">✦</div></div>
+          <div class="misuse-tile"><img src="assets/logo/faithstream_icon_purple.png" alt="" style="transform:rotate(20deg);"></div>
           <div class="misuse-label">Don't tilt or rotate</div>
         </div>
         <div class="misuse-item">
-          <div class="misuse-tile"><div class="logo-mark-icon" style="background:#E5484D;">✦</div></div>
+          <div class="misuse-tile"><img src="assets/logo/faithstream_icon_purple.png" alt="" style="filter:hue-rotate(110deg) saturate(3);"></div>
           <div class="misuse-label">Don't recolor outside the palette</div>
         </div>
         <div class="misuse-item">
-          <div class="misuse-tile"><div class="logo-mark-icon" style="filter:blur(1.5px);transform:scale(1.4);">✦</div></div>
-          <div class="misuse-label">Don't stretch or distort</div>
+          <div class="misuse-tile"><img src="assets/logo/faithstream_icon_purple.png" alt="" style="transform:scaleX(1.6);"></div>
+          <div class="misuse-label">Don't stretch or distort proportions</div>
         </div>
       </div>
+
+      <h3 class="bs-h3">Full file reference</h3>
+      <table class="bs-table">
+        <tr><th>Filename</th><th>Contains</th><th>Use for</th></tr>
+        <tr><td><code>faithstream_full_purple.png</code></td><td>Icon + wordmark, full color</td><td>Top nav, footer, primary marketing — default choice</td></tr>
+        <tr><td><code>faithstream_full_white.png</code></td><td>Icon + wordmark, white</td><td>Dark hero overlays, video end-cards, photo backgrounds</td></tr>
+        <tr><td><code>faithstream_full_black.png</code></td><td>Icon + wordmark, black</td><td>Light-mode marketing pages, printed materials</td></tr>
+        <tr><td><code>faithstream_icon_purple.png</code></td><td>Circular badge + flame mark, full color</td><td>App icon, nav drawer, small UI badges</td></tr>
+        <tr><td><code>faithstream_icon_white.png</code></td><td>Flame mark only, white <em>(no badge — see flag above)</em></td><td>On dark/photo backgrounds, pending badge fix</td></tr>
+        <tr><td><code>faithstream_icon_black.png</code></td><td>Flame mark only, black <em>(no badge — see flag above)</em></td><td>On light backgrounds, pending badge fix</td></tr>
+        <tr><td><code>faithstream_wordmark_purple.png</code></td><td>Text only, full color</td><td>Tight horizontal spaces, partnership lockups, light backgrounds</td></tr>
+        <tr><td><code>faithstream_wordmark_white.png</code></td><td>Text only, white</td><td>Same, on dark backgrounds</td></tr>
+        <tr><td><code>faithstream_favicon.png</code></td><td>Square icon, pre-sized</td><td>Browser tab, social preview fallback</td></tr>
+      </table>
 
       <!-- ═══════════════ COLOR ═══════════════ -->
       <h2 class="bs-h2">Color System</h2>
