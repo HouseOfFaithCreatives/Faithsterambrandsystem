@@ -313,7 +313,68 @@
     margin: var(--sp-10) 0 var(--sp-8);
   }
 
+  /* ═══════════════════════════════════════════
+     RESPONSIVE — tablet and phone
+     (shell/sidebar/hamburger handled in tokens.css;
+     these rules are specific to this page's grids)
+  ═══════════════════════════════════════════ */
+  @media (max-width: 900px) {
+    .logo-demo-grid { grid-template-columns: repeat(3, 1fr); gap: var(--sp-3); }
+    .icon-demo-grid { grid-template-columns: repeat(3, 1fr); gap: var(--sp-3); }
+    .logo-bg-grid { grid-template-columns: repeat(3, 1fr); }
+    .misuse-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  @media (max-width: 640px) {
+    .logo-demo-grid { grid-template-columns: repeat(2, 1fr); gap: var(--sp-3); }
+    .logo-tile { height: 90px; padding: var(--sp-5) var(--sp-3); }
+    .logo-tile img { max-height: 36px; }
+
+    .icon-demo-grid { grid-template-columns: repeat(2, 1fr); gap: var(--sp-3); }
+    .icon-tile { height: 84px; padding: var(--sp-4); }
+    .icon-tile img { height: 38px; }
+
+    .logo-bg-grid { grid-template-columns: repeat(2, 1fr); gap: var(--sp-3); }
+    .logo-bg-tile { min-height: 110px; padding: var(--sp-4) var(--sp-3) var(--sp-3); }
+    .logo-bg-tile img { max-height: 32px; }
+
+    .misuse-grid { grid-template-columns: repeat(2, 1fr); gap: var(--sp-3); }
+    .misuse-tile { height: 76px; }
+    .misuse-tile img { height: 34px; }
+
+    .size-scale-row { padding: var(--sp-4); gap: var(--sp-3); }
+    .size-scale-meta { min-width: 110px; }
+
+    .minsize-demo { padding: var(--sp-5); gap: var(--sp-4); }
+    .cobrand-demo { padding: var(--sp-5); gap: var(--sp-4); flex-wrap: wrap; }
+    .clearspace-demo { padding: var(--sp-6) var(--sp-4); }
+
+    .type-specimen-row { flex-direction: column; align-items: flex-start; gap: var(--sp-2); padding: var(--sp-4) 0; }
+    .type-sample { text-align: left; max-width: 100%; }
+
+    .type-scale-row { flex-wrap: wrap; gap: var(--sp-2); }
+    .type-scale-name { width: auto; }
+
+    .type-pairing-showcase { padding: var(--sp-6) var(--sp-5); }
+    .type-pairing-headline { font-size: 28px; }
+
+    .type-hierarchy { padding: var(--sp-5); }
+    .type-hierarchy-row { flex-wrap: wrap; gap: var(--sp-2); }
+    .type-hierarchy-meta { min-width: 0; width: 100%; }
+
+    .context-flyer { padding: var(--sp-6) var(--sp-5); min-height: 220px; }
+    .flyer-title { font-size: 26px; }
+
+    .context-hero { padding: var(--sp-6) var(--sp-5); min-height: 0; }
+    .hero-title-mock { max-width: 100%; }
+    .hero-sub-mock { max-width: 100%; }
+
+    .context-card-overlay { height: auto; min-height: 160px; padding: var(--sp-4); }
+    .context-toast { max-width: 100%; flex-direction: column; }
+  }
+
 </style>
+
 </head>
 <body data-page="identity">
 
@@ -697,7 +758,7 @@
 
       <!-- ─── Full file reference ─── -->
       <h3 class="bs-h3">Full file reference</h3>
-      <table class="bs-table">
+      <div class="bs-table-wrap"><table class="bs-table">
         <tr><th>Filename</th><th>Contains</th><th>Use for</th></tr>
         <tr><td><code>faithstream_full_purple.png</code></td><td>Icon + wordmark, full color</td><td>Top nav, footer, primary marketing — default choice on dark + surface</td></tr>
         <tr><td><code>faithstream_full_white.png</code></td><td>Icon + wordmark, white</td><td>Plum/magenta/lavender backgrounds, dark hero overlays, video end-cards</td></tr>
@@ -708,7 +769,7 @@
         <tr><td><code>faithstream_wordmark_purple.png</code></td><td>Text only, full color</td><td>Partnership lockups, tight horizontal spaces, light-mode</td></tr>
         <tr><td><code>faithstream_wordmark_white.png</code></td><td>Text only, white</td><td>Same, on dark backgrounds</td></tr>
         <tr><td><code>faithstream_favicon.png</code></td><td>Square icon, pre-sized</td><td>Browser tab, PWA icon, social preview fallback</td></tr>
-      </table>
+      </table></div>
 
 
       <!-- ═══════════════════════════════════════════════════════════
@@ -723,7 +784,7 @@
       <div class="gradient-labels"><span>Darkest — backgrounds</span><span>Lightest — light-mode surfaces</span></div>
 
       <h3 class="bs-h3">Core tokens (already shipped — unchanged)</h3>
-      <table class="bs-table color-role-table">
+      <div class="bs-table-wrap"><table class="bs-table color-role-table">
         <tr><th>Token</th><th>Swatch</th><th>Hex</th><th>Used for in current code</th></tr>
         <tr><td><code>--bg</code> / <code>--plum-black</code></td><td class="swatch-cell"><span class="swatch-dot" style="background:#0A0A0F;"></span></td><td><code>#0A0A0F</code></td><td>App background, page base</td></tr>
         <tr><td><code>--surface</code></td><td class="swatch-cell"><span class="swatch-dot" style="background:#111118;"></span></td><td><code>#111118</code></td><td>Nav drawer, panels</td></tr>
@@ -733,17 +794,17 @@
         <tr><td><code>--magenta2</code></td><td class="swatch-cell"><span class="swatch-dot" style="background:#702263;"></span></td><td><code>#702263</code></td><td>Avatar gradient start</td></tr>
         <tr><td><code>--lavender</code></td><td class="swatch-cell"><span class="swatch-dot" style="background:#6C59A6;"></span></td><td><code>#6C59A6</code></td><td>Avatar gradient end</td></tr>
         <tr><td><code>--cream</code></td><td class="swatch-cell"><span class="swatch-dot" style="background:#F0EEF8;"></span></td><td><code>#F0EEF8</code></td><td>Primary text on dark</td></tr>
-      </table>
+      </table></div>
 
       <h3 class="bs-h3">New tints &amp; shades — fills the accent gap</h3>
       <p class="bs-p">This was the specific, repeated gap flagged across this whole project: no defined accent system, no usage rule, nothing to stop an accent color drifting outside the brand. Every addition below is a tint or shade <em>of</em> the existing four core tokens — nothing borrowed from outside the family.</p>
-      <table class="bs-table color-role-table">
+      <div class="bs-table-wrap"><table class="bs-table color-role-table">
         <tr><th>Token</th><th>Swatch</th><th>Hex</th><th>Role</th></tr>
         <tr><td><code>--lavender-light</code></td><td class="swatch-cell"><span class="swatch-dot" style="background:#9C8FC4;"></span></td><td><code>#9C8FC4</code></td><td>Secondary accent — links, genre tags, lighter UI text</td></tr>
         <tr><td><code>--lavender-pale</code></td><td class="swatch-cell"><span class="swatch-dot" style="background:#DCD6EC;"></span></td><td><code>#DCD6EC</code></td><td>Subtle fills, borders on light surfaces</td></tr>
         <tr><td><code>--plum-tint</code></td><td class="swatch-cell"><span class="swatch-dot" style="background:#6E3D63;"></span></td><td><code>#6E3D63</code></td><td>Mid-tone for gradients, hover states on plum</td></tr>
         <tr><td><code>--magenta-dim</code></td><td class="swatch-cell"><span class="swatch-dot" style="background:rgba(155,47,135,0.45);"></span></td><td><code>rgba(155,47,135,.45)</code></td><td>Glows, shadows, scrollbar thumbs (already used in product code)</td></tr>
-      </table>
+      </table></div>
 
       <h3 class="bs-h3">Usage rule</h3>
       <div class="bs-callout">
@@ -753,11 +814,11 @@
 
       <h3 class="bs-h3">Functional color — open question</h3>
       <p class="bs-p">One real exception already exists in the live code: <code>#4ade80</code> (green) is used for the "Match %" indicator on hover previews and modals — a Netflix-convention color that arrived without a deliberate brand decision behind it.</p>
-      <table class="bs-table">
+      <div class="bs-table-wrap"><table class="bs-table">
         <tr><th>Option</th><th>What it means</th></tr>
         <tr><td><strong>A — Retire it</strong></td><td>Replace with a purple-family equivalent (e.g. <code>--lavender-light</code> for match %, a warm-shifted magenta for errors). Fully purple-only system, no exceptions.</td></tr>
         <tr><td><strong>B — Keep as the one exception</strong></td><td>Green stays specifically for "Match %" since it's a near-universal streaming-platform convention users already read instantly; everything else (errors, alerts) still resolves to purple-family colors.</td></tr>
-      </table>
+      </table></div>
       <div class="bs-callout warn">
         <div class="bs-callout-label">Decision needed</div>
         <div class="bs-callout-text">Not resolved in this draft — flagging for review rather than silently picking one. Worth deciding once, then documenting the answer here so it doesn't get re-litigated per feature.</div>

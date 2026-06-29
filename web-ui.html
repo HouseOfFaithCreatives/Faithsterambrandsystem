@@ -34,6 +34,14 @@
   .state-btn.disabled-s { background: var(--surface2); color: var(--dim2); cursor: not-allowed; }
   .state-label { font-size: 11px; color: var(--dim2); text-align: center; margin-top: 6px; }
   .state-item { display: flex; flex-direction: column; align-items: center; }
+
+  @media (max-width: 640px) {
+    .breakpoint-bar { height: auto; flex-direction: column; }
+    .bp-seg { padding: 8px 10px; font-size: 11px; }
+    .contrast-demo-grid { grid-template-columns: 1fr; gap: var(--sp-3); }
+    .contrast-tile { height: auto; padding: var(--sp-4); }
+    .state-row { gap: var(--sp-3); }
+  }
 </style>
 </head>
 <body data-page="web-ui">
@@ -75,7 +83,7 @@
         <div class="bp-seg bp-laptop">≤900px</div>
         <div class="bp-seg bp-desktop">≤1100px+</div>
       </div>
-      <table class="bs-table">
+      <div class="bs-table-wrap"><table class="bs-table">
         <tr><th>Breakpoint</th><th>What changes</th></tr>
         <tr><td><strong>≤ 390px</strong> (iPhone SE)</td><td>Logo text hides, "More info" button hides, 2-column grids tighten to 8px gaps</td></tr>
         <tr><td><strong>≤ 480px</strong></td><td>Hero meta badges hide, Give button hides, Continue Watching drops to 2 columns</td></tr>
@@ -83,7 +91,7 @@
         <tr><td><strong>≤ 768px</strong></td><td>Hero height reduces to 50vh, grids drop to 3 columns</td></tr>
         <tr><td><strong>≤ 900px</strong></td><td>Browse panel (right sidebar) hides entirely — its content needs a mobile-specific home, see open question below</td></tr>
         <tr><td><strong>≤ 1100px</strong></td><td>Browse panel narrows from 256px to 210px</td></tr>
-      </table>
+      </table></div>
 
       <div class="bs-callout warn">
         <div class="bs-callout-label">Open question</div>
@@ -116,13 +124,13 @@
 
       <h2 class="bs-h2">Layout grid</h2>
       <p class="bs-p">The live product's two-zone desktop layout — primary scroll area plus a fixed-width browse panel — should be the reference for any new top-level screen, rather than each new page area inventing its own structure.</p>
-      <table class="bs-table">
+      <div class="bs-table-wrap"><table class="bs-table">
         <tr><th>Zone</th><th>Width</th><th>Behavior</th></tr>
         <tr><td>Nav drawer</td><td>260px</td><td>Overlay, slides in from left, closes on backdrop click or Escape</td></tr>
         <tr><td>Main scroll area</td><td>flex: 1 (fluid)</td><td>Hero + content rails, independent scroll container</td></tr>
         <tr><td>Browse panel</td><td>256px (210px below 1100px)</td><td>Fixed-width right sidebar, hides below 900px</td></tr>
         <tr><td>Card rows</td><td>Horizontal scroll, hidden scrollbar except Top 10</td><td><code>scrollbar-width: none</code> on most rails — only Top 10 gets a visible scroll affordance, since it's the one rail users are expected to dig through fully</td></tr>
-      </table>
+      </table></div>
 
       <div class="bs-pagenav">
         <a href="components.html" class="bs-pagenav-link">

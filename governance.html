@@ -38,6 +38,12 @@
   }
   .open-item-text { font-size: 14px; color: var(--cream); flex: 1; }
   .open-item-where { font-size: 11px; color: var(--dim2); white-space: nowrap; }
+
+  @media (max-width: 560px) {
+    .open-item { flex-direction: column; align-items: flex-start; gap: var(--sp-2); }
+    .open-item-where { white-space: normal; }
+    .flow-step { flex-direction: column; gap: var(--sp-3); }
+  }
 </style>
 </head>
 <body data-page="governance">

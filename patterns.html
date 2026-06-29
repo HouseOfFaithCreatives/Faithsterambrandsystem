@@ -711,6 +711,7 @@
     .motif-grid { grid-template-columns: repeat(3, 1fr); }
     .logo-anim-grid { grid-template-columns: repeat(2, 1fr); }
     .kinetic-grid { grid-template-columns: repeat(2, 1fr); }
+    .genre-grid { grid-template-columns: repeat(3, 1fr); }
   }
   @media (max-width: 760px) {
     .motif-grid { grid-template-columns: repeat(2, 1fr); }
@@ -718,6 +719,14 @@
     .icon-set-grid { grid-template-columns: repeat(4, 1fr); }
     .logo-anim-grid { grid-template-columns: 1fr; }
     .kinetic-grid { grid-template-columns: 1fr; }
+    .genre-grid { grid-template-columns: repeat(2, 1fr); gap: var(--sp-2); }
+    .icon-style-row { gap: var(--sp-4); }
+  }
+  @media (max-width: 480px) {
+    .icon-set-grid { grid-template-columns: repeat(3, 1fr); }
+    .moodboard-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 60px; }
+    .motion-bg-grid { grid-template-columns: 1fr; }
+    .genre-grid { grid-template-columns: repeat(2, 1fr); }
   }
 </style>
 </head>
@@ -756,7 +765,7 @@
         <div class="motif-tile motif-constellation"><div class="motif-label">Constellation</div></div>
       </div>
 
-      <table class="bs-table">
+      <div class="bs-table-wrap"><table class="bs-table">
         <tr><th>Motif</th><th>Meaning</th><th>Usage rule</th></tr>
         <tr><td><strong>Radiance</strong></td><td>Light breaking outward — tied directly to faith and hope themes already present in FaithStream's own copy ("Faith-Filled Stories")</td><td>Subtle background texture only, never full-opacity. Good for empty states, loading screens, donation pages.</td></tr>
         <tr><td><strong>Woven</strong></td><td>References African textile and architectural pattern traditions — gives the brand a visual root distinct from any generic streaming competitor</td><td>Section dividers, card backgrounds at low opacity. Never behind body text.</td></tr>
@@ -770,7 +779,7 @@
         <tr><td><strong>Chevron Wave</strong></td><td>Repeating V-forms — movement and momentum, also echoes traditional kente weave chevron borders</td><td>Progress indicators, loading bars, banner overlays. Maximum 30% opacity.</td></tr>
         <tr><td><strong>Audio Wave</strong></td><td>Horizontal undulating bands — immediately communicates sound, music, and worship without any icon needed</td><td>Worship genre, podcast, and live-stream UI panels. Animated version preferred where motion is supported.</td></tr>
         <tr><td><strong>Constellation</strong></td><td>Small dots with implied connections — community, diaspora network, and the idea of a scattered people gathering around shared stories</td><td>About / community pages, onboarding screens, Give/Donate flow backgrounds.</td></tr>
-      </table>
+      </table></div>
 
       <div class="bs-callout">
         <div class="bs-callout-label">Usage discipline</div>
@@ -836,13 +845,13 @@
         </div>
       </div>
 
-      <table class="bs-table">
+      <div class="bs-table-wrap"><table class="bs-table">
         <tr><th>Context</th><th>Size</th><th>Stroke</th><th>Fill</th></tr>
         <tr><td>Nav / drawer icons</td><td>18–20px</td><td>1.5px</td><td>None — outline only</td></tr>
         <tr><td>Card play buttons, modal actions</td><td>14–15px</td><td>n/a</td><td>Filled (white or magenta circle background)</td></tr>
         <tr><td>Browse panel genre icons</td><td>18px</td><td>2px</td><td>None, white stroke on gradient tile</td></tr>
         <tr><td>Mobile tab bar</td><td>22px</td><td>1.75px</td><td>None — outline, color shifts to magenta when active</td></tr>
-      </table>
+      </table></div>
       <div class="bs-callout">
         <div class="bs-callout-label">Rule</div>
         <div class="bs-callout-text">Outline icons throughout — never switch a single icon to a filled style except the play triangle and similar primary-action glyphs, which read faster filled. Mixing outline and filled icons in the same row (e.g. nav bar) is the most common, most visible iconography mistake to avoid.</div>
@@ -893,13 +902,13 @@
       </div>
       <p class="bs-p" style="font-size:13px;">To replace a tile: swap the placeholder <code>&lt;div class="mood-ph"&gt;</code> inside any <code>.mood-tile</code> in <code>patterns.html</code> for an <code>&lt;img src="..."&gt;</code> pointing at your reference image. Tile sizes (<code>s-1x1</code>, <code>s-2x1</code>, <code>s-1x2</code>, <code>s-2x2</code>, <code>s-3x1</code>) are reusable classes — change which class a tile has to resize it, the grid reflows automatically.</p>
 
-      <table class="bs-table">
+      <div class="bs-table-wrap"><table class="bs-table">
         <tr><th>Direction</th><th>Detail</th></tr>
         <tr><td><strong>Tone</strong></td><td>Cinematic, warm, high-contrast — matching the "story-driven" language already present in FaithStream's positioning. Avoid flat, evenly-lit stock-photo lighting.</td></tr>
         <tr><td><strong>Subject matter</strong></td><td>Community, worship, family, and purpose — themes already named in the existing guide, now backed by composition rules rather than left abstract.</td></tr>
         <tr><td><strong>Color grading</strong></td><td>Imagery should grade toward the purple family in shadows and midtones where possible — a subtle, consistent treatment, not a heavy filter.</td></tr>
         <tr><td><strong>Representation</strong></td><td>Reflect the diversity of the continental and diaspora audience — no single region or look should stand in for the whole brand across the content catalogue.</td></tr>
-      </table>
+      </table></div>
 
       <!-- ═══════════════════════════════════════════════════════
            SECTION: BRAND MOTION & LOGO SHOWCASE
@@ -1067,7 +1076,7 @@
       ═══════════════════════════════════════════════════════ -->
       <h2 class="bs-h2">Motion &amp; transition language</h2>
       <p class="bs-p">The live product already has a considered motion system for component interactions — these are the actual timing/easing values in use, documented here so new components match instead of guessing.</p>
-      <table class="bs-table motion-table">
+      <div class="bs-table-wrap"><table class="bs-table motion-table">
         <tr><th>Interaction</th><th>Timing</th><th>Easing</th><th>Where it's used</th></tr>
         <tr><td>Card hover lift</td><td><code>0.28s</code></td><td><code>cubic-bezier(.4,0,.2,1)</code></td><td>card-land, card-port, card-cont</td></tr>
         <tr><td>Hero slide transition</td><td><code>0.65s</code></td><td><code>cubic-bezier(.4,0,.2,1)</code></td><td>hero-track</td></tr>
@@ -1077,7 +1086,7 @@
         <tr><td>Splash / fade-up entrance</td><td><code>0.6s</code></td><td><code>cubic-bezier(.22,1,.36,1)</code></td><td>Brand moments: splash, donate CTA, onboarding step entry</td></tr>
         <tr><td>Letter spacing bloom</td><td><code>4s</code></td><td><code>ease-in-out</code></td><td>Brand name reveal loops in motion graphics</td></tr>
         <tr><td>Aurora glow drift</td><td><code>9–11s</code></td><td><code>ease-in-out</code></td><td>Background ambient motion — splash, hero, give screens</td></tr>
-      </table>
+      </table></div>
       <div class="bs-callout">
         <div class="bs-callout-label">Rule</div>
         <div class="bs-callout-text"><code>cubic-bezier(.4,0,.2,1)</code> (Material-style "standard" easing) is the default for anything functional — hovers, drawers, slides. Reserve <code>cubic-bezier(.22,1,.36,1)</code> (slight overshoot) for moments that should feel a little more special, like the full info modal opening — don't use it everywhere or it stops feeling special.</div>
