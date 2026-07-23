@@ -297,20 +297,17 @@ img { max-width: 100%; display: block; }
   line-height: 1.6;
   color: rgba(240,238,248,0.85);
   margin-bottom: var(--sp-8);
-  max-width: 640px;
 }
 .bs-p {
   font-size: 15px;
   line-height: 1.7;
   color: var(--dim);
   margin-bottom: var(--sp-4);
-  max-width: 680px;
 }
 .bs-p strong { color: var(--cream); font-weight: 600; }
 .bs-list {
   margin: var(--sp-3) 0 var(--sp-5);
   padding-left: 0;
-  max-width: 680px;
 }
 .bs-list li {
   list-style: none;
@@ -341,7 +338,6 @@ img { max-width: 100%; display: block; }
   border-radius: 0 var(--radius-md) var(--radius-md) 0;
   padding: var(--sp-4) var(--sp-5);
   margin: var(--sp-5) 0;
-  max-width: 680px;
 }
 .bs-callout-label {
   font-size: 11px;
@@ -484,7 +480,6 @@ img { max-width: 100%; display: block; }
   line-height: 1.7;
   color: var(--lavender-light);
   overflow-x: auto;
-  max-width: 680px;
   white-space: pre;
   -webkit-overflow-scrolling: touch;
 }
