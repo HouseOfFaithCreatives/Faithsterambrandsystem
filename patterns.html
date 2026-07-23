@@ -7,7 +7,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<!-- Lucide pinned to 0.577.0 — the last version with a browser (UMD) build.
+     lucide@latest is now 1.x, which removed dist/umd entirely, so "latest" 404s
+     and every icon silently fails. Do not change this back to @latest. -->
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"
+        onerror="var s=document.createElement('script');s.src='https://unpkg.com/lucide@0.577.0/dist/umd/lucide.min.js';document.head.appendChild(s);"></script>
 <link rel="stylesheet" href="assets/tokens.css">
 <style>
   /* ── MOTIF GRID ── */
@@ -1212,4 +1216,46 @@
         </a>
         <a href="components.html" class="bs-pagenav-link next">
           <span class="bs-pagenav-dir">Next →</span>
-          <span class="bs
+          <span class="bs-pagenav-title">04 — Components</span>
+        </a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script>
+  // ── Ember particles for original ember demo
+  function spawnEmbers(hostId, count) {
+    var host = document.getElementById(hostId);
+    if (!host) return;
+    for (var i = 0; i < count; i++) {
+      var e = document.createElement('div');
+      e.className = 'ember';
+      var size = 3 + Math.random() * 5;
+      e.style.width = size + 'px';
+      e.style.height = size + 'px';
+      e.style.left = (Math.random() * 100) + '%';
+      e.style.animationDuration = (4 + Math.random() * 4) + 's';
+      e.style.animationDelay = (Math.random() * 5) + 's';
+      // Vary ember colors across brand palette
+      var colors = ['#9B2F87','#702263','#6C59A6','#9C8FC4','#491440'];
+      e.style.background = colors[Math.floor(Math.random() * colors.length)];
+      host.appendChild(e);
+    }
+  }
+
+  spawnEmbers('emberDemo', 18);
+
+  // Icon init — retries while the CDN script (or its fallback) is still loading,
+  // instead of throwing once and leaving every icon blank.
+  (function initLucide(tries) {
+    if (window.lucide && typeof lucide.createIcons === 'function') {
+      lucide.createIcons();
+    } else if (tries > 0) {
+      setTimeout(function () { initLucide(tries - 1); }, 250);
+    }
+  })(40);
+</script>
+</body>
+</html>
