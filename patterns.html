@@ -292,16 +292,30 @@
     border: 1px solid var(--border);
   }
   .mood-tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .mood-tile .mood-ph { font-size: 10px; color: var(--dim2); text-align: center; padding: 6px; line-height: 1.4; }
+  .mood-tile .mood-ph {
+    /* Hidden by default — onerror on the <img> switches it to flex when the file is missing */
+    display: none; flex-direction: column; align-items: center; justify-content: center;
+    gap: 6px; width: 100%; height: 100%; padding: 8px;
+  }
+  .mood-letter {
+    font-family: var(--font-display); font-weight: 800; font-size: clamp(18px, 4vw, 32px);
+    color: var(--lavender-light); line-height: 1;
+  }
+  .mood-tile .mood-ph span:last-child {
+    font-family: monospace; font-size: 10px; color: var(--dim2);
+  }
   .mood-tile .mood-num {
     position: absolute; top: 6px; left: 6px; font-size: 9px; font-weight: 700; color: rgba(255,255,255,0.55);
     background: rgba(0,0,0,0.4); padding: 1px 6px; border-radius: 3px; font-family: monospace;
+    z-index: 2;
   }
   .mood-tile.s-2x2 { grid-column: span 2; grid-row: span 2; }
   .mood-tile.s-2x1 { grid-column: span 2; grid-row: span 1; }
   .mood-tile.s-1x2 { grid-column: span 1; grid-row: span 2; }
   .mood-tile.s-3x1 { grid-column: span 3; grid-row: span 1; }
+  .mood-tile.s-4x1 { grid-column: span 4; grid-row: span 1; }
   .mood-tile.s-1x1 { grid-column: span 1; grid-row: span 1; }
+
 
   /* ── BRAND MOTION & LOGO SHOWCASE ── */
 
@@ -876,31 +890,153 @@
            SECTION: PHOTOGRAPHY MOODBOARD
       ═══════════════════════════════════════════════════════ -->
       <h2 class="bs-h2">Photography &amp; key art moodboard</h2>
-      <p class="bs-p">Marked "TBC" in the original one-page brand guide, and critical given thumbnails are the single most active, most inconsistent area of current production work. The grid below is a working moodboard, not a finished spec — drop your own reference images in to replace the placeholder tiles; the deliberately uneven sizing is intentional, the way a real moodboard gets pinned up.</p>
+      <p class="bs-p">A working moodboard — 20 images mixed between portrait and landscape orientations. Upload your images to <code>assets/moodboard/</code> named <strong>a.png through t.png</strong> (a = 01, b = 02, and so on). Each tile already points at the right filename and displays the image automatically once it's in place.</p>
 
       <div class="moodboard-grid" id="moodboardGrid">
-        <div class="mood-tile s-2x2"><span class="mood-num">01</span><div class="mood-ph">Community gathering, warm light</div></div>
-        <div class="mood-tile s-1x1"><span class="mood-num">02</span><div class="mood-ph">Close portrait</div></div>
-        <div class="mood-tile s-1x1"><span class="mood-num">03</span><div class="mood-ph">Hands in prayer</div></div>
-        <div class="mood-tile s-1x2"><span class="mood-num">04</span><div class="mood-ph">Worship, vertical</div></div>
-        <div class="mood-tile s-2x1"><span class="mood-num">05</span><div class="mood-ph">Family at table, wide</div></div>
-        <div class="mood-tile s-1x1"><span class="mood-num">06</span><div class="mood-ph">Texture / fabric</div></div>
-        <div class="mood-tile s-1x1"><span class="mood-num">07</span><div class="mood-ph">Production still</div></div>
-        <div class="mood-tile s-2x2"><span class="mood-num">08</span><div class="mood-ph">Key art, dramatic light</div></div>
-        <div class="mood-tile s-1x1"><span class="mood-num">09</span><div class="mood-ph">Street scene, Lagos</div></div>
-        <div class="mood-tile s-1x1"><span class="mood-num">10</span><div class="mood-ph">Candid laugh</div></div>
-        <div class="mood-tile s-1x2"><span class="mood-num">11</span><div class="mood-ph">On-set, vertical</div></div>
-        <div class="mood-tile s-1x1"><span class="mood-num">12</span><div class="mood-ph">Hands / detail shot</div></div>
-        <div class="mood-tile s-2x1"><span class="mood-num">13</span><div class="mood-ph">Choir / worship wide</div></div>
-        <div class="mood-tile s-1x1"><span class="mood-num">14</span><div class="mood-ph">Color reference</div></div>
-        <div class="mood-tile s-1x1"><span class="mood-num">15</span><div class="mood-ph">Elder portrait</div></div>
-        <div class="mood-tile s-3x1"><span class="mood-num">16</span><div class="mood-ph">Wide establishing shot — diaspora city skyline</div></div>
-        <div class="mood-tile s-1x1"><span class="mood-num">17</span><div class="mood-ph">Children, candid</div></div>
-        <div class="mood-tile s-1x1"><span class="mood-num">18</span><div class="mood-ph">Textile pattern ref</div></div>
-        <div class="mood-tile s-1x1"><span class="mood-num">19</span><div class="mood-ph">Night scene, warm</div></div>
-        <div class="mood-tile s-1x1"><span class="mood-num">20</span><div class="mood-ph">Title card mockup</div></div>
+
+        <!-- a — LANDSCAPE -->
+        <div class="mood-tile s-3x1">
+          <img src="assets/moodboard/a.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
+          <div class="mood-ph"><span class="mood-letter">a</span><span>a.png</span></div>
+          <span class="mood-num">01</span>
+        </div>
+
+        <!-- b — PORTRAIT -->
+        <div class="mood-tile s-1x2">
+          <img src="assets/moodboard/b.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
+          <div class="mood-ph"><span class="mood-letter">b</span><span>b.png</span></div>
+          <span class="mood-num">02</span>
+        </div>
+
+        <!-- c — LANDSCAPE -->
+        <div class="mood-tile s-2x1">
+          <img src="assets/moodboard/c.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
+          <div class="mood-ph"><span class="mood-letter">c</span><span>c.png</span></div>
+          <span class="mood-num">03</span>
+        </div>
+
+        <!-- d — PORTRAIT -->
+        <div class="mood-tile s-1x2">
+          <img src="assets/moodboard/d.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
+          <div class="mood-ph"><span class="mood-letter">d</span><span>d.png</span></div>
+          <span class="mood-num">04</span>
+        </div>
+
+        <!-- e — LANDSCAPE -->
+        <div class="mood-tile s-2x1">
+          <img src="assets/moodboard/e.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
+          <div class="mood-ph"><span class="mood-letter">e</span><span>e.png</span></div>
+          <span class="mood-num">05</span>
+        </div>
+
+        <!-- f — PORTRAIT -->
+        <div class="mood-tile s-1x2">
+          <img src="assets/moodboard/f.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
+          <div class="mood-ph"><span class="mood-letter">f</span><span>f.png</span></div>
+          <span class="mood-num">06</span>
+        </div>
+
+        <!-- g — LANDSCAPE -->
+        <div class="mood-tile s-2x1">
+          <img src="assets/moodboard/g.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
+          <div class="mood-ph"><span class="mood-letter">g</span><span>g.png</span></div>
+          <span class="mood-num">07</span>
+        </div>
+
+        <!-- h — PORTRAIT -->
+        <div class="mood-tile s-1x2">
+          <img src="assets/moodboard/h.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
+          <div class="mood-ph"><span class="mood-letter">h</span><span>h.png</span></div>
+          <span class="mood-num">08</span>
+        </div>
+
+        <!-- i — LANDSCAPE WIDE -->
+        <div class="mood-tile s-3x1">
+          <img src="assets/moodboard/i.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
+          <div class="mood-ph"><span class="mood-letter">i</span><span>i.png</span></div>
+          <span class="mood-num">09</span>
+        </div>
+
+        <!-- j — PORTRAIT -->
+        <div class="mood-tile s-1x2">
+          <img src="assets/moodboard/j.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
+          <div class="mood-ph"><span class="mood-letter">j</span><span>j.png</span></div>
+          <span class="mood-num">10</span>
+        </div>
+
+        <!-- k — LANDSCAPE -->
+        <div class="mood-tile s-2x1">
+          <img src="assets/moodboard/k.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
+          <div class="mood-ph"><span class="mood-letter">k</span><span>k.png</span></div>
+          <span class="mood-num">11</span>
+        </div>
+
+        <!-- l — LANDSCAPE -->
+        <div class="mood-tile s-2x1">
+          <img src="assets/moodboard/l.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
+          <div class="mood-ph"><span class="mood-letter">l</span><span>l.png</span></div>
+          <span class="mood-num">12</span>
+        </div>
+
+        <!-- m — PORTRAIT -->
+        <div class="mood-tile s-1x2">
+          <img src="assets/moodboard/m.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
+          <div class="mood-ph"><span class="mood-letter">m</span><span>m.png</span></div>
+          <span class="mood-num">13</span>
+        </div>
+
+        <!-- n — LANDSCAPE -->
+        <div class="mood-tile s-2x1">
+          <img src="assets/moodboard/n.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
+          <div class="mood-ph"><span class="mood-letter">n</span><span>n.png</span></div>
+          <span class="mood-num">14</span>
+        </div>
+
+        <!-- o — PORTRAIT -->
+        <div class="mood-tile s-1x2">
+          <img src="assets/moodboard/o.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
+          <div class="mood-ph"><span class="mood-letter">o</span><span>o.png</span></div>
+          <span class="mood-num">15</span>
+        </div>
+
+        <!-- p — LANDSCAPE WIDE -->
+        <div class="mood-tile s-4x1">
+          <img src="assets/moodboard/p.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
+          <div class="mood-ph"><span class="mood-letter">p</span><span>p.png</span></div>
+          <span class="mood-num">16</span>
+        </div>
+
+        <!-- q — PORTRAIT -->
+        <div class="mood-tile s-1x2">
+          <img src="assets/moodboard/q.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
+          <div class="mood-ph"><span class="mood-letter">q</span><span>q.png</span></div>
+          <span class="mood-num">17</span>
+        </div>
+
+        <!-- r — PORTRAIT -->
+        <div class="mood-tile s-1x2">
+          <img src="assets/moodboard/r.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
+          <div class="mood-ph"><span class="mood-letter">r</span><span>r.png</span></div>
+          <span class="mood-num">18</span>
+        </div>
+
+        <!-- s — LANDSCAPE -->
+        <div class="mood-tile s-2x1">
+          <img src="assets/moodboard/s.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
+          <div class="mood-ph"><span class="mood-letter">s</span><span>s.png</span></div>
+          <span class="mood-num">19</span>
+        </div>
+
+        <!-- t — LANDSCAPE -->
+        <div class="mood-tile s-2x1">
+          <img src="assets/moodboard/t.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
+          <div class="mood-ph"><span class="mood-letter">t</span><span>t.png</span></div>
+          <span class="mood-num">20</span>
+        </div>
+
       </div>
-      <p class="bs-p" style="font-size:13px;">To replace a tile: swap the placeholder <code>&lt;div class="mood-ph"&gt;</code> inside any <code>.mood-tile</code> in <code>patterns.html</code> for an <code>&lt;img src="..."&gt;</code> pointing at your reference image. Tile sizes (<code>s-1x1</code>, <code>s-2x1</code>, <code>s-1x2</code>, <code>s-2x2</code>, <code>s-3x1</code>) are reusable classes — change which class a tile has to resize it, the grid reflows automatically.</p>
+
+      <p class="bs-p" style="font-size:13px;">Create an <code>assets/moodboard/</code> folder in the repo and upload your 20 images named <strong>a.png</strong> through <strong>t.png</strong>. Portrait images slot into the tall tiles (<code>s-1x2</code>), landscape images into the wide tiles (<code>s-2x1</code>, <code>s-3x1</code>, <code>s-4x1</code>). To swap an orientation, just change the size class on any tile — the grid reflows automatically.</p>
 
       <div class="bs-table-wrap"><table class="bs-table">
         <tr><th>Direction</th><th>Detail</th></tr>
