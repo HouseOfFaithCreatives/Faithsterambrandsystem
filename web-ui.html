@@ -35,12 +35,49 @@
   .state-label { font-size: 11px; color: var(--dim2); text-align: center; margin-top: 6px; }
   .state-item { display: flex; flex-direction: column; align-items: center; }
 
+  /* ── LIVE PROTOTYPE VIEWER ── */
+  .proto-frame {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--surface);
+    margin: var(--sp-4) 0 var(--sp-3);
+  }
+  .proto-chrome {
+    display: flex; align-items: center; gap: var(--sp-3);
+    padding: 10px 14px;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+  }
+  .proto-dots { display: flex; gap: 6px; }
+  .proto-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border); }
+  .proto-url {
+    flex: 1; font-family: monospace; font-size: 11px; color: var(--dim);
+    background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
+    padding: 5px 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .proto-open {
+    font-size: 11px; font-weight: 700; color: var(--lavender-light);
+    text-decoration: none; white-space: nowrap; padding: 5px 10px;
+    border: 1px solid var(--border); border-radius: 6px;
+  }
+  .proto-open:hover { color: var(--cream); border-color: var(--lavender); }
+  .proto-viewport {
+    position: relative; width: 100%; height: 600px; background: #0A0A0F;
+  }
+  .proto-viewport iframe {
+    width: 100%; height: 100%; border: 0; display: block;
+  }
+  .proto-note { font-size: 12px; color: var(--dim2); margin-bottom: var(--sp-8); }
+
   @media (max-width: 640px) {
     .breakpoint-bar { height: auto; flex-direction: column; }
     .bp-seg { padding: 8px 10px; font-size: 11px; }
     .contrast-demo-grid { grid-template-columns: 1fr; gap: var(--sp-3); }
     .contrast-tile { height: auto; padding: var(--sp-4); }
     .state-row { gap: var(--sp-3); }
+    .proto-viewport { height: 420px; }
+    .proto-open { display: none; }
   }
 </style>
 </head>
@@ -58,7 +95,27 @@
 
       <span class="bs-tag new">New — pulled out as its own pillar</span>
 
-      <h2 class="bs-h2" style="margin-top:0;padding-top:0;border-top:none;">Spacing scale</h2>
+      <h2 class="bs-h2" style="margin-top:0;padding-top:0;border-top:none;">Live prototype preview</h2>
+      <p class="bs-p">A working prototype of what the FaithStream site could look like with the new system applied — browse it right here.</p>
+
+      <div class="bs-callout warn">
+        <div class="bs-callout-label">Prototype only</div>
+        <div class="bs-callout-text">This is <strong>not</strong> the live product or a final build — it's an exploratory prototype showing how the brand direction in this system could translate to the real site. Layout, content, and features are all subject to change.</div>
+      </div>
+
+      <div class="proto-frame">
+        <div class="proto-chrome">
+          <div class="proto-dots"><span class="proto-dot"></span><span class="proto-dot"></span><span class="proto-dot"></span></div>
+          <div class="proto-url">hof-nu-indol.vercel.app</div>
+          <a class="proto-open" href="https://hof-nu-indol.vercel.app/#" target="_blank" rel="noopener">Open in new tab ↗</a>
+        </div>
+        <div class="proto-viewport">
+          <iframe src="https://hof-nu-indol.vercel.app/#" title="FaithStream site prototype" loading="lazy" allowfullscreen></iframe>
+        </div>
+      </div>
+      <p class="proto-note">If the preview doesn't load in your browser, <a href="https://hof-nu-indol.vercel.app/#" target="_blank" rel="noopener" style="color:var(--lavender-light);">open the prototype directly</a>.</p>
+
+      <h2 class="bs-h2">Spacing scale</h2>
       <p class="bs-p">A small, predictable set of values every component pulls from, instead of each new screen inventing its own gaps and padding.</p>
       <div class="spacing-demo">
         <div class="spacing-item"><div class="spacing-bar" style="height:4px;"></div><span class="spacing-label">4</span></div>
@@ -112,40 +169,4 @@
 
       <div class="bs-callout">
         <div class="bs-callout-label">Standard</div>
-        <div class="bs-callout-text">Minimum contrast ratio of <strong>4.5:1</strong> for normal text, <strong>3:1</strong> for large/bold text (18px+ or 14px+ bold). For the logo mark specifically, a lower bar of <strong>2.25:1</strong> is acceptable, following Netflix's own published standard for logo-over-image placements — since a logo needs to register, not be read letter by letter.</div>
-      </div>
-
-      <div class="contrast-demo-grid">
-        <div class="contrast-tile contrast-pass" style="background:#0A0A0F;"><span style="color:#F0EEF8;font-weight:700;">Cream on bg</span><span class="ratio" style="color:#4ade80;">17.8:1 — pass</span></div>
-        <div class="contrast-tile contrast-pass" style="background:#0A0A0F;"><span style="color:#9C8FC4;font-weight:700;">Lavender-light on bg</span><span class="ratio" style="color:#4ade80;">6.1:1 — pass</span></div>
-        <div class="contrast-tile contrast-fail" style="background:#491440;"><span style="color:#702263;font-weight:700;">Magenta2 on plum</span><span class="ratio" style="color:#E5484D;">1.4:1 — fail</span></div>
-      </div>
-      <p class="bs-p" style="font-size:13px;">That third combination — a mid-purple on a darker purple — is a realistic mistake to make in a purple-only system precisely because everything is in-family and "looks" related. This is the practical risk of going all-purple: contrast has to be checked deliberately rather than assumed from hue alone.</p>
-
-      <h2 class="bs-h2">Layout grid</h2>
-      <p class="bs-p">The live product's two-zone desktop layout — primary scroll area plus a fixed-width browse panel — should be the reference for any new top-level screen, rather than each new page area inventing its own structure.</p>
-      <div class="bs-table-wrap"><table class="bs-table">
-        <tr><th>Zone</th><th>Width</th><th>Behavior</th></tr>
-        <tr><td>Nav drawer</td><td>260px</td><td>Overlay, slides in from left, closes on backdrop click or Escape</td></tr>
-        <tr><td>Main scroll area</td><td>flex: 1 (fluid)</td><td>Hero + content rails, independent scroll container</td></tr>
-        <tr><td>Browse panel</td><td>256px (210px below 1100px)</td><td>Fixed-width right sidebar, hides below 900px</td></tr>
-        <tr><td>Card rows</td><td>Horizontal scroll, hidden scrollbar except Top 10</td><td><code>scrollbar-width: none</code> on most rails — only Top 10 gets a visible scroll affordance, since it's the one rail users are expected to dig through fully</td></tr>
-      </table></div>
-
-      <div class="bs-pagenav">
-        <a href="components.html" class="bs-pagenav-link">
-          <span class="bs-pagenav-dir">← Back</span>
-          <span class="bs-pagenav-title">04 — Components</span>
-        </a>
-        <a href="governance.html" class="bs-pagenav-link next">
-          <span class="bs-pagenav-dir">Next →</span>
-          <span class="bs-pagenav-title">06 — Governance</span>
-        </a>
-      </div>
-
-    </div>
-  </main>
-</div>
-
-</body>
-</html>
+        <div class="bs-callout-text">Minimum contrast ratio of <strong>4.5:1</strong> for normal text, <strong>3:1</strong> for large/bold text (18px+ or 14px+ bold)
