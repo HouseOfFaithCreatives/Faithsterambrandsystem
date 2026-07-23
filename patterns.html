@@ -279,24 +279,32 @@
   .icon-dim2   { color: var(--dim2); }
 
   /* ── MOODBOARD ── */
-  /* ── Moodboard: 10 pairs (landscape + portrait per thumbnail set) ── */
-  /* ── Moodboard: 20 cards, unified 4-column grid ── */
+  /* ── Moodboard: 20 tiles, tightly-knit mosaic ── */
+  /* A 6-column grid with dense auto-flow. Each tile gets a column/row span
+     modifier (mt-w2/mt-w3 = wider, mt-h2/mt-h3 = taller) so the collage
+     reads as one continuous surface — no visual rhythm of "every other
+     tile is the same size," just an organic, close-fit patchwork like a
+     curated moodboard wall. Landscape tiles lean wide, portrait tiles
+     lean tall, and a handful of "big" tiles of each orientation anchor
+     the composition. */
   .moodboard-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 108px;
+    grid-auto-flow: dense;
+    gap: 5px;
     margin: var(--sp-5) 0 var(--sp-6);
-    align-items: start;   /* rows size to each card's own aspect-ratio */
   }
   .mood-tile {
     border-radius: var(--radius-md); overflow: hidden; position: relative;
     background: var(--surface2); display: flex; align-items: center; justify-content: center;
-    border: 1px solid var(--border); width: 100%;
+    border: 1px solid var(--border); width: 100%; height: 100%;
   }
-  /* Landscape: 16:9 — wide and short */
-  .mood-tile.s-landscape { aspect-ratio: 16 / 9; }
-  /* Portrait: 9:16 — tall and narrow, same width as landscape */
-  .mood-tile.s-portrait  { aspect-ratio: 9 / 16; }
+  /* Span modifiers — mix and match on top of .s-landscape / .s-portrait */
+  .mood-tile.mt-w2 { grid-column: span 2; }
+  .mood-tile.mt-w3 { grid-column: span 3; }
+  .mood-tile.mt-h2 { grid-row: span 2; }
+  .mood-tile.mt-h3 { grid-row: span 3; }
   .mood-tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .mood-tile .mood-ph {
     display: none; flex-direction: column; align-items: center; justify-content: center;
@@ -729,11 +737,11 @@
     .logo-anim-grid { grid-template-columns: repeat(2, 1fr); }
     .kinetic-grid { grid-template-columns: repeat(2, 1fr); }
     .genre-grid { grid-template-columns: repeat(3, 1fr); }
-    .moodboard-grid { grid-template-columns: repeat(3, 1fr); }
+    .moodboard-grid { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 90px; }
   }
   @media (max-width: 760px) {
     .motif-grid { grid-template-columns: repeat(2, 1fr); }
-    .moodboard-grid { grid-template-columns: repeat(2, 1fr); }
+    .moodboard-grid { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 78px; gap: 4px; }
     .icon-set-grid { grid-template-columns: repeat(4, 1fr); }
     .logo-anim-grid { grid-template-columns: 1fr; }
     .kinetic-grid { grid-template-columns: 1fr; }
@@ -742,7 +750,11 @@
   }
   @media (max-width: 480px) {
     .icon-set-grid { grid-template-columns: repeat(3, 1fr); }
-    .moodboard-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+    /* Mosaic gets fiddly at this width — fall back to a clean 2-col grid */
+    .moodboard-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: unset; gap: 6px; }
+    .moodboard-grid .mood-tile { grid-column: span 1 !important; grid-row: span 1 !important; height: auto; }
+    .moodboard-grid .mood-tile.s-landscape { aspect-ratio: 16 / 9; }
+    .moodboard-grid .mood-tile.s-portrait { aspect-ratio: 9 / 16; }
     .motion-bg-grid { grid-template-columns: 1fr; }
     .genre-grid { grid-template-columns: repeat(2, 1fr); }
   }
@@ -898,12 +910,12 @@
 
       <div class="moodboard-grid" id="moodboardGrid">
 
-        <div class="mood-tile s-landscape">
+        <div class="mood-tile s-landscape mt-w3 mt-h2">
           <img src="assets/moodboard/a.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
           <div class="mood-ph"><span class="mood-letter">a</span><span class="file-tag">a.png</span><span class="dim-tag">Landscape</span></div>
           <span class="mood-num">01 · Landscape</span>
         </div>
-        <div class="mood-tile s-portrait">
+        <div class="mood-tile s-portrait mt-h2">
           <img src="assets/moodboard/b.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
           <div class="mood-ph"><span class="mood-letter">b</span><span class="file-tag">b.png</span><span class="dim-tag">Portrait</span></div>
           <span class="mood-num">02 · Portrait</span>
@@ -913,22 +925,22 @@
           <div class="mood-ph"><span class="mood-letter">c</span><span class="file-tag">c.png</span><span class="dim-tag">Landscape</span></div>
           <span class="mood-num">03 · Landscape</span>
         </div>
-        <div class="mood-tile s-portrait">
+        <div class="mood-tile s-portrait mt-w2 mt-h3">
           <img src="assets/moodboard/d.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
           <div class="mood-ph"><span class="mood-letter">d</span><span class="file-tag">d.png</span><span class="dim-tag">Portrait</span></div>
           <span class="mood-num">04 · Portrait</span>
         </div>
-        <div class="mood-tile s-landscape">
+        <div class="mood-tile s-landscape mt-w2">
           <img src="assets/moodboard/e.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
           <div class="mood-ph"><span class="mood-letter">e</span><span class="file-tag">e.png</span><span class="dim-tag">Landscape</span></div>
           <span class="mood-num">05 · Landscape</span>
         </div>
-        <div class="mood-tile s-portrait">
+        <div class="mood-tile s-portrait mt-h2">
           <img src="assets/moodboard/f.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
           <div class="mood-ph"><span class="mood-letter">f</span><span class="file-tag">f.png</span><span class="dim-tag">Portrait</span></div>
           <span class="mood-num">06 · Portrait</span>
         </div>
-        <div class="mood-tile s-landscape">
+        <div class="mood-tile s-landscape mt-w2">
           <img src="assets/moodboard/g.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
           <div class="mood-ph"><span class="mood-letter">g</span><span class="file-tag">g.png</span><span class="dim-tag">Landscape</span></div>
           <span class="mood-num">07 · Landscape</span>
@@ -938,12 +950,12 @@
           <div class="mood-ph"><span class="mood-letter">h</span><span class="file-tag">h.png</span><span class="dim-tag">Portrait</span></div>
           <span class="mood-num">08 · Portrait</span>
         </div>
-        <div class="mood-tile s-landscape">
+        <div class="mood-tile s-landscape mt-w3 mt-h2">
           <img src="assets/moodboard/i.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
           <div class="mood-ph"><span class="mood-letter">i</span><span class="file-tag">i.png</span><span class="dim-tag">Landscape</span></div>
           <span class="mood-num">09 · Landscape</span>
         </div>
-        <div class="mood-tile s-portrait">
+        <div class="mood-tile s-portrait mt-h2">
           <img src="assets/moodboard/j.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
           <div class="mood-ph"><span class="mood-letter">j</span><span class="file-tag">j.png</span><span class="dim-tag">Portrait</span></div>
           <span class="mood-num">10 · Portrait</span>
@@ -953,17 +965,17 @@
           <div class="mood-ph"><span class="mood-letter">k</span><span class="file-tag">k.png</span><span class="dim-tag">Landscape</span></div>
           <span class="mood-num">11 · Landscape</span>
         </div>
-        <div class="mood-tile s-portrait">
+        <div class="mood-tile s-portrait mt-w2 mt-h3">
           <img src="assets/moodboard/l.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
           <div class="mood-ph"><span class="mood-letter">l</span><span class="file-tag">l.png</span><span class="dim-tag">Portrait</span></div>
           <span class="mood-num">12 · Portrait</span>
         </div>
-        <div class="mood-tile s-landscape">
+        <div class="mood-tile s-landscape mt-w2">
           <img src="assets/moodboard/m.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
           <div class="mood-ph"><span class="mood-letter">m</span><span class="file-tag">m.png</span><span class="dim-tag">Landscape</span></div>
           <span class="mood-num">13 · Landscape</span>
         </div>
-        <div class="mood-tile s-portrait">
+        <div class="mood-tile s-portrait mt-h2">
           <img src="assets/moodboard/n.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
           <div class="mood-ph"><span class="mood-letter">n</span><span class="file-tag">n.png</span><span class="dim-tag">Portrait</span></div>
           <span class="mood-num">14 · Portrait</span>
@@ -973,12 +985,12 @@
           <div class="mood-ph"><span class="mood-letter">o</span><span class="file-tag">o.png</span><span class="dim-tag">Landscape</span></div>
           <span class="mood-num">15 · Landscape</span>
         </div>
-        <div class="mood-tile s-portrait">
+        <div class="mood-tile s-portrait mt-h2">
           <img src="assets/moodboard/p.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
           <div class="mood-ph"><span class="mood-letter">p</span><span class="file-tag">p.png</span><span class="dim-tag">Portrait</span></div>
           <span class="mood-num">16 · Portrait</span>
         </div>
-        <div class="mood-tile s-landscape">
+        <div class="mood-tile s-landscape mt-w2">
           <img src="assets/moodboard/q.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
           <div class="mood-ph"><span class="mood-letter">q</span><span class="file-tag">q.png</span><span class="dim-tag">Landscape</span></div>
           <span class="mood-num">17 · Landscape</span>
@@ -988,12 +1000,12 @@
           <div class="mood-ph"><span class="mood-letter">r</span><span class="file-tag">r.png</span><span class="dim-tag">Portrait</span></div>
           <span class="mood-num">18 · Portrait</span>
         </div>
-        <div class="mood-tile s-landscape">
+        <div class="mood-tile s-landscape mt-w3 mt-h2">
           <img src="assets/moodboard/s.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
           <div class="mood-ph"><span class="mood-letter">s</span><span class="file-tag">s.png</span><span class="dim-tag">Landscape</span></div>
           <span class="mood-num">19 · Landscape</span>
         </div>
-        <div class="mood-tile s-portrait">
+        <div class="mood-tile s-portrait mt-h2">
           <img src="assets/moodboard/t.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
           <div class="mood-ph"><span class="mood-letter">t</span><span class="file-tag">t.png</span><span class="dim-tag">Portrait</span></div>
           <span class="mood-num">20 · Portrait</span>
@@ -1001,7 +1013,7 @@
 
       </div>
 
-      <p class="bs-p" style="font-size:13px;">Create an <code>assets/moodboard/</code> folder in the repo and upload 20 images named <strong>a.png through t.png</strong>. Each adjacent pair is one thumbnail set — the odd letter (a, c, e…) is the landscape, the even letter (b, d, f…) is the portrait. The card sizes are fixed by CSS <code>aspect-ratio</code>: landscape is 16:9, portrait is 4:5. Your image fills its card automatically regardless of the source file dimensions.</p>
+      <p class="bs-p" style="font-size:13px;">Create an <code>assets/moodboard/</code> folder in the repo and upload 20 images named <strong>a.png through t.png</strong>. Each adjacent pair is one thumbnail set — the odd letter (a, c, e…) is the landscape, the even letter (b, d, f…) is the portrait. Tile sizes are set by CSS Grid column/row spans (not by the source image's own dimensions), so the mosaic stays tightly packed — your image fills whatever cell it lands in via <code>object-fit: cover</code>, cropping as needed.</p>
 
       <div class="bs-table-wrap"><table class="bs-table">
         <tr><th>Direction</th><th>Detail</th></tr>
@@ -1200,38 +1212,4 @@
         </a>
         <a href="components.html" class="bs-pagenav-link next">
           <span class="bs-pagenav-dir">Next →</span>
-          <span class="bs-pagenav-title">04 — Components</span>
-        </a>
-      </div>
-
-    </div>
-  </main>
-</div>
-
-<script>
-  // ── Ember particles for original ember demo
-  function spawnEmbers(hostId, count) {
-    var host = document.getElementById(hostId);
-    if (!host) return;
-    for (var i = 0; i < count; i++) {
-      var e = document.createElement('div');
-      e.className = 'ember';
-      var size = 3 + Math.random() * 5;
-      e.style.width = size + 'px';
-      e.style.height = size + 'px';
-      e.style.left = (Math.random() * 100) + '%';
-      e.style.animationDuration = (4 + Math.random() * 4) + 's';
-      e.style.animationDelay = (Math.random() * 5) + 's';
-      // Vary ember colors across brand palette
-      var colors = ['#9B2F87','#702263','#6C59A6','#9C8FC4','#491440'];
-      e.style.background = colors[Math.floor(Math.random() * colors.length)];
-      host.appendChild(e);
-    }
-  }
-
-  spawnEmbers('emberDemo', 18);
-
-  lucide.createIcons();
-</script>
-</body>
-</html>
+          <span class="bs
