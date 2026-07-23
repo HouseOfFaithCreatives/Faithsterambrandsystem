@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -169,4 +170,40 @@
 
       <div class="bs-callout">
         <div class="bs-callout-label">Standard</div>
-        <div class="bs-callout-text">Minimum contrast ratio of <strong>4.5:1</strong> for normal text, <strong>3:1</strong> for large/bold text (18px+ or 14px+ bold)
+        <div class="bs-callout-text">Minimum contrast ratio of <strong>4.5:1</strong> for normal text, <strong>3:1</strong> for large/bold text (18px+ or 14px+ bold). For the logo mark specifically, a lower bar of <strong>2.25:1</strong> is acceptable, following Netflix's own published standard for logo-over-image placements — since a logo needs to register, not be read letter by letter.</div>
+      </div>
+
+      <div class="contrast-demo-grid">
+        <div class="contrast-tile contrast-pass" style="background:#0A0A0F;"><span style="color:#F0EEF8;font-weight:700;">Cream on bg</span><span class="ratio" style="color:#4ade80;">17.8:1 — pass</span></div>
+        <div class="contrast-tile contrast-pass" style="background:#0A0A0F;"><span style="color:#9C8FC4;font-weight:700;">Lavender-light on bg</span><span class="ratio" style="color:#4ade80;">6.1:1 — pass</span></div>
+        <div class="contrast-tile contrast-fail" style="background:#491440;"><span style="color:#702263;font-weight:700;">Magenta2 on plum</span><span class="ratio" style="color:#E5484D;">1.4:1 — fail</span></div>
+      </div>
+      <p class="bs-p" style="font-size:13px;">That third combination — a mid-purple on a darker purple — is a realistic mistake to make in a purple-only system precisely because everything is in-family and "looks" related. This is the practical risk of going all-purple: contrast has to be checked deliberately rather than assumed from hue alone.</p>
+
+      <h2 class="bs-h2">Layout grid</h2>
+      <p class="bs-p">The live product's two-zone desktop layout — primary scroll area plus a fixed-width browse panel — should be the reference for any new top-level screen, rather than each new page area inventing its own structure.</p>
+      <div class="bs-table-wrap"><table class="bs-table">
+        <tr><th>Zone</th><th>Width</th><th>Behavior</th></tr>
+        <tr><td>Nav drawer</td><td>260px</td><td>Overlay, slides in from left, closes on backdrop click or Escape</td></tr>
+        <tr><td>Main scroll area</td><td>flex: 1 (fluid)</td><td>Hero + content rails, independent scroll container</td></tr>
+        <tr><td>Browse panel</td><td>256px (210px below 1100px)</td><td>Fixed-width right sidebar, hides below 900px</td></tr>
+        <tr><td>Card rows</td><td>Horizontal scroll, hidden scrollbar except Top 10</td><td><code>scrollbar-width: none</code> on most rails — only Top 10 gets a visible scroll affordance, since it's the one rail users are expected to dig through fully</td></tr>
+      </table></div>
+
+      <div class="bs-pagenav">
+        <a href="components.html" class="bs-pagenav-link">
+          <span class="bs-pagenav-dir">← Back</span>
+          <span class="bs-pagenav-title">04 — Components</span>
+        </a>
+        <a href="governance.html" class="bs-pagenav-link next">
+          <span class="bs-pagenav-dir">Next →</span>
+          <span class="bs-pagenav-title">06 — Governance</span>
+        </a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+</body>
+</html>
