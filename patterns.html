@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -282,52 +280,38 @@
 
   /* ── MOODBOARD ── */
   /* ── Moodboard: 10 pairs (landscape + portrait per thumbnail set) ── */
+  /* ── Moodboard: 20 cards, unified 4-column grid ── */
   .moodboard-grid {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 8px;
     margin: var(--sp-5) 0 var(--sp-6);
-  }
-  .mood-pair {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    align-items: start;   /* let each tile define its own height via aspect-ratio */
-  }
-  .mood-pair-label {
-    grid-column: 1 / -1;
-    font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--dim2); padding: 0 2px;
-  }
-  /* Landscape card: 16:9 */
-  .mood-tile.s-landscape {
-    aspect-ratio: 16 / 9;
-    width: 100%;
-  }
-  /* Portrait card: 4:5 (Instagram portrait, common for key art) */
-  .mood-tile.s-portrait {
-    aspect-ratio: 4 / 5;
-    width: 100%;
+    align-items: start;   /* rows size to each card's own aspect-ratio */
   }
   .mood-tile {
     border-radius: var(--radius-md); overflow: hidden; position: relative;
     background: var(--surface2); display: flex; align-items: center; justify-content: center;
-    border: 1px solid var(--border);
+    border: 1px solid var(--border); width: 100%;
   }
+  /* Landscape: 16:9 — wide and short */
+  .mood-tile.s-landscape { aspect-ratio: 16 / 9; }
+  /* Portrait: 9:16 — tall and narrow, same width as landscape */
+  .mood-tile.s-portrait  { aspect-ratio: 9 / 16; }
   .mood-tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .mood-tile .mood-ph {
     display: none; flex-direction: column; align-items: center; justify-content: center;
     gap: 6px; width: 100%; height: 100%; padding: 12px;
+    position: absolute; inset: 0;
   }
   .mood-letter {
-    font-family: var(--font-display); font-weight: 800; font-size: clamp(22px, 5vw, 42px);
+    font-family: var(--font-display); font-weight: 800; font-size: clamp(18px, 3vw, 32px);
     color: var(--lavender-light); line-height: 1;
   }
   .mood-tile .mood-ph .file-tag {
-    font-family: monospace; font-size: 11px; color: var(--dim2);
+    font-family: monospace; font-size: 10px; color: var(--dim2);
   }
   .mood-tile .mood-ph .dim-tag {
-    font-size: 10px; color: var(--dim2); opacity: 0.6;
+    font-size: 9px; color: var(--dim2); opacity: 0.6;
   }
   .mood-tile .mood-num {
     position: absolute; top: 6px; left: 6px; font-size: 9px; font-weight: 700; color: rgba(255,255,255,0.6);
@@ -745,13 +729,11 @@
     .logo-anim-grid { grid-template-columns: repeat(2, 1fr); }
     .kinetic-grid { grid-template-columns: repeat(2, 1fr); }
     .genre-grid { grid-template-columns: repeat(3, 1fr); }
+    .moodboard-grid { grid-template-columns: repeat(3, 1fr); }
   }
   @media (max-width: 760px) {
     .motif-grid { grid-template-columns: repeat(2, 1fr); }
-    /* moodboard pairs stack on mobile: landscape above, portrait below */
-    .mood-pair { grid-template-columns: 1fr; }
-    .mood-tile.s-landscape { aspect-ratio: 16 / 9; }
-    .mood-tile.s-portrait  { aspect-ratio: 4 / 5; }
+    .moodboard-grid { grid-template-columns: repeat(2, 1fr); }
     .icon-set-grid { grid-template-columns: repeat(4, 1fr); }
     .logo-anim-grid { grid-template-columns: 1fr; }
     .kinetic-grid { grid-template-columns: 1fr; }
@@ -760,6 +742,7 @@
   }
   @media (max-width: 480px) {
     .icon-set-grid { grid-template-columns: repeat(3, 1fr); }
+    .moodboard-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
     .motion-bg-grid { grid-template-columns: 1fr; }
     .genre-grid { grid-template-columns: repeat(2, 1fr); }
   }
@@ -915,144 +898,105 @@
 
       <div class="moodboard-grid" id="moodboardGrid">
 
-        <!-- ── Set 01: a.png (landscape) + b.png (portrait) ── -->
-        <div class="mood-pair">
-        <div class="mood-tile s-landscape"><!-- a.png →  Landscape -->
+        <div class="mood-tile s-landscape">
           <img src="assets/moodboard/a.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
           <div class="mood-ph"><span class="mood-letter">a</span><span class="file-tag">a.png</span><span class="dim-tag">Landscape</span></div>
           <span class="mood-num">01 · Landscape</span>
         </div>
-        <div class="mood-tile s-portrait"><!-- b.png →  Portrait -->
+        <div class="mood-tile s-portrait">
           <img src="assets/moodboard/b.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
           <div class="mood-ph"><span class="mood-letter">b</span><span class="file-tag">b.png</span><span class="dim-tag">Portrait</span></div>
           <span class="mood-num">02 · Portrait</span>
         </div>
-        </div>
-
-        <!-- ── Set 02: c.png (landscape) + d.png (portrait) ── -->
-        <div class="mood-pair">
-        <div class="mood-tile s-landscape"><!-- c.png →  Landscape -->
+        <div class="mood-tile s-landscape">
           <img src="assets/moodboard/c.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
           <div class="mood-ph"><span class="mood-letter">c</span><span class="file-tag">c.png</span><span class="dim-tag">Landscape</span></div>
           <span class="mood-num">03 · Landscape</span>
         </div>
-        <div class="mood-tile s-portrait"><!-- d.png →  Portrait -->
+        <div class="mood-tile s-portrait">
           <img src="assets/moodboard/d.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
           <div class="mood-ph"><span class="mood-letter">d</span><span class="file-tag">d.png</span><span class="dim-tag">Portrait</span></div>
           <span class="mood-num">04 · Portrait</span>
         </div>
-        </div>
-
-        <!-- ── Set 03: e.png (landscape) + f.png (portrait) ── -->
-        <div class="mood-pair">
-        <div class="mood-tile s-landscape"><!-- e.png →  Landscape -->
+        <div class="mood-tile s-landscape">
           <img src="assets/moodboard/e.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
           <div class="mood-ph"><span class="mood-letter">e</span><span class="file-tag">e.png</span><span class="dim-tag">Landscape</span></div>
           <span class="mood-num">05 · Landscape</span>
         </div>
-        <div class="mood-tile s-portrait"><!-- f.png →  Portrait -->
+        <div class="mood-tile s-portrait">
           <img src="assets/moodboard/f.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
           <div class="mood-ph"><span class="mood-letter">f</span><span class="file-tag">f.png</span><span class="dim-tag">Portrait</span></div>
           <span class="mood-num">06 · Portrait</span>
         </div>
-        </div>
-
-        <!-- ── Set 04: g.png (landscape) + h.png (portrait) ── -->
-        <div class="mood-pair">
-        <div class="mood-tile s-landscape"><!-- g.png →  Landscape -->
+        <div class="mood-tile s-landscape">
           <img src="assets/moodboard/g.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
           <div class="mood-ph"><span class="mood-letter">g</span><span class="file-tag">g.png</span><span class="dim-tag">Landscape</span></div>
           <span class="mood-num">07 · Landscape</span>
         </div>
-        <div class="mood-tile s-portrait"><!-- h.png →  Portrait -->
+        <div class="mood-tile s-portrait">
           <img src="assets/moodboard/h.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
           <div class="mood-ph"><span class="mood-letter">h</span><span class="file-tag">h.png</span><span class="dim-tag">Portrait</span></div>
           <span class="mood-num">08 · Portrait</span>
         </div>
-        </div>
-
-        <!-- ── Set 05: i.png (landscape) + j.png (portrait) ── -->
-        <div class="mood-pair">
-        <div class="mood-tile s-landscape"><!-- i.png →  Landscape -->
+        <div class="mood-tile s-landscape">
           <img src="assets/moodboard/i.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
           <div class="mood-ph"><span class="mood-letter">i</span><span class="file-tag">i.png</span><span class="dim-tag">Landscape</span></div>
           <span class="mood-num">09 · Landscape</span>
         </div>
-        <div class="mood-tile s-portrait"><!-- j.png →  Portrait -->
+        <div class="mood-tile s-portrait">
           <img src="assets/moodboard/j.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
           <div class="mood-ph"><span class="mood-letter">j</span><span class="file-tag">j.png</span><span class="dim-tag">Portrait</span></div>
           <span class="mood-num">10 · Portrait</span>
         </div>
-        </div>
-
-        <!-- ── Set 06: k.png (landscape) + l.png (portrait) ── -->
-        <div class="mood-pair">
-        <div class="mood-tile s-landscape"><!-- k.png →  Landscape -->
+        <div class="mood-tile s-landscape">
           <img src="assets/moodboard/k.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
           <div class="mood-ph"><span class="mood-letter">k</span><span class="file-tag">k.png</span><span class="dim-tag">Landscape</span></div>
           <span class="mood-num">11 · Landscape</span>
         </div>
-        <div class="mood-tile s-portrait"><!-- l.png →  Portrait -->
+        <div class="mood-tile s-portrait">
           <img src="assets/moodboard/l.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
           <div class="mood-ph"><span class="mood-letter">l</span><span class="file-tag">l.png</span><span class="dim-tag">Portrait</span></div>
           <span class="mood-num">12 · Portrait</span>
         </div>
-        </div>
-
-        <!-- ── Set 07: m.png (landscape) + n.png (portrait) ── -->
-        <div class="mood-pair">
-        <div class="mood-tile s-landscape"><!-- m.png →  Landscape -->
+        <div class="mood-tile s-landscape">
           <img src="assets/moodboard/m.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
           <div class="mood-ph"><span class="mood-letter">m</span><span class="file-tag">m.png</span><span class="dim-tag">Landscape</span></div>
           <span class="mood-num">13 · Landscape</span>
         </div>
-        <div class="mood-tile s-portrait"><!-- n.png →  Portrait -->
+        <div class="mood-tile s-portrait">
           <img src="assets/moodboard/n.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
           <div class="mood-ph"><span class="mood-letter">n</span><span class="file-tag">n.png</span><span class="dim-tag">Portrait</span></div>
           <span class="mood-num">14 · Portrait</span>
         </div>
-        </div>
-
-        <!-- ── Set 08: o.png (landscape) + p.png (portrait) ── -->
-        <div class="mood-pair">
-        <div class="mood-tile s-landscape"><!-- o.png →  Landscape -->
+        <div class="mood-tile s-landscape">
           <img src="assets/moodboard/o.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
           <div class="mood-ph"><span class="mood-letter">o</span><span class="file-tag">o.png</span><span class="dim-tag">Landscape</span></div>
           <span class="mood-num">15 · Landscape</span>
         </div>
-        <div class="mood-tile s-portrait"><!-- p.png →  Portrait -->
+        <div class="mood-tile s-portrait">
           <img src="assets/moodboard/p.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
           <div class="mood-ph"><span class="mood-letter">p</span><span class="file-tag">p.png</span><span class="dim-tag">Portrait</span></div>
           <span class="mood-num">16 · Portrait</span>
         </div>
-        </div>
-
-        <!-- ── Set 09: q.png (landscape) + r.png (portrait) ── -->
-        <div class="mood-pair">
-        <div class="mood-tile s-landscape"><!-- q.png →  Landscape -->
+        <div class="mood-tile s-landscape">
           <img src="assets/moodboard/q.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
           <div class="mood-ph"><span class="mood-letter">q</span><span class="file-tag">q.png</span><span class="dim-tag">Landscape</span></div>
           <span class="mood-num">17 · Landscape</span>
         </div>
-        <div class="mood-tile s-portrait"><!-- r.png →  Portrait -->
+        <div class="mood-tile s-portrait">
           <img src="assets/moodboard/r.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
           <div class="mood-ph"><span class="mood-letter">r</span><span class="file-tag">r.png</span><span class="dim-tag">Portrait</span></div>
           <span class="mood-num">18 · Portrait</span>
         </div>
-        </div>
-
-        <!-- ── Set 10: s.png (landscape) + t.png (portrait) ── -->
-        <div class="mood-pair">
-        <div class="mood-tile s-landscape"><!-- s.png →  Landscape -->
+        <div class="mood-tile s-landscape">
           <img src="assets/moodboard/s.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
           <div class="mood-ph"><span class="mood-letter">s</span><span class="file-tag">s.png</span><span class="dim-tag">Landscape</span></div>
           <span class="mood-num">19 · Landscape</span>
         </div>
-        <div class="mood-tile s-portrait"><!-- t.png →  Portrait -->
+        <div class="mood-tile s-portrait">
           <img src="assets/moodboard/t.png" alt="" onerror="this.style.display='none';this.parentNode.querySelector('.mood-ph').style.display='flex'">
           <div class="mood-ph"><span class="mood-letter">t</span><span class="file-tag">t.png</span><span class="dim-tag">Portrait</span></div>
           <span class="mood-num">20 · Portrait</span>
-        </div>
         </div>
 
       </div>
