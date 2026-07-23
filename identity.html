@@ -104,6 +104,23 @@
   .clearspace-box::after  { bottom: 4px; right: -16px; }
   .clearspace-box img { height: 40px; width: auto; }
 
+  /* ── Centered / stacked lockup ── */
+  /* One master file (faithstream_stacked_white.png) recolored live via
+     CSS mask — the white PNG acts as a stencil and background-color is
+     the fill. This is how every color variant below is produced from a
+     single asset. */
+  .stacked-fill {
+    display: block;
+    width: 76px;
+    aspect-ratio: 515 / 593;
+    -webkit-mask: url('assets/logo/faithstream_stacked_white.png') no-repeat center / contain;
+    mask: url('assets/logo/faithstream_stacked_white.png') no-repeat center / contain;
+  }
+  .logo-tile.tall { height: 180px; }
+  .logo-bg-tile.stacked-tile { min-height: 170px; }
+  .logo-bg-tile.stacked-tile .stacked-fill { width: 64px; }
+  .misuse-tile .stacked-fill { width: 38px; }
+
   /* ── Misuse grid ── */
   .misuse-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-3); margin: var(--sp-5) 0 var(--sp-8); }
   .misuse-tile {
@@ -505,7 +522,7 @@
       ═══════════════════════════════════════════════════════════ -->
       <h2 class="bs-h2" style="margin-top:0;padding-top:0;border-top:none;">Logo System</h2>
       <span class="bs-tag kept">Live assets — /assets/logo/</span>
-      <p class="bs-p">Nine files, one naming pattern: <code>faithstream_&lt;variant&gt;_&lt;color&gt;.png</code>. Three variants (full lockup, icon only, wordmark only) × three colors (purple, white, black) — plus one square favicon. Full reference list at the bottom of this section.</p>
+      <p class="bs-p">Ten files, one naming pattern: <code>faithstream_&lt;variant&gt;_&lt;color&gt;.png</code>. Three variants (full lockup, icon only, wordmark only) × three colors (purple, white, black) — plus one square favicon and the new centered <strong>stacked lockup</strong> (one white master file, recolored via approved palette fills). Full reference list at the bottom of this section.</p>
 
       <!-- ─── Full lockup — three contexts ─── -->
       <h3 class="bs-h3">Full lockup — three contexts</h3>
@@ -587,6 +604,94 @@
         </div>
 
       </div>
+
+      <!-- ─── Centered / stacked lockup ─── -->
+      <h3 class="bs-h3">Centered / stacked lockup</h3>
+      <span class="bs-tag new">New — vertical lockup added to the system</span>
+      <p class="bs-p">A center-aligned vertical lockup — flame mark on top, "Faith / Stream" stacked beneath — for formats where the horizontal lockup fights the canvas: posters, story covers, app splash screens, square social tiles, event screens, and merchandise. In wide horizontal spaces (nav bars, banners, email headers) the horizontal lockup remains the default; the stacked version is never a substitute there.</p>
+
+      <div class="logo-demo-grid">
+        <div class="logo-tile tall dark">
+          <span class="stacked-fill" style="background:#9B2F87;" role="img" aria-label="FaithStream stacked logo, magenta, on dark"></span>
+          <div class="logo-tile-label">Dark bg · magenta fill</div>
+        </div>
+        <div class="logo-tile tall surface">
+          <span class="stacked-fill" style="background:#fff;" role="img" aria-label="FaithStream stacked logo, white, on surface"></span>
+          <div class="logo-tile-label">Surface bg · white fill</div>
+        </div>
+        <div class="logo-tile tall light">
+          <span class="stacked-fill" style="background:#0A0A0F;" role="img" aria-label="FaithStream stacked logo, black, on light"></span>
+          <div class="logo-tile-label">Light bg · black fill</div>
+        </div>
+      </div>
+
+      <div class="bs-callout">
+        <div class="bs-callout-label">One master file, many fills</div>
+        <div class="bs-callout-text">Only one file exists for this lockup: <code>faithstream_stacked_white.png</code> (white, transparent background). Every color version on this page is generated live by using that PNG as a CSS mask and filling it with a brand color — so the color always comes from the palette tokens, never from a re-export that could drift. Designers working outside the browser should recolor the white master in their tool using the exact hex shown on each tile. Approved fills: <strong>White #FFFFFF · Black #0A0A0F · Magenta #9B2F87 · Plum #491440</strong>. Nothing else.</div>
+      </div>
+
+      <h3 class="bs-h3" style="font-size:14px;">Stacked lockup on every brand background</h3>
+      <p class="bs-p">Same eight canonical backgrounds as the horizontal grid above — each labeled with the correct fill color for the stacked version.</p>
+      <div class="logo-bg-grid">
+
+        <!-- Black #0A0A0F -->
+        <div class="logo-bg-tile stacked-tile" style="background:#0A0A0F;">
+          <span class="stacked-fill" style="background:#9B2F87;" role="img" aria-label="Stacked logo on black"></span>
+          <div class="logo-bg-label-name" style="color:#9C8FC4;">Black</div>
+          <div class="logo-bg-label-file" style="color:#6C59A6;">fill: #9B2F87</div>
+        </div>
+
+        <!-- Deep Surface #111118 -->
+        <div class="logo-bg-tile stacked-tile" style="background:#111118;">
+          <span class="stacked-fill" style="background:#9B2F87;" role="img" aria-label="Stacked logo on surface"></span>
+          <div class="logo-bg-label-name" style="color:#9C8FC4;">Deep Surface</div>
+          <div class="logo-bg-label-file" style="color:#6C59A6;">fill: #9B2F87</div>
+        </div>
+
+        <!-- Plum #491440 -->
+        <div class="logo-bg-tile stacked-tile" style="background:#491440;">
+          <span class="stacked-fill" style="background:#fff;" role="img" aria-label="Stacked logo on plum"></span>
+          <div class="logo-bg-label-name" style="color:#DCD6EC;">Plum</div>
+          <div class="logo-bg-label-file" style="color:#9C8FC4;">fill: #FFFFFF</div>
+        </div>
+
+        <!-- Magenta #9B2F87 -->
+        <div class="logo-bg-tile stacked-tile" style="background:#9B2F87;">
+          <span class="stacked-fill" style="background:#fff;" role="img" aria-label="Stacked logo on magenta"></span>
+          <div class="logo-bg-label-name" style="color:#F0EEF8;">Magenta</div>
+          <div class="logo-bg-label-file" style="color:#DCD6EC;">fill: #FFFFFF</div>
+        </div>
+
+        <!-- Lavender #6C59A6 -->
+        <div class="logo-bg-tile stacked-tile" style="background:#6C59A6;">
+          <span class="stacked-fill" style="background:#fff;" role="img" aria-label="Stacked logo on lavender"></span>
+          <div class="logo-bg-label-name" style="color:#F0EEF8;">Lavender</div>
+          <div class="logo-bg-label-file" style="color:#DCD6EC;">fill: #FFFFFF</div>
+        </div>
+
+        <!-- Lavender Pale #DCD6EC -->
+        <div class="logo-bg-tile stacked-tile" style="background:#DCD6EC;">
+          <span class="stacked-fill" style="background:#491440;" role="img" aria-label="Stacked logo on lavender pale"></span>
+          <div class="logo-bg-label-name" style="color:#491440;">Lavender Pale</div>
+          <div class="logo-bg-label-file" style="color:#702263;">fill: #491440</div>
+        </div>
+
+        <!-- Cream #F0EEF8 -->
+        <div class="logo-bg-tile stacked-tile" style="background:#F0EEF8;">
+          <span class="stacked-fill" style="background:#0A0A0F;" role="img" aria-label="Stacked logo on cream"></span>
+          <div class="logo-bg-label-name" style="color:#491440;">Cream</div>
+          <div class="logo-bg-label-file" style="color:#702263;">fill: #0A0A0F</div>
+        </div>
+
+        <!-- White #fff -->
+        <div class="logo-bg-tile stacked-tile" style="background:#fff;">
+          <span class="stacked-fill" style="background:#0A0A0F;" role="img" aria-label="Stacked logo on white"></span>
+          <div class="logo-bg-label-name" style="color:#491440;">White</div>
+          <div class="logo-bg-label-file" style="color:#702263;">fill: #0A0A0F</div>
+        </div>
+
+      </div>
+      <p class="bs-p" style="font-size:13px;">Same logic as the horizontal grid: magenta fill carries the brand on the two darkest neutrals, white takes over on saturated purple backgrounds, and the darkest fills (plum on lavender pale, near-black on cream/white) handle light surfaces. The logo-contrast floor of 2.25:1 (see accessibility standard on the Web &amp; UI page) applies to every pairing shown.</p>
 
       <!-- ─── Logo size scale ─── -->
       <h3 class="bs-h3">Size scale</h3>
@@ -867,6 +972,44 @@
 
       </div>
 
+      <!-- ─── Stacked lockup misuse ─── -->
+      <p class="bs-p" style="margin-top:calc(-1 * var(--sp-4));">Stacked-lockup-specific violations — the vertical version introduces its own failure modes:</p>
+      <div class="misuse-grid">
+
+        <!-- Stacked crammed into a horizontal bar -->
+        <div class="misuse-item">
+          <div class="misuse-tile" style="flex-direction:column;justify-content:center;gap:0;">
+            <div style="width:88%;height:26px;background:#111118;border:1px solid rgba(255,255,255,0.1);border-radius:5px;display:flex;align-items:center;padding:0 8px;gap:8px;overflow:hidden;">
+              <span class="stacked-fill" style="background:#9B2F87;width:20px;flex-shrink:0;"></span>
+              <span style="font-size:7px;color:rgba(255,255,255,0.35);white-space:nowrap;">Home &nbsp; Series &nbsp; Movies &nbsp; Live</span>
+            </div>
+          </div>
+          <div class="misuse-label">Don't force the stacked lockup into wide horizontal spaces — use the horizontal lockup</div>
+        </div>
+
+        <!-- Mixing lockups -->
+        <div class="misuse-item">
+          <div class="misuse-tile" style="gap:10px;">
+            <span class="stacked-fill" style="background:#9B2F87;width:30px;"></span>
+            <img src="assets/logo/faithstream_full_purple.png" alt="" style="height:22px;width:auto;">
+          </div>
+          <div class="misuse-label">Don't mix stacked and horizontal lockups in one composition</div>
+        </div>
+
+        <!-- Stretched wide -->
+        <div class="misuse-item">
+          <div class="misuse-tile"><span class="stacked-fill" style="background:#9B2F87;transform:scaleX(1.7);"></span></div>
+          <div class="misuse-label">Don't stretch the stacked lockup to fill width</div>
+        </div>
+
+        <!-- Gradient / off-palette fill -->
+        <div class="misuse-item">
+          <div class="misuse-tile"><span class="stacked-fill" style="background:linear-gradient(135deg,#f59e0b,#ef4444,#8b5cf6);"></span></div>
+          <div class="misuse-label">Don't fill with gradients or off-palette colors — flat brand fills only</div>
+        </div>
+
+      </div>
+
       <!-- ─── Full file reference ─── -->
       <h3 class="bs-h3">Full file reference</h3>
       <div class="bs-table-wrap"><table class="bs-table">
@@ -879,6 +1022,7 @@
         <tr><td><code>faithstream_icon_black.png</code></td><td>Flame mark only, black <em>(no badge — see flag)</em></td><td>Light backgrounds; pending badge fix</td></tr>
         <tr><td><code>faithstream_wordmark_purple.png</code></td><td>Text only, full color</td><td>Partnership lockups, tight horizontal spaces, light-mode</td></tr>
         <tr><td><code>faithstream_wordmark_white.png</code></td><td>Text only, white</td><td>Same, on dark backgrounds</td></tr>
+        <tr><td><code>faithstream_stacked_white.png</code></td><td>Centered vertical lockup — mark above stacked wordmark, white</td><td>Posters, story covers, splash screens, square tiles, merch. Master file for all stacked color fills — recolor with approved palette fills only (see stacked section)</td></tr>
         <tr><td><code>faithstream_favicon.png</code></td><td>Square icon, pre-sized</td><td>Browser tab, PWA icon, social preview fallback</td></tr>
       </table></div>
 
