@@ -3,196 +3,280 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>House of Faith — Intranet</title>
-<link rel="icon" type="image/png" href="assets/logo/faithstream_favicon.png">
+<title>FaithStream Brand System — Overview</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/tokens.css">
+<style>
+  .cover-hero {
+    padding: var(--sp-16) 0 var(--sp-10);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: var(--sp-10);
+  }
+  .cover-meta {
+    display: flex; gap: var(--sp-6); margin-top: var(--sp-6);
+    font-size: 13px; color: var(--dim2);
+  }
+  .cover-meta span strong { color: var(--dim); font-weight: 600; }
+
+  /* ── Why the old guide section ── */
+  .old-vs-new {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    border: 1px solid var(--border); border-radius: var(--radius-lg);
+    overflow: hidden; margin: var(--sp-6) 0 var(--sp-8);
+  }
+  .ovn-col { padding: var(--sp-6) var(--sp-7); }
+  .ovn-col.old { background: var(--surface2); border-right: 1px solid var(--border); }
+  .ovn-col.new { background: rgba(155,47,135,0.06); }
+  .ovn-head {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase;
+    margin-bottom: var(--sp-5); padding-bottom: var(--sp-4); border-bottom: 1px solid var(--border);
+  }
+  .ovn-head.old-head { color: var(--dim2); }
+  .ovn-head.new-head { color: var(--magenta); }
+  .ovn-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .ovn-dot.old { background: var(--dim2); }
+  .ovn-dot.new { background: var(--magenta); }
+  .ovn-item {
+    display: flex; gap: 10px; align-items: flex-start;
+    padding: var(--sp-3) 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-size: 13px; line-height: 1.5;
+  }
+  .ovn-item:last-child { border-bottom: none; }
+  .ovn-icon { flex-shrink: 0; margin-top: 2px; font-size: 12px; width: 16px; text-align: center; }
+  .ovn-text { color: var(--dim); }
+  .ovn-text strong { color: var(--cream); font-weight: 600; display: block; }
+
+  .gap-evidence {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4);
+    margin: var(--sp-6) 0 var(--sp-8);
+  }
+  .gap-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+    padding: var(--sp-5); position: relative; overflow: hidden;
+  }
+  .gap-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--magenta), var(--lavender));
+  }
+  .gap-num {
+    font-family: var(--font-display); font-weight: 800; font-size: 32px;
+    color: rgba(155,47,135,0.15); line-height: 1; margin-bottom: var(--sp-3);
+  }
+  .gap-title { font-size: 14px; font-weight: 700; color: var(--cream); margin-bottom: 6px; }
+  .gap-body { font-size: 12.5px; color: var(--dim); line-height: 1.65; }
+  .gap-evidence-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--magenta); background: rgba(155,47,135,0.12); border: 1px solid rgba(155,47,135,0.2);
+    padding: 3px 8px; border-radius: 4px; display: inline-block; margin-top: 8px;
+  }
+
+  @media (max-width: 760px) {
+    .old-vs-new { grid-template-columns: 1fr; }
+    .ovn-col.old { border-right: none; border-bottom: 1px solid var(--border); }
+    .gap-evidence { grid-template-columns: 1fr; }
+  }
+
+  .toc-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sp-4);
+    margin: var(--sp-6) 0 var(--sp-12);
+  }
+  .toc-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+    padding: var(--sp-6); transition: border-color 0.18s, transform 0.18s; cursor: pointer;
+  }
+  .toc-card:hover { border-color: rgba(155,47,135,0.4); transform: translateY(-2px); }
+  .toc-num { font-family: var(--font-display); font-size: 13px; font-weight: 800; color: var(--magenta); margin-bottom: var(--sp-3); }
+  .toc-title { font-family: var(--font-display); font-size: 19px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+  .toc-desc { font-size: 13.5px; line-height: 1.6; color: var(--dim); }
+
+  .principle-row {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-5);
+    margin: var(--sp-6) 0 var(--sp-10);
+  }
+  .principle {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+    padding: var(--sp-6);
+  }
+  .principle-icon {
+    width: 40px; height: 40px; border-radius: 10px; background: rgba(155,47,135,0.15);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--magenta); font-family: var(--font-display); font-weight: 800; font-size: 16px;
+    margin-bottom: var(--sp-4);
+  }
+  .principle h4 { font-size: 15px; color: var(--cream); margin-bottom: 8px; font-weight: 700; }
+  .principle p { font-size: 13.5px; color: var(--dim); line-height: 1.6; }
+
+  @media (max-width: 760px) {
+    .toc-grid, .principle-row { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
-<body>
+<body data-page="index">
 
-<!-- ══ NAV ══ -->
-<header class="nav">
-  <div class="nav-inner">
-    <a class="nav-brand" href="index.html">
-      <img src="assets/logo/faithstream_icon_white.png" alt="House of Faith">
-      <span class="nav-brand-name">House of Faith</span>
-      <span class="nav-brand-tag">Intranet</span>
-    </a>
-    <nav class="nav-links">
-      <a class="nav-link active" href="index.html">Home</a>
-      <div class="nav-item">
-        <a class="nav-link" href="team.html">Team <span class="caret">&#9662;</span></a>
-        <div class="dropdown">
-          <a href="team.html#meet-the-team">Meet the Team</a>
-          <a href="hr.html">HR</a>
-          <a href="tech.html">Tech</a>
-          <a href="content.html">Content</a>
-          <a href="fundraising.html">Fundraising</a>
-          <a href="marketing.html">Marketing</a>
-          <a href="ops.html">Ops</a>
-          <a href="executive-office.html">Executive Office</a>
+<div class="bs-shell">
+  <script src="assets/sidebar.js"></script>
+
+  <main class="bs-main">
+    <div class="bs-page">
+
+      <div class="cover-hero">
+        <div class="bs-kicker">FaithStream / House of Faith — Complete Brand System</div>
+        <h1 class="bs-h1">A build-up, not a rebrand.</h1>
+        <p class="bs-lede">This is the full reference for how the FaithStream brand looks, sounds, and behaves — across marketing, the web platform, and the mobile app. Every section is grounded in what's already shipped: the existing logo, the existing purple palette, the existing Inter/Syne type pairing already running in production. This document fills in the rules, range, and detail around what's there — it does not replace it.</p>
+        <div class="cover-meta">
+          <span>Version <strong>1.0</strong></span>
+          <span>Status <strong>Draft for review</strong></span>
+      
         </div>
       </div>
-      <div class="nav-item">
-        <a class="nav-link" href="management.html">Management <span class="caret">&#9662;</span></a>
-        <div class="dropdown">
-          <a href="management.html#mgt-team">MGT Team</a>
-          <a href="management.html#documents">Documents</a>
-          <a href="management.html#offsite">HOF Offsite</a>
+
+      <!-- ═══ WHY THE OLD GUIDE ISN'T ENOUGH ═══ -->
+      <h2 class="bs-h2" style="margin-top:0;padding-top:0;border-top:none;">Why the one-page guide reached its limit</h2>
+      <p class="bs-p">FaithStream launched with a one-page mini brand guide — the right tool for that stage. It established the logo, named four colors, pointed to a typeface, and got a product shipped. That job is done. What a one-page guide cannot do is serve a growing product, a production team creating thumbnails weekly, a developer building new screens, and a marketing team running campaigns — all at the same time, all consistently. The gaps it left behind showed up in the live product before this system was started.</p>
+
+      <div class="old-vs-new">
+        <div class="ovn-col old">
+          <div class="ovn-head old-head"><span class="ovn-dot old"></span>The mini guide — what it covered</div>
+          <div class="ovn-item"><span class="ovn-icon">○</span><div class="ovn-text"><strong>Logo — one context</strong>Primary logo on dark. No icon-only rules, no light-mode variant, no minimum size, no co-brand guidance.</div></div>
+          <div class="ovn-item"><span class="ovn-icon">○</span><div class="ovn-text"><strong>4 color tokens</strong>Named plum, magenta, lavender, cream. No tints, no shades, no usage rules — nothing to prevent an unrelated color from slipping in.</div></div>
+          <div class="ovn-item"><span class="ovn-icon">○</span><div class="ovn-text"><strong>Typography — named, not ruled</strong>Miller Text named for the wordmark. No system for what to use in headlines, UI, or body copy. No scale.</div></div>
+          <div class="ovn-item"><span class="ovn-icon">○</span><div class="ovn-text"><strong>Photography — "TBC"</strong>Direction explicitly marked as to-be-confirmed. Left open.</div></div>
+          <div class="ovn-item"><span class="ovn-icon">○</span><div class="ovn-text"><strong>No misuse rules</strong>Described in prose only. No visual gallery, no examples of what wrong looks like.</div></div>
+          <div class="ovn-item"><span class="ovn-icon">○</span><div class="ovn-text"><strong>No motifs or patterns</strong>No graphic language beyond the logo. Nothing to fill a background, a banner, or a loading state.</div></div>
+          <div class="ovn-item"><span class="ovn-icon">○</span><div class="ovn-text"><strong>No UI or component rules</strong>Nothing about how the brand behaves inside a button, a card, a modal, or a mobile tab bar.</div></div>
+          <div class="ovn-item"><span class="ovn-icon">○</span><div class="ovn-text"><strong>No governance</strong>No process for what happens when a new situation isn't covered, or when the guide itself needs updating.</div></div>
+        </div>
+        <div class="ovn-col new">
+          <div class="ovn-head new-head"><span class="ovn-dot new"></span>This system — what it covers</div>
+          <div class="ovn-item"><span class="ovn-icon" style="color:var(--magenta);">✓</span><div class="ovn-text"><strong>Logo system — 9 files, every context</strong>Full lockup, icon, and wordmark in purple/white/black. Clear space rules, size scale, co-brand guidance, and a visual misuse gallery with 20+ documented violations.</div></div>
+          <div class="ovn-item"><span class="ovn-icon" style="color:var(--magenta);">✓</span><div class="ovn-text"><strong>Full purple range — 12 tokens</strong>Four core tokens expanded into a complete range of tints and shades, all inside the same hue family. Usage rule documented so no unrelated color gets a foothold.</div></div>
+          <div class="ovn-item"><span class="ovn-icon" style="color:var(--magenta);">✓</span><div class="ovn-text"><strong>Typography system — Syne + Inter</strong>Two-family system already running in the live product, now formalized. Five-level scale, role for every weight, and real in-context examples: flyer, hero banner, card overlay, notification.</div></div>
+          <div class="ovn-item"><span class="ovn-icon" style="color:var(--magenta);">✓</span><div class="ovn-text"><strong>Photography direction — documented</strong>Tone, subject matter, color grading, and representation rules. Working moodboard with 20 reference slots.</div></div>
+          <div class="ovn-item"><span class="ovn-icon" style="color:var(--magenta);">✓</span><div class="ovn-text"><strong>Misuse gallery — visual, not prose</strong>Every violation shown on the real logo files with CSS-applied effects. Removes all ambiguity.</div></div>
+          <div class="ovn-item"><span class="ovn-icon" style="color:var(--magenta);">✓</span><div class="ovn-text"><strong>12 graphic motifs</strong>Radiance, Woven, Bokeh, Diamond Lattice, Constellation and seven more — all pure CSS, rooted in faith and African visual culture, ready to use immediately.</div></div>
+          <div class="ovn-item"><span class="ovn-icon" style="color:var(--magenta);">✓</span><div class="ovn-text"><strong>Full component library</strong>Every live UI piece documented: 9 button variants, 3 sizes, all states. Cards, modals, nav, forms, toggles, toasts, avatars, skeletons, empty states, donation CTA.</div></div>
+          <div class="ovn-item"><span class="ovn-icon" style="color:var(--magenta);">✓</span><div class="ovn-text"><strong>Governance chapter</strong>File conventions, naming patterns, approval path, and a clear process for what to do when something new isn't covered.</div></div>
         </div>
       </div>
-    </nav>
-    <div class="nav-burger" id="burger" role="button" aria-label="Menu" tabindex="0">
-      <span></span><span></span><span></span>
-    </div>
-  </div>
-  <div class="mobile-menu" id="mobileMenu">
-    <a class="active" href="index.html">Home</a>
-    <div class="group-label">Team</div>
-    <a class="sub" href="team.html#meet-the-team">Meet the Team</a>
-    <a class="sub" href="hr.html">HR</a>
-    <a class="sub" href="tech.html">Tech</a>
-    <a class="sub" href="content.html">Content</a>
-    <a class="sub" href="fundraising.html">Fundraising</a>
-    <a class="sub" href="marketing.html">Marketing</a>
-    <a class="sub" href="ops.html">Ops</a>
-    <a class="sub" href="executive-office.html">Executive Office</a>
-    <div class="group-label">Management</div>
-    <a class="sub" href="management.html#mgt-team">MGT Team</a>
-    <a class="sub" href="management.html#documents">Documents</a>
-  </div>
-</header>
 
-<!-- ══ HERO ══ -->
-<section class="hero">
-  <img class="hero-mark" src="assets/logo/faithstream_icon_white.png" alt="" aria-hidden="true">
-  <div class="hero-inner">
-    <div class="hero-kicker">Welcome to the Intranet</div>
-    <div class="hero-frame">
-      <h1 class="hero-title">House of Faith</h1>
-    </div>
-    <p class="hero-sub">Faith-based media &amp; technology — transforming Christian entertainment through world-class storytelling and purpose-driven content.</p>
-  </div>
-</section>
+      <h3 class="bs-h3">What the gaps produced in the live product</h3>
+      <p class="bs-p">These aren't hypothetical risks. Each finding below was found in the FaithStream product code before this system was started — direct evidence of what happens when a team builds fast without a documented standard to pull from.</p>
 
-<!-- ══ FOUNDERS ══ -->
-<section class="section" id="team">
-  <div class="container">
-    <div class="section-kicker">Leadership</div>
-    <h2 class="section-title">Our Founders</h2>
-    <div class="founders-grid">
-      <article class="person-card">
-        <div class="person-photo"><img src="assets/img/kunle.jpg" alt="Pastor Kunle Falodun"></div>
-        <div class="person-info">
-          <h3 class="person-name">Pastor Kunle Falodun</h3>
-          <div class="person-role">CEO / Co-Founder</div>
+      <div class="gap-evidence">
+        <div class="gap-card">
+          <div class="gap-num">01</div>
+          <div class="gap-title">Unrelated colors entered the codebase</div>
+          <div class="gap-body">The browse panel's five genre tiles used gradients spanning blue, green, and brown — hue families with no relationship to the purple brand. Without a documented color rule, each gradient was invented individually. The new system replaces all five with purple-family gradients.</div>
+          <div class="gap-evidence-label">Found in live code — .bg-thumb.g1–g5</div>
         </div>
-      </article>
-      <article class="person-card">
-        <div class="person-photo"><img src="assets/img/hakeem.jpg" alt="Mr. Hakeem Condotti"></div>
-        <div class="person-info">
-          <h3 class="person-name">Mr. Hakeem Condotti</h3>
-          <div class="person-role">Co-Founder</div>
+        <div class="gap-card">
+          <div class="gap-num">02</div>
+          <div class="gap-title">A third typeface appeared with no decision behind it</div>
+          <div class="gap-body">One hero slide used Cinzel — a serif display face that appears nowhere in the brand guide and nowhere else in the product. It arrived for a single moment of flourish, and was never removed. The new system flags it for retirement and formalizes the two-family rule: Syne + Inter, everywhere, no exceptions.</div>
+          <div class="gap-evidence-label">Found in live code — .hero-tagline</div>
         </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ══ ABOUT ══ -->
-<section class="section">
-  <div class="container">
-    <div class="about-card">
-      <div class="about-label">A Little About Us</div>
-      <p><strong>House of Faith</strong> is a faith-based media and technology company founded by <strong>Pastor Kunle Falodun</strong> and <strong>Hakeem Condotti</strong>. The organization is committed to transforming Christian entertainment through world-class storytelling, innovative technology, and purpose-driven content that reflects biblical values and authentic African perspectives.</p>
-      <p>Through films, television series, podcasts, devotionals, books, live events, and digital platforms, House of Faith is building an ecosystem that inspires, uplifts, and connects audiences across Africa and the global diaspora.</p>
-      <p><strong>FaithStream</strong>, House of Faith's flagship streaming platform, brings together inspiring, family-friendly Christian content in one place. <strong>You</strong> can download the app from the <strong>Google Play Store</strong> or the <strong>Apple App Store</strong> to enjoy movies, series, devotionals, and more — anytime, anywhere.</p>
-      <a class="about-cta" href="#team">Want to know more about your team? &rarr;</a>
-    </div>
-  </div>
-</section>
-
-<!-- ══ FAITHSTREAM ══ -->
-<section class="section">
-  <div class="container">
-    <div class="fs-feature">
-      <div class="fs-copy">
-        <img class="fs-logo" src="assets/logo/faithstream_full_white.png" alt="FaithStream">
-        <h2 class="fs-title">Welcome to <em>FaithStream</em></h2>
-        <p>Africa's first premium faith-based streaming platform. Movies, series, animation, and devotionals that inspire — from <strong>Tower of Babel</strong> to the <strong>Top&nbsp;10</strong> trending titles, all in one app.</p>
-        <div class="fs-badges">
-          <a class="fs-badge" href="https://play.google.com/store/search?q=faithstream&c=apps" target="_blank" rel="noopener">&#9654;&#xFE0E; Google Play Store</a>
-          <a class="fs-badge" href="https://www.apple.com/app-store/" target="_blank" rel="noopener">&#63743; Apple App Store</a>
+  
+        <div class="gap-card">
+          <div class="gap-num">03</div>
+          <div class="gap-title">Icon names broke across a Lucide version update</div>
+          <div class="gap-body">Three nav drawer icons (Series, Worship, Podcasts) used <code>tv-2</code>, <code>music-4</code>, and <code>mic-2</code> — names that Lucide has since renamed. Without documented icon names, the breakage went unnoticed. The new system documents every icon name actually in use.</div>
+          <div class="gap-evidence-label">Found in live code — nav drawer icon names</div>
+        </div>
+        
+        <div class="gap-card">
+          <div class="gap-num">04</div>
+          <div class="gap-title">Logo export inconsistency across icon variants</div>
+          <div class="gap-body">The purple icon file includes the full circular badge, but the white and black icon files are the bare flame mark only — no badge. The result is three "icon" files that aren't interchangeable. The new system flags this for a re-export and documents exactly which file to use in each context until that fix lands.</div>
+          <div class="gap-evidence-label">Found in /assets/logo/ — icon variant exports</div>
+        </div>
+        <div class="gap-card">
+          <div class="gap-num">05</div>
+          <div class="gap-title">No misuse rules meant no shared definition of "wrong"</div>
+          <div class="gap-body">The mini guide described logo rules in prose. Prose rules don't stop anyone from rotating the logo 20 degrees on a banner, placing it on a low-contrast magenta background, or stretching it to fill a space. The new system has a visual gallery of exactly 20+ documented violations — using the real logo files — so there is no ambiguity about what wrong looks like.</div>
+          <div class="gap-evidence-label">Gap in mini guide — no misuse gallery</div>
         </div>
       </div>
-      <div class="fs-phone">
-        <img src="assets/img/faithstream_phone.png" alt="FaithStream app on a phone">
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ══ VIDEOS ══ -->
-<section class="section">
-  <div class="container">
-    <div class="section-kicker">Watch</div>
-    <h2 class="section-title">From the FaithStream Launch</h2>
-    <div class="videos-grid">
-      <div class="video-card">
-        <div class="video-thumb">
-          <iframe src="https://www.youtube-nocookie.com/embed/4sjfrMAdQpQ" title="Kunle Falodun on Faith, Media &amp; Purpose | FaithStream Launch Lagos" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      <div class="bs-callout">
+        <div class="bs-callout-label">Why this should be the standard going forward</div>
+        <div class="bs-callout-text">A one-page guide is a starting point, not an operating document. FaithStream now has a production team shipping thumbnails weekly, developers building new screens, and marketing creating campaign assets — all working in parallel. At that scale, a guide that lives in one PDF and covers four colors and a logo is not a brand system: it is a note. This document is the system. It is grounded in what has already shipped, it documents the decisions the team has already made implicitly, and it gives every role — design, development, content, marketing — a single place to pull from rather than improvising per project. Adopting it as the standard does not require anyone to rebuild anything. It requires the team to stop building around it and start building from it.</div>
+      </div>
+
+      <h2 class="bs-h2">How this system is organized</h2>
+      <p class="bs-p">Six sections, each a separate page so it stays usable as a working reference rather than a document you read once. Click into any section from the sidebar at any time.</p>
+
+      <div class="toc-grid">
+        <div class="toc-card" onclick="location.href='foundations.html'">
+          <div class="toc-num">01 — STRATEGY</div>
+          <div class="toc-title">Foundations</div>
+          <div class="toc-desc">Mission, brand pillars, tone of voice, audience definition, and the map from what we stand for to what it should look like.</div>
         </div>
-        <div class="video-info">
-          <div class="video-title">Kunle Falodun on Faith, Media &amp; Purpose | FaithStream Launch Lagos</div>
-          <div class="video-channel"><img src="assets/logo/faithstream_icon_purple.png" alt="">The Faith Stream</div>
+        <div class="toc-card" onclick="location.href='identity.html'">
+          <div class="toc-num">02 — VISUAL IDENTITY</div>
+          <div class="toc-title">Logo, Color & Type</div>
+          <div class="toc-desc">Logo system and misuse rules, the full purple color range reconciled with the live product tokens, and the Inter/Syne typography system.</div>
+        </div>
+        <div class="toc-card" onclick="location.href='patterns.html'">
+          <div class="toc-num">03 — VISUAL IDENTITY</div>
+          <div class="toc-title">Motifs & Imagery</div>
+          <div class="toc-desc">Graphic motifs, photography and key-art direction, genre/category color coding, and motion language.</div>
+        </div>
+        <div class="toc-card" onclick="location.href='components.html'">
+          <div class="toc-num">04 — PRODUCT</div>
+          <div class="toc-title">Components</div>
+          <div class="toc-desc">Every UI piece in the live FaithStream app — buttons, cards, badges, modals, nav — shown live and annotated against the design tokens.</div>
+        </div>
+        <div class="toc-card" onclick="location.href='web-ui.html'">
+          <div class="toc-num">05 — PRODUCT</div>
+          <div class="toc-title">Web & UI System</div>
+          <div class="toc-desc">Layout grid, breakpoints, spacing scale, accessibility/contrast standard, and how the brand holds across web and mobile app.</div>
+        </div>
+        <div class="toc-card" onclick="location.href='governance.html'">
+          <div class="toc-num">06 — OPERATING</div>
+          <div class="toc-title">Governance</div>
+          <div class="toc-desc">How this system stays alive: file conventions, naming, approval paths, and what to do when a new situation isn't covered here.</div>
         </div>
       </div>
-      <div class="video-card">
-        <div class="video-thumb">
-          <iframe src="https://www.youtube-nocookie.com/embed/x9Yni7Tocto" title="Tinuke Adewunmi Talks About FaithStream At The Launch In Lagos" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+
+      <h2 class="bs-h2">Three operating principles</h2>
+      <p class="bs-p">Everything in this system traces back to three rules. When a new design decision isn't explicitly covered anywhere else in this document, check it against these first.</p>
+
+      <div class="principle-row">
+        <div class="principle">
+          <div class="principle-icon">1</div>
+          <h4>Purple carries the brand</h4>
+          <p>The purple family is the single thing that makes FaithStream recognizable at a glance. Every accent, tint, and shade in this system stays inside that family — nothing borrowed from outside it competes for that job.</p>
         </div>
-        <div class="video-info">
-          <div class="video-title">Tinuke Adewunmi Talks About FaithStream At The Launch In Lagos</div>
-          <div class="video-channel"><img src="assets/logo/faithstream_icon_purple.png" alt="">The Faith Stream</div>
+        <div class="principle">
+          <div class="principle-icon">2</div>
+          <h4>Confident, not loud</h4>
+          <p>FaithStream competes with Netflix-caliber platforms, but the tone is warm and dignified, not aggressive. Typography, color, and copy should read as premium and considered — never as shouting for attention.</p>
+        </div>
+        <div class="principle">
+          <div class="principle-icon">3</div>
+          <h4>One system, every surface</h4>
+          <p>A thumbnail, a social post, an app screen, and a donation page should all feel like the same product made by the same team — because they're built from the same small set of tokens, not improvised per project.</p>
         </div>
       </div>
-      <a class="video-card video-wide" href="#" >
-        <div class="video-thumb">
-          <img src="assets/img/interview.jpg" alt="FaithStream interview">
-          <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        </div>
-        <div class="video-info">
-          <div class="video-title">FaithStream — Launch Interview, November 2026</div>
-          <div class="video-channel"><img src="assets/logo/faithstream_icon_purple.png" alt="">FaithStream_Nov26_[interview]_[6].mov</div>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
 
-<!-- ══ FOOTER ══ -->
-<footer class="footer">
-  <div class="footer-inner">
-    <p class="footer-links">Want to learn more about House of Faith and FaithStream?<br>Visit <a href="https://ahouseoffaith.org" target="_blank" rel="noopener">ahouseoffaith.org</a> or <a href="https://thefaithstream.com" target="_blank" rel="noopener">thefaithstream.com</a></p>
-    <div class="socials">
-      <a class="social-btn" href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45z"/></svg></a>
-      <a class="social-btn" href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.7.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98 1.28.06 1.69.07 4.95.07s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95C23.73 2.7 21.31.27 16.95.07 15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 12 18.16 6.16 6.16 0 0 0 12 5.84zm0 10.15a4 4 0 1 1 0-7.99 4 4 0 0 1 0 7.99zm6.41-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg></a>
-      <a class="social-btn" href="https://www.tiktok.com" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
-      <a class="social-btn" href="https://x.com" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.24 2.25h3.31l-7.23 8.26L22.83 21.75h-6.66l-5.22-6.82-5.97 6.82H1.67l7.73-8.84L1.25 2.25h6.83l4.72 6.24 5.44-6.24zm-1.16 17.52h1.83L7.08 4.13H5.12l11.96 15.64z"/></svg></a>
-      <a class="social-btn" href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.09 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.55-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.49h-2.8V24C19.61 23.09 24 18.1 24 12.07z"/></svg></a>
-      <a class="social-btn" href="https://www.youtube.com/@thefaithstream" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></svg></a>
-    </div>
-  </div>
-  <div class="footer-bar">
-    <div class="footer-bar-inner">
-      <span class="footer-copy">House of Faith &copy; 2026</span>
-      <span class="footer-mark"><img src="assets/logo/faithstream_icon_white.png" alt="">Powered by FaithStream</span>
-    </div>
-  </div>
-</footer>
+      <div class="bs-callout">
+        <div class="bs-callout-label">Where this comes from</div>
+        <div class="bs-callout-text">This system is grounded directly in the live FaithStream product code — the same CSS variables, component patterns, and interaction states already shipped are referenced and reconciled throughout, rather than invented from scratch. Where something in the current build is inconsistent (a stray color, an unplanned font), it's flagged explicitly rather than silently fixed, so the decision is visible and deliberate.</div>
+      </div>
 
-<script src="assets/viewer.js"></script>
+      <div class="bs-pagenav" style="justify-content:flex-end;">
+        <a href="foundations.html" class="bs-pagenav-link next">
+          <span class="bs-pagenav-dir">Next →</span>
+          <span class="bs-pagenav-title">01 — Foundations</span>
+        </a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
 </body>
 </html>
